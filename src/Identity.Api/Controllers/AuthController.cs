@@ -6,7 +6,7 @@ namespace Identity.Api.Controllers
     /// <summary>
     /// 
     /// </summary>
-    [Route("api/identity/")]
+    [Route("api/identity-management/")]
     [ApiController]
     public class AuthController : ControllerBase
     {
@@ -24,17 +24,17 @@ namespace Identity.Api.Controllers
         /// Get JSON Web Keys set
         /// </summary>
         /// <returns></returns>
-        [HttpGet("jwks.json")]
+        [HttpGet("jwks")]
         public ActionResult GetJwkSet()
         {
             return Ok();
         }
 
         /// <summary>
-        /// Get tokens with a claims
+        /// Create a new tokens with claims
         /// </summary>
         /// <returns></returns>
-        [HttpPost("token")]
+        [HttpPost("tokens")]
         public ActionResult GetTokens()
         {
             return Ok();

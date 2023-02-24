@@ -6,7 +6,7 @@ namespace Identity.Api.Controllers
     /// <summary>
     /// 
     /// </summary>
-    [Route("api/identity/registrations")]
+    [Route("api/identity-management/registration-tokens")]
     [ApiController]
     public class RegistrationController : ControllerBase
     {
@@ -27,7 +27,7 @@ namespace Identity.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPut]
-        public ActionResult CreateNewRegistration()
+        public ActionResult CreateNewRegistrationToken()
         {
             return Ok();
         }
@@ -38,7 +38,7 @@ namespace Identity.Api.Controllers
         /// <param name="guid"></param>
         /// <returns></returns>
         [HttpPost("{guid}")]
-        public ActionResult CompleteRegistration(Guid guid)
+        public ActionResult CompleteRegistrationProcess(Guid guid)
         {
             return Ok();
         }

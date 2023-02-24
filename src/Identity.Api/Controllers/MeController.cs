@@ -7,7 +7,7 @@ namespace Identity.Api.Controllers
     /// <summary>
     /// 
     /// </summary>
-    [Route("api/identity/me")]
+    [Route("api/identity-management/me")]
     [ApiController]
     public class MeController : ControllerBase
     {

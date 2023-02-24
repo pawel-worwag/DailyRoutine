@@ -6,12 +6,12 @@ namespace Identity.Api.Controllers
     /// <summary>
     /// 
     /// </summary>
-    [Route("api/identity/recovery")]
+    [Route("api/identity-management/recovery-password-tokens")]
     [ApiController]
     public class RecoveryController : ControllerBase
     {
         /// <summary>
-        /// Get list of password recovery requests
+        /// Get list of password recovery requests (only metadata)
         /// </summary>
         /// <param name="Take"></param>
         /// <param name="Skip"></param>
@@ -23,11 +23,11 @@ namespace Identity.Api.Controllers
         }
 
         /// <summary>
-        /// Start password recovery procedure
+        /// Create new rescovery token / start password recovery procedure
         /// </summary>
         /// <returns></returns>
         [HttpPut]
-        public ActionResult CreateNewRegistration()
+        public ActionResult StartNewRecoveryProcess()
         {
             return Ok();
         }
@@ -37,8 +37,8 @@ namespace Identity.Api.Controllers
         /// </summary>
         /// <param name="guid"></param>
         /// <returns></returns>
-        [HttpPost("{guid}")]
-        public ActionResult CompleteRegistration(Guid guid)
+        [HttpPost("{guid}/complete")]
+        public ActionResult CompleteRecoveryProcess(Guid guid)
         {
             return Ok();
         }

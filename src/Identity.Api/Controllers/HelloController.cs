@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Identity.Api.Controllers
 {
-    [Route("api/identity/")]
+    [Route("api/identity-management/")]
     [ApiController]
     public class HelloController : ControllerBase
     {

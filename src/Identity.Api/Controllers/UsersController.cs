@@ -6,7 +6,7 @@ namespace Identity.Api.Controllers
     /// <summary>
     /// 
     /// </summary>
-    [Route("api/identity/users")]
+    [Route("api/identity-management/users")]
     [ApiController]
     public class UsersController : ControllerBase
     {
@@ -50,6 +50,17 @@ namespace Identity.Api.Controllers
         /// <returns></returns>
         [HttpPost("{guid}")]
         public ActionResult UpdateUser(Guid guid)
+        {
+            return Ok();
+        }
+
+        /// <summary>
+        /// Send Welcome-Email to user
+        /// </summary>
+        /// <param name="guid"></param>
+        /// <returns></returns>
+        [HttpPost("{guid}/send-welcome-email")]
+        public ActionResult SendWelcomeEmeil(Guid guid)
         {
             return Ok();
         }

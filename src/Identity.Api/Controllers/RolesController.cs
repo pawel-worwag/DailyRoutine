@@ -6,7 +6,7 @@ namespace Identity.Api.Controllers
     /// <summary>
     /// 
     /// </summary>
-    [Route("api/identity/roles/")]
+    [Route("api/identity-management/roles/")]
     [ApiController]
     public class RolesController : ControllerBase
     {
