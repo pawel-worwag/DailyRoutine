@@ -41,7 +41,7 @@ namespace Mailer.Api.Controllers
         /// Add new template
         /// </summary>
         /// <returns></returns>
-        [HttpPost("templates")]
+        [HttpPut("templates")]
         public ActionResult AddTemplate()
         {
             return Ok();
