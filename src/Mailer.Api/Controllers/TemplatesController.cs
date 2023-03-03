@@ -79,5 +79,38 @@ namespace Mailer.Api.Controllers
         {
             return Ok();
         }
+
+        /// <summary>
+        /// Get list of related multimedia files
+        /// </summary>
+        /// <param name="guid"></param>
+        /// <returns></returns>
+        [HttpGet("templates/{guid}/multimedia")]
+        public IActionResult GetRelatedMultimediaFiles(Guid guid)
+        {
+            return Ok();
+        }
+
+        /// <summary>
+        /// Add related multimedia file
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpPut("templates/{guid}/multimedia")]
+        public IActionResult AddRelatedMultimediaFile(Guid id)
+        {
+            return Ok();
+        }
+        
+        /// <summary>
+        /// Delete related multimedia file
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete("templates/{guid}/multimedia")]
+        public IActionResult DeleteRelatedMultimediaFile(Guid id)
+        {
+            return Ok();
+        }
     }
 }
