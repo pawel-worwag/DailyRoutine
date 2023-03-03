@@ -67,5 +67,29 @@ namespace DailyRutine.Api.Controllers
         {
             return Ok();
         }
+        
+        /// <summary>
+        /// Get calendar page
+        /// </summary>
+        /// <param name="calendarGuid"></param>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        [HttpGet("{guid}/pages/{date}")]
+        public IActionResult GetCalendarPage(Guid calendarGuid, DateTime date)
+        {
+            return Ok();
+        }
+        
+        /// <summary>
+        /// Get list of entries
+        /// </summary>
+        /// <param name="guid"></param>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        [HttpGet("{guid}/pages/{date}/entries")]
+        public IActionResult GetEntries(Guid guid, DateTime date)
+        {
+            return Ok();
+        }
     }
 }
