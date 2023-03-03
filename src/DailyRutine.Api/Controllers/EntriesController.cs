@@ -8,32 +8,20 @@ using Microsoft.AspNetCore.Mvc;
 namespace DailyRutine.Api.Controllers
 {
     /// <summary>
-    /// 
+    /// Get list of entries
     /// </summary>
-    [Route("api/calendar-management/calendars/{calendarGuid}/pages/{date}")]
+    [Route("api/calendar-management/entries")]
     [ApiController]
     public class EntriesController : ControllerBase
     {
-        /// <summary>
-        /// Get calendar page
-        /// </summary>
-        /// <param name="calendarGuid"></param>
-        /// <param name="date"></param>
-        /// <returns></returns>
-        [HttpGet()]
-        public IActionResult GetCalendarPage(Guid calendarGuid, DateTime date)
-        {
-            return Ok();
-        }
-
         /// <summary>
         /// Get list of entries
         /// </summary>
         /// <param name="calendarGuid"></param>
         /// <param name="date"></param>
         /// <returns></returns>
-        [HttpGet("entries")]
-        public IActionResult GetEntries(Guid calendarGuid, DateTime date)
+        [HttpGet]
+        public IActionResult GetEntries(Guid? calendarGuid = null, DateTime? date = null)
         {
             return Ok();
         }
@@ -44,7 +32,7 @@ namespace DailyRutine.Api.Controllers
         /// <param name="calendarGuid"></param>
         /// <param name="date"></param>
         /// <returns></returns>
-        [HttpPut("entries")]
+        [HttpPut]
         public IActionResult CreateNewEntry(Guid calendarGuid, DateTime date)
         {
             return Ok();
@@ -53,12 +41,10 @@ namespace DailyRutine.Api.Controllers
         /// <summary>
         /// Add new entry
         /// </summary>
-        /// <param name="calendarGuid"></param>
-        /// <param name="date"></param>
         /// <param name="guid"></param>
         /// <returns></returns>
-        [HttpGet("entries/{guid}")]
-        public IActionResult GetEntryDetails(Guid calendarGuid, DateTime date, Guid guid)
+        [HttpGet("{guid}")]
+        public IActionResult GetEntryDetails(Guid guid)
         {
             return Ok();
         }
@@ -66,12 +52,10 @@ namespace DailyRutine.Api.Controllers
         /// <summary>
         /// Update entry
         /// </summary>
-        /// <param name="calendarGuid"></param>
-        /// <param name="date"></param>
         /// <param name="guid"></param>
         /// <returns></returns>
-        [HttpPost("entries/{guid}")]
-        public IActionResult UpdateEntry(Guid calendarGuid, DateTime date, Guid guid)
+        [HttpPost("{guid}")]
+        public IActionResult UpdateEntry(Guid guid)
         {
             return Ok();
         }
@@ -79,12 +63,10 @@ namespace DailyRutine.Api.Controllers
         /// <summary>
         /// Delete entry
         /// </summary>
-        /// <param name="calendarGuid"></param>
-        /// <param name="date"></param>
         /// <param name="guid"></param>
         /// <returns></returns>
-        [HttpDelete("entries/{guid}")]
-        public IActionResult DeleteEntry(Guid calendarGuid, DateTime date, Guid guid)
+        [HttpDelete("{guid}")]
+        public IActionResult DeleteEntry( Guid guid)
         {
             return Ok();
         }
