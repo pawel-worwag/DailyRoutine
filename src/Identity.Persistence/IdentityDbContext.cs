@@ -10,6 +10,7 @@ namespace Identity.Persistence;
 public class IdentityDbContext : IdentityDbContext<Domain.Entities.User, Domain.Entities.Role, int>,IIdentityDbContext
 {
     public DbSet<Domain.Entities.RegistrationToken> RegistrationTokens { get; set; }
+    public DbSet<Domain.Entities.RecoveryPasswordToken> RecoveryPasswordTokens { get; set; }
     public IdentityDbContext(DbContextOptions<IdentityDbContext> options) : base(options)
     {
     }
