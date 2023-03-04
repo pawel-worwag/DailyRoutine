@@ -3,6 +3,7 @@ using System;
 using Identity.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Identity.Persistence.Migrations
 {
     [DbContext(typeof(IdentityDbContext))]
-    partial class IdentityDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230304233418_UserRegistrationToken")]
+    partial class UserRegistrationToken
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -39,8 +42,7 @@ namespace Identity.Persistence.Migrations
 
                     b.HasKey("Guid");
 
-                    b.HasIndex("UserId")
-                        .IsUnique();
+                    b.HasIndex("UserId");
 
                     b.ToTable("UserRegistrationTokens", (string)null);
                 });
@@ -253,8 +255,8 @@ namespace Identity.Persistence.Migrations
             modelBuilder.Entity("Identity.Domain.Entities.RegistrationToken", b =>
                 {
                     b.HasOne("Identity.Domain.Entities.User", "User")
-                        .WithOne()
-                        .HasForeignKey("Identity.Domain.Entities.RegistrationToken", "UserId")
+                        .WithMany()
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
