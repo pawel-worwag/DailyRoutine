@@ -1,6 +1,11 @@
 using System.Reflection;
+using Identity.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
+
+
+builder.Services.AddPersistence(builder.Configuration);
+
 
 builder.Services.AddControllers();
 
