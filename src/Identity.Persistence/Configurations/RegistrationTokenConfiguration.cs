@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Identity.Persistence.Configurations;
 
-public class RegistrationToken : IEntityTypeConfiguration<Domain.Entities.RegistrationToken>
+public class RegistrationTokenConfiguration : IEntityTypeConfiguration<Domain.Entities.RegistrationToken>
 {
     public void Configure(EntityTypeBuilder<Domain.Entities.RegistrationToken> builder)
     {
