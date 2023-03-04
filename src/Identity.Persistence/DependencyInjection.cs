@@ -11,7 +11,7 @@ public static class DependencyInjection
     public static IServiceCollection AddPersistence(this IServiceCollection services, 
         IConfiguration configuration)
     {
-        services.AddDbContext<IdentityDbContext>(options => 
+        services.AddDbContextPool<IdentityDbContext>(options => 
             options.UseNpgsql(configuration.GetConnectionString("IdentityDatabase")));
         services.AddIdentityCore<Domain.Entities.User>()
             .AddRoles<Domain.Entities.Role>()
