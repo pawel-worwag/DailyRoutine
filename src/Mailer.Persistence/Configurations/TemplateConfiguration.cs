@@ -16,7 +16,8 @@ public class TemplateConfiguration : IEntityTypeConfiguration<Domain.Entities.Te
         builder.HasOne(p => p.Language).WithMany().IsRequired();
         builder.Property(p => p.Subject).IsRequired();
         builder.Property(p => p.BodyEncoded).IsRequired();
-        builder.HasMany(p => p.Attachments).WithMany()
-            .UsingEntity(j => j.ToTable("TemplateAttachments"));
+        builder.HasMany(p=>p.Attachments)
+            .WithMany(p=>p.Templates)
+            .UsingEntity(j=>j.ToTable("TemplateAttachments"));
     }
 }

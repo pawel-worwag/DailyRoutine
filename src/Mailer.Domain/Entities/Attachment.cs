@@ -10,4 +10,5 @@ public class Attachment
     public string MediaType { get; set; } = String.Empty;
     public string Description { get; set; } = String.Empty;
     public bool Inline { get; set; } = true;
+    public ICollection<Template> Templates { get; set; } = new List<Template>();
 }

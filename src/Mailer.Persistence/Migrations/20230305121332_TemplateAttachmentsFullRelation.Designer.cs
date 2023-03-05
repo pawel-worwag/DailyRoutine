@@ -3,6 +3,7 @@ using System;
 using Mailer.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Mailer.Persistence.Migrations
 {
     [DbContext(typeof(MailerDbContext))]
-    partial class MailerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230305121332_TemplateAttachmentsFullRelation")]
+    partial class TemplateAttachmentsFullRelation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
