@@ -15,6 +15,11 @@ public class DailyRutineDbContext : DbContext, IDailyRutineDbContext
     public DbSet<ToDoEntry> ToDoEntries { get; set; }
     public DbSet<NutritionEntry> NutritionEntries { get; set; }
 
+    public DailyRutineDbContext(DbContextOptions<DailyRutineDbContext> options) : base(options)
+    {
+            
+    }
+    
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
