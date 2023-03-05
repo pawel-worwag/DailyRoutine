@@ -13,5 +13,7 @@ public class RegistrationTokenConfiguration : IEntityTypeConfiguration<Domain.En
         builder.Property(p => p.ValidAfter).IsRequired();
         builder.Property(p => p.ValidBefore).IsRequired();
         builder.HasOne(p => p.User).WithOne();
+        builder.Property(p => p.Token).IsRequired();
+        builder.HasIndex(p => p.Token).IsUnique();
     }
 }

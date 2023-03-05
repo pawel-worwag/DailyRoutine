@@ -14,5 +14,7 @@ public class RecoveryTokenConfiguration :  IEntityTypeConfiguration<Domain.Entit
         builder.Property(p => p.ValidAfter).IsRequired();
         builder.Property(p => p.ValidBefore).IsRequired();
         builder.HasOne(p => p.User).WithMany().HasForeignKey(p=>p.UserId).IsRequired();
+        builder.Property(p => p.Token).IsRequired();
+        builder.HasIndex(p => p.Token).IsUnique();
     }
 }
