@@ -6,4 +6,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Mailer.Application\Mailer.Application.csproj" />
+    <ProjectReference Include="..\Mailer.Domain\Mailer.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
