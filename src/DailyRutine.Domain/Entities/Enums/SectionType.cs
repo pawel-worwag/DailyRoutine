@@ -1,4 +1,4 @@
-namespace DailyRutine.Domain.Entities;
+namespace DailyRutine.Domain.Entities.Enums;
 
 public enum SectionType
 {

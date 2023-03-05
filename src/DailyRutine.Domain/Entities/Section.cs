@@ -1,3 +1,5 @@
+using DailyRutine.Domain.Entities.Enums;
+
 namespace DailyRutine.Domain.Entities;
 
 public class Section
