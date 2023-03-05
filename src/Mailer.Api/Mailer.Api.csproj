@@ -19,5 +19,9 @@
       <DependentUpon>appsettings.json</DependentUpon>
     </Content>
   </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\Mailer.Persistence\Mailer.Persistence.csproj" />
+  </ItemGroup>
 
 </Project>
