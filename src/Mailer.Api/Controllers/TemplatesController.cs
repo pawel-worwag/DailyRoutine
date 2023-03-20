@@ -85,7 +85,7 @@ namespace Mailer.Api.Controllers
         /// </summary>
         /// <param name="guid"></param>
         /// <returns></returns>
-        [HttpGet("templates/{guid}/multimedia")]
+        [HttpGet("templates/{guid}/attachments")]
         public IActionResult GetRelatedMultimediaFiles(Guid guid)
         {
             return Ok();
@@ -96,7 +96,7 @@ namespace Mailer.Api.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpPut("templates/{guid}/multimedia")]
+        [HttpPut("templates/{guid}/attachments")]
         public IActionResult AddRelatedMultimediaFile(Guid id)
         {
             return Ok();
@@ -107,7 +107,7 @@ namespace Mailer.Api.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpDelete("templates/{guid}/multimedia")]
+        [HttpDelete("templates/{guid}/attachments")]
         public IActionResult DeleteRelatedMultimediaFile(Guid id)
         {
             return Ok();

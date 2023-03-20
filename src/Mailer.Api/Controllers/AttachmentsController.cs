@@ -5,9 +5,9 @@ namespace Mailer.Api.Controllers;
 /// <summary>
 /// 
 /// </summary>
-[Route("api/mail-management/multimedia")]
+[Route("api/mail-management/attachments")]
 [ApiController]
-public class MultimediaController : ControllerBase
+public class AttachmentsController : ControllerBase
 {
     /// <summary>
     /// List of uploaded files
