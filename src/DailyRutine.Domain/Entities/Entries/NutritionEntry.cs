@@ -2,7 +2,7 @@ using DailyRutine.Domain.Entities.Enums;
 
 namespace DailyRutine.Domain.Entities.Entries;
 
-public class NutritionEntry
+public class NutritionEntry : Entry
 {
     public EntryType Type { get; private set; } = EntryType.NUTRITION;
     public string Name { get; set; } = String.Empty;
