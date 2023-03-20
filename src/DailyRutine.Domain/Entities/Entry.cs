@@ -4,6 +4,7 @@ namespace DailyRutine.Domain.Entities;
 
 public abstract class  Entry
 {
+     public int Id { get; set; }
      public Guid Guid { get;  set; } = Guid.NewGuid();
      public EntryType Type { get; set; } = EntryType.UNKNOWN;
      public Calendar Calendar { get; set; }

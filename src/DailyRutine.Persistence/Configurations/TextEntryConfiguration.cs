@@ -11,8 +11,9 @@ public class TextEntryConfiguration : IEntityTypeConfiguration<Domain.Entities.E
         //Table
         builder.ToTable("TextEntries");
         //Primary Key
-        builder.HasKey(p => p.Guid);
+        builder.HasKey(p => p.Id);
         builder.Property(p => p.Guid).IsRequired();
+        builder.HasIndex(p => p.Guid).IsUnique();
         //Type
         builder.Ignore(p => p.Type);
         //Date

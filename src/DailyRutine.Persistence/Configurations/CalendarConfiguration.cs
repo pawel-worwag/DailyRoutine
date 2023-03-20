@@ -9,8 +9,9 @@ public class CalendarConfiguration : IEntityTypeConfiguration<Domain.Entities.Ca
     public void Configure(EntityTypeBuilder<Calendar> builder)
     {
         builder.ToTable("Calendars");
-        builder.HasKey(p => p.Guid);
+        builder.HasKey(p => p.Id);
         builder.Property(p => p.Guid).IsRequired();
+        builder.HasIndex(p => p.Guid).IsUnique();
         builder.Property(p => p.Owner).IsRequired();
         builder.Property(p => p.Name).IsRequired();
     }

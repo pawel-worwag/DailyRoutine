@@ -4,6 +4,7 @@ namespace DailyRutine.Domain.Entities;
 
 public class Calendar
 {
+    public int Id { get; set; }
     public Guid Guid { get; set; } = Guid.NewGuid();
     public Guid Owner { get; set; }
     public string Name { get; set; } = string.Empty;
