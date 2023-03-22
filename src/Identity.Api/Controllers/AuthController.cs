@@ -67,7 +67,9 @@ namespace Identity.Api.Controllers
                 {
                     var ret = await _mediator.Send(new Application.Auth.AccessTokenRequest.AccessTokenRequest()
                     {
-                        
+                        Username = dto.Username,
+                        Password = dto.Password,
+                        Scope = dto.Scope
                     });
                     return Ok();
                 }
