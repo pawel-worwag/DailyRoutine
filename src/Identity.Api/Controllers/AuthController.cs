@@ -82,12 +82,12 @@ namespace Identity.Api.Controllers
                 case GrantTypeNames.RefreshToken:
                 {
                     throw new AuthException(HttpStatusCode.BadRequest, 
-                        AuthErrorResponseNames.UnsupportedGrantType,"Bad grant_type");
+                        AuthErrorResponseNames.UnsupportedGrantType,$"Bad grant_type '{dto.GrantType}'.");
                 }
                 default:
                 {
                     throw new AuthException(HttpStatusCode.BadRequest, 
-                        AuthErrorResponseNames.UnsupportedGrantType,"Bad grant_type");
+                        AuthErrorResponseNames.UnsupportedGrantType,$"Bad grant_type '{dto.GrantType}'.");
                 }
             }
         }

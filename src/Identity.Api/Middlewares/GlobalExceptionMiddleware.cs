@@ -26,8 +26,9 @@ public class GlobalExceptionMiddleware
         }
         catch (AuthException ex)
         {
+            _logger.LogError(ex.ToString());
             context.Response.StatusCode = (int)ex.StatusCode;
-            await context.Response.WriteAsJsonAsync(new AuthErrorResponse(ex.Error,ex.Description));
+            await context.Response.WriteAsJsonAsync(new AuthErrorResponse(ex.Error,ex.Message));
         }
         catch (Exception ex)
         {
