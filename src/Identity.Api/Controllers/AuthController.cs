@@ -1,5 +1,10 @@
-﻿using System.Net.Mime;
+﻿using System.Net;
+using System.Net.Mime;
+using Identity.Application.Auth.AccessTokenRequest;
+using Identity.Shared.Commands.Auth;
 using Identity.Shared.Commands.Auth.Tokens;
+using Identity.Shared.Common;
+using Identity.Shared.Enums;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -47,8 +52,8 @@ namespace Identity.Api.Controllers
         /// <param name="dto"></param>
         /// <returns></returns>
         [ProducesResponseType(typeof(TokenResponse), 200)]
-        [ProducesResponseType(typeof(ErrorResponse), 400)]
-        [ProducesResponseType(typeof(ErrorResponse), 401)]
+        [ProducesResponseType(typeof(AuthErrorResponse), 400)]
+        [ProducesResponseType(typeof(AuthErrorResponse), 401)]
         [ProducesResponseType(500)]
         [HttpPost("tokens")]
         [Consumes(contentType:"application/x-www-form-urlencoded")]
@@ -58,14 +63,15 @@ namespace Identity.Api.Controllers
         {
             if (string.IsNullOrEmpty(dto.GrantType))
             {
-                return StatusCode(400, new ErrorResponse(ErrorResponseValues.InvalidRequest, "No grant_type"));
+                throw new AuthException(HttpStatusCode.BadRequest, 
+                    AuthErrorResponseNames.InvalidRequest,"No grant_type");
             }
 
             switch (dto.GrantType)
             {
                 case GrantTypeNames.Password:
                 {
-                    var ret = await _mediator.Send(new Application.Auth.AccessTokenRequest.AccessTokenRequest()
+                    var ret = await _mediator.Send(new AccessTokenRequest()
                     {
                         Username = dto.Username,
                         Password = dto.Password,
@@ -75,11 +81,15 @@ namespace Identity.Api.Controllers
                 }
                 case GrantTypeNames.RefreshToken:
                 {
-                    return Ok();
+                    throw new AuthException(HttpStatusCode.BadRequest, 
+                        AuthErrorResponseNames.UnsupportedGrantType,"Bad grant_type");
+                }
+                default:
+                {
+                    throw new AuthException(HttpStatusCode.BadRequest, 
+                        AuthErrorResponseNames.UnsupportedGrantType,"Bad grant_type");
                 }
             }
-
-            return StatusCode(400, new ErrorResponse(ErrorResponseValues.UnsupportedGrantType,"Bad grant_type"));
         }
     }
 }

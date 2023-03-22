@@ -1,27 +1,6 @@
-using System.Text.Json.Serialization;
+namespace Identity.Shared.Enums;
 
-namespace Identity.Shared.Commands.Auth.Tokens;
-
-public class ErrorResponse
-{
-    [JsonPropertyName("error")]
-    public string Error { get; set; } = string.Empty;
-    [JsonPropertyName("error_description")]
-    public string Description { get; set; } = string.Empty;
-
-    public ErrorResponse(string error, string? description = null)
-    {
-        this.Error = error;
-        if(description is not null) {this.Description = description;}
-    }
-
-    public ErrorResponse()
-    {
-            
-    }
-}
-
-public static class ErrorResponseValues
+public class AuthErrorResponseNames
 {
     /// <summary>
     /// The request is missing a required parameter,
@@ -56,5 +35,4 @@ public static class ErrorResponseValues
     /// The request includes an invalid DPoP proof JWT.
     /// </summary>
     public const string InvalidDpopProof = "invalid_dpop_proof";
-    
 }

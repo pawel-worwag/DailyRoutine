@@ -1,4 +1,5 @@
 using System.Reflection;
+using Identity.Api.Middlewares;
 using Identity.Application;
 using Identity.Persistence;
 
@@ -19,7 +20,7 @@ builder.Services.AddSwaggerGen( options => {
 // Add services to the container.
 
 var app = builder.Build();
-
+app.UseGlobalExceptionMiddleware();
 // Configure the HTTP request pipeline.
 
 app.UseHttpsRedirection();
