@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Identity.Api.Controllers
@@ -10,6 +11,17 @@ namespace Identity.Api.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
+        private IMediator _mediator;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mediator"></param>
+        public UsersController(IMediator mediator)
+        {
+            _mediator = mediator;
+        }
+
         /// <summary>
         /// Get list of registered users
         /// </summary>
@@ -36,11 +48,13 @@ namespace Identity.Api.Controllers
         /// <summary>
         /// Add new user
         /// </summary>
+        /// <param name="dto"></param>
         /// <returns></returns>
         [HttpPut]
-        public ActionResult AddNewUser()
+        public async Task<Guid> AddNewUser(Identity.Shared.Commands.Users.AddNewUser.AddNewUserQuery dto)
         {
-            return Ok();
+            var guid = await _mediator.Send(new Application.Users.AddNewUserRequest.AddNewUserRequest(){dto = dto});
+            return guid;
         }
 
         /// <summary>
