@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Identity.Shared.Commands.Users.GetUsersList;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -29,9 +30,13 @@ namespace Identity.Api.Controllers
         /// <param name="Skip"></param>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult GetUsersList(int Take = 50, int Skip = 0)
+        public async Task<GetUsersListResponse> GetUsersList(int Take = 50, int Skip = 0)
         {
-            return Ok();
+            return await _mediator.Send(new Application.Users.GetUsersListRequest.GetUsersListRequest()
+            {
+                Take = Take,
+                Skip = Skip
+            });
         }
 
         /// <summary>
