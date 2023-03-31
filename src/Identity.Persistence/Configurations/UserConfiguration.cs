@@ -11,5 +11,6 @@ public class UserConfiguration : IEntityTypeConfiguration<Domain.Entities.User>
         builder.ToTable("Users");
         builder.HasIndex(p => p.Guid).IsUnique();
         builder.Property(p => p.Guid).IsRequired();
+        builder.Property(p => p.DisplayName).IsRequired();
     }
 }
