@@ -77,7 +77,7 @@ namespace Identity.Api.Controllers
                         Password = dto.Password,
                         Scope = dto.Scope
                     });
-                    return Ok();
+                    return Ok(ret);
                 }
                 case GrantTypeNames.RefreshToken:
                 {
