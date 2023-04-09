@@ -1,4 +1,5 @@
 using System.IdentityModel.Tokens.Jwt;
+using System.Net;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
@@ -6,6 +7,7 @@ using FluentValidation;
 using Identity.Domain.Entities;
 using Identity.Shared.Commands.Auth.Tokens;
 using Identity.Shared.Common;
+using Identity.Shared.Exceptions;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 //using Microsoft.Extensions.Configuration;
@@ -44,9 +46,9 @@ public class AccessTokenRequestHandler : IRequestHandler<AccessTokenRequest,Toke
     {
         
         var user = await _userManager.FindByEmailAsync(request.Username);
-        if(user is null) {throw new Exception("Invalid UserName or Password");}
+        if(user is null) {throw new ProblemException(HttpStatusCode.BadGateway,"auth_failed","Invalid UserName or Password");}
         var passwordValid = await _userManager.CheckPasswordAsync(user, request.Password);
-        if(!passwordValid) {throw new Exception("Invalid UserName or Password");}
+        if(!passwordValid) {throw new ProblemException(HttpStatusCode.BadGateway,"auth_failed","Invalid UserName or Password");}
 
         var response = new TokenResponse()
         {

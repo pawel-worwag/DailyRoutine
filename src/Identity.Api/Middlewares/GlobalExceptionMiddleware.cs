@@ -33,7 +33,7 @@ public class GlobalExceptionMiddleware
         {
             await _next(context);
         }
-        catch (AuthException ex)
+        catch (ProblemException ex)
         {
             _logger.LogError(ex.ToString());
             context.Response.StatusCode = (int)ex.StatusCode;

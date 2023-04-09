@@ -1,7 +1,9 @@
+using System.Net;
 using FluentValidation;
 using Identity.Domain.Entities;
 using Identity.Shared.Commands.Users.AddNewUser;
 using Identity.Shared.Common;
+using Identity.Shared.Exceptions;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 
@@ -30,7 +32,8 @@ public class AddNewUserRequestHandler : IRequestHandler<AddNewUserRequest, Guid>
     {
         _usersManager = usersManager;
     }
-    // TODO modify error handling 
+    // TODO modify error handling
+    // TODO add try-catch
     public async Task<Guid> Handle(AddNewUserRequest request, CancellationToken cancellationToken)
     {
         var user = MapDtoToDomainUser(request.Dto);
@@ -46,9 +49,9 @@ public class AddNewUserRequestHandler : IRequestHandler<AddNewUserRequest, Guid>
 
         if (!result.Succeeded)
         {
-            throw new Exception($"Adding user goes wrong. {result}");
+            throw new ProblemException(HttpStatusCode.InternalServerError,"internal_error",$"Adding user goes wrong. {result}");
         }
-
+        
         foreach (var role in request.Dto.Roles)
         {
             await _usersManager.AddToRoleAsync(user, role);

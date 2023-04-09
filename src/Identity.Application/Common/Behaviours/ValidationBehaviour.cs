@@ -46,7 +46,7 @@ public class ValidationBehaviour<TRequest, TResponse> : IPipelineBehavior<TReque
                         message += "\n";
                     }
                 }
-                throw new AuthException(HttpStatusCode.BadRequest,AuthErrorResponseNames.InvalidRequest,message);
+                throw new ProblemException(HttpStatusCode.BadRequest,AuthErrorResponseNames.InvalidRequest,message);
             }
             
             failures = _validators.Where(v => v is not IAuthValidator)

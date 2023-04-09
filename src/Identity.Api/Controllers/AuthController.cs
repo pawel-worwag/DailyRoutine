@@ -65,7 +65,7 @@ namespace Identity.Api.Controllers
         {
             if (string.IsNullOrEmpty(dto.GrantType))
             {
-                throw new AuthException(HttpStatusCode.BadRequest, 
+                throw new ProblemException(HttpStatusCode.BadRequest, 
                     AuthErrorResponseNames.InvalidRequest,"No grant_type");
             }
 
@@ -83,12 +83,12 @@ namespace Identity.Api.Controllers
                 }
                 case GrantTypeNames.RefreshToken:
                 {
-                    throw new AuthException(HttpStatusCode.BadRequest, 
+                    throw new ProblemException(HttpStatusCode.BadRequest, 
                         AuthErrorResponseNames.UnsupportedGrantType,$"Bad grant_type '{dto.GrantType}'.");
                 }
                 default:
                 {
-                    throw new AuthException(HttpStatusCode.BadRequest, 
+                    throw new ProblemException(HttpStatusCode.BadRequest, 
                         AuthErrorResponseNames.UnsupportedGrantType,$"Bad grant_type '{dto.GrantType}'.");
                 }
             }
