@@ -1,5 +1,7 @@
 ﻿using System.Net;
 using Identity.Application.Auth.AccessTokenRequest;
+using Identity.Application.Auth.JwksRequest;
+using Identity.Shared.Commands.Auth.Jwks;
 using Identity.Shared.Commands.Auth.Tokens;
 using Identity.Shared.Common;
 using Identity.Shared.Enums;
@@ -42,10 +44,12 @@ namespace Identity.Api.Controllers
         /// Get JSON Web Keys set
         /// </summary>
         /// <returns></returns>
+        [ProducesResponseType(typeof(JwksResponse), 200)]
+        [Produces(contentType:"application/json")]
         [HttpGet("jwks")]
-        public ActionResult GetJwkSet()
+        public async Task<IActionResult> GetJwkSet()
         {
-            return Ok();
+            return Ok(await _mediator.Send(new JwksRequest()));
         }
 
         /// <summary>
