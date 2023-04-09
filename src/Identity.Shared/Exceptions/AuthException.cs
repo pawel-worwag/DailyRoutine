@@ -1,7 +1,7 @@
 using System.Net;
 using Identity.Shared.Enums;
 
-namespace Identity.Shared.Commands.Auth;
+namespace Identity.Shared.Exceptions;
 
 public class AuthException : Exception
 {

@@ -2,7 +2,6 @@ using System.Reflection;
 using FluentValidation;
 using Identity.Application.Common.Behaviours;
 using MediatR;
-using MediatR.Pipeline;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Identity.Application;

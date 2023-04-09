@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace Identity.Api.Controllers
 {
@@ -13,11 +12,11 @@ namespace Identity.Api.Controllers
         /// <summary>
         /// Get list of password recovery requests (only metadata)
         /// </summary>
-        /// <param name="Take"></param>
-        /// <param name="Skip"></param>
+        /// <param name="take"></param>
+        /// <param name="skip"></param>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult GetAllRequest(int Take = 50, int Skip = 0)
+        public ActionResult GetAllRequest(int take = 50, int skip = 0)
         {
             return Ok();
         }

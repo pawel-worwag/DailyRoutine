@@ -1,9 +1,8 @@
-using System.ComponentModel.DataAnnotations;
 using System.Net;
 using FluentValidation;
-using Identity.Shared.Commands.Auth;
 using Identity.Shared.Common;
 using Identity.Shared.Enums;
+using Identity.Shared.Exceptions;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using ValidationException = FluentValidation.ValidationException;

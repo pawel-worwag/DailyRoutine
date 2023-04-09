@@ -9,22 +9,22 @@ namespace Identity.Application.Users.AddNewUserRequest;
 
 public class AddNewUserRequest : IRequest<Guid>
 {
-    public Identity.Shared.Commands.Users.AddNewUser.AddNewUserQuery dto { get; set; }
+    public AddNewUserQuery Dto { get; set; } = new AddNewUserQuery();
 }
 
 public sealed class AddNewUserRequestValidator : AbstractValidator<AddNewUserRequest>, IAuthValidator
 {
     public AddNewUserRequestValidator()
     {
-        RuleFor(e => e.dto).NotNull().WithMessage("Dto is null");
-        RuleFor(e => e.dto.DisplayName).NotEmpty().WithMessage("Field 'DisplayName' cannot be empty.");
-        RuleFor(e => e.dto.Email).NotEmpty().WithMessage("Field 'Email' cannot be empty.");
+        RuleFor(e => e.Dto).NotNull().WithMessage("Dto is null");
+        RuleFor(e => e.Dto.DisplayName).NotEmpty().WithMessage("Field 'DisplayName' cannot be empty.");
+        RuleFor(e => e.Dto.Email).NotEmpty().WithMessage("Field 'Email' cannot be empty.");
     }
 }
 
 public class AddNewUserRequestHandler : IRequestHandler<AddNewUserRequest, Guid>
 {
-    private readonly UserManager<Domain.Entities.User> _usersManager;
+    private readonly UserManager<User> _usersManager;
 
     public AddNewUserRequestHandler(UserManager<User> usersManager)
     {
@@ -33,23 +33,23 @@ public class AddNewUserRequestHandler : IRequestHandler<AddNewUserRequest, Guid>
     // TODO modify error handling 
     public async Task<Guid> Handle(AddNewUserRequest request, CancellationToken cancellationToken)
     {
-        var user = MapDtoToDomainUser(request.dto);
+        var user = MapDtoToDomainUser(request.Dto);
         IdentityResult result;
-        if (request.dto.Password is null)
+        if (request.Dto.Password is null)
         {
             result = await _usersManager.CreateAsync(user);
         }
         else
         {
-            result = await _usersManager.CreateAsync(user, request.dto.Password);
+            result = await _usersManager.CreateAsync(user, request.Dto.Password);
         }
 
         if (!result.Succeeded)
         {
-            throw new Exception($"Adding user goes wrong. {result.ToString()}");
+            throw new Exception($"Adding user goes wrong. {result}");
         }
 
-        foreach (var role in request.dto.Roles)
+        foreach (var role in request.Dto.Roles)
         {
             await _usersManager.AddToRoleAsync(user, role);
         }
@@ -57,7 +57,7 @@ public class AddNewUserRequestHandler : IRequestHandler<AddNewUserRequest, Guid>
         return user.Guid;
     }
 
-    private Domain.Entities.User MapDtoToDomainUser(AddNewUserQuery dto)
+    private User MapDtoToDomainUser(AddNewUserQuery dto)
     {
         return new User()
         {

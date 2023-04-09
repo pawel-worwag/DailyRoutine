@@ -1,6 +1,5 @@
 ﻿using Identity.Shared.Commands.Users.GetUsersList;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Identity.Api.Controllers
@@ -26,16 +25,16 @@ namespace Identity.Api.Controllers
         /// <summary>
         /// Get list of registered users
         /// </summary>
-        /// <param name="Take"></param>
-        /// <param name="Skip"></param>
+        /// <param name="take"></param>
+        /// <param name="skip"></param>
         /// <returns></returns>
         [HttpGet]
-        public async Task<GetUsersListResponse> GetUsersList(int Take = 50, int Skip = 0)
+        public async Task<GetUsersListResponse> GetUsersList(int take = 50, int skip = 0)
         {
             return await _mediator.Send(new Application.Users.GetUsersListRequest.GetUsersListRequest()
             {
-                Take = Take,
-                Skip = Skip
+                Take = take,
+                Skip = skip
             });
         }
 
@@ -56,9 +55,9 @@ namespace Identity.Api.Controllers
         /// <param name="dto"></param>
         /// <returns></returns>
         [HttpPut]
-        public async Task<Guid> AddNewUser(Identity.Shared.Commands.Users.AddNewUser.AddNewUserQuery dto)
+        public async Task<Guid> AddNewUser(Shared.Commands.Users.AddNewUser.AddNewUserQuery dto)
         {
-            var guid = await _mediator.Send(new Application.Users.AddNewUserRequest.AddNewUserRequest(){dto = dto});
+            var guid = await _mediator.Send(new Application.Users.AddNewUserRequest.AddNewUserRequest(){Dto = dto});
             return guid;
         }
 

@@ -1,6 +1,6 @@
 using System.Net;
-using Identity.Shared.Commands.Auth;
 using Identity.Shared.Common;
+using Identity.Shared.Exceptions;
 
 namespace Identity.Api.Middlewares;
 
@@ -12,12 +12,21 @@ public class GlobalExceptionMiddleware
     private readonly RequestDelegate _next;
     private readonly ILogger _logger;
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="next"></param>
+    /// <param name="logger"></param>
     public GlobalExceptionMiddleware(RequestDelegate next, ILogger<GlobalExceptionMiddleware> logger)
     {
         _next = next;
         _logger = logger;
     }
-
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="context"></param>
     public async Task InvokeAsync(HttpContext context)
     {
         try

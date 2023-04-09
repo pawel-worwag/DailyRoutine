@@ -9,12 +9,12 @@ namespace Identity.Application.Users.GetUsersListRequest;
 public class GetUsersListRequest : IRequest<GetUsersListResponse>
 {
     public int Take { get; set; } = 50;
-    public int Skip { get; set; } = 0;
+    public int Skip { get; set; }
 }
 
 public class GetUsersListRequestHandler : IRequestHandler<GetUsersListRequest, GetUsersListResponse>
 {
-    private readonly UserManager<Domain.Entities.User> _usersManager;
+    private readonly UserManager<User> _usersManager;
 
     public GetUsersListRequestHandler(UserManager<User> usersManager)
     {

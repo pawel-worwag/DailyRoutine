@@ -1,12 +1,10 @@
 ﻿using System.Net;
-using System.Net.Mime;
 using Identity.Application.Auth.AccessTokenRequest;
-using Identity.Shared.Commands.Auth;
 using Identity.Shared.Commands.Auth.Tokens;
 using Identity.Shared.Common;
 using Identity.Shared.Enums;
+using Identity.Shared.Exceptions;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Identity.Api.Controllers
@@ -21,6 +19,10 @@ namespace Identity.Api.Controllers
         
         private IMediator _mediator;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="mediator"></param>
         public AuthController(IMediator mediator)
         {
             _mediator = mediator;
@@ -73,8 +75,8 @@ namespace Identity.Api.Controllers
                 {
                     var ret = await _mediator.Send(new AccessTokenRequest()
                     {
-                        Username = dto.Username,
-                        Password = dto.Password,
+                        Username = dto.Username??"",
+                        Password = dto.Password??"",
                         Scope = dto.Scope
                     });
                     return Ok(ret);

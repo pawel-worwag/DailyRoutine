@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Identity.Persistence.Configurations;
 
-public class RecoveryTokenConfiguration :  IEntityTypeConfiguration<Domain.Entities.RecoveryPasswordToken>
+public class RecoveryTokenConfiguration :  IEntityTypeConfiguration<RecoveryPasswordToken>
 {
     public void Configure(EntityTypeBuilder<RecoveryPasswordToken> builder)
     {

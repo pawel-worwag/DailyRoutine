@@ -1,5 +1,3 @@
-using Microsoft.AspNetCore.Mvc;
-
 namespace Identity.Shared.Commands.Users.AddNewUser;
 
 public class AddNewUserQuery

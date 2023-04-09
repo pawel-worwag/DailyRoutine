@@ -8,7 +8,7 @@ using Identity.Shared.Commands.Auth.Tokens;
 using Identity.Shared.Common;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Configuration;
+//using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using JwtRegisteredClaimNames = Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames;
 
@@ -33,59 +33,52 @@ public sealed class AccessTokenRequestValidator : AbstractValidator<AccessTokenR
 public class AccessTokenRequestHandler : IRequestHandler<AccessTokenRequest,TokenResponse>
 {
     
-    private readonly UserManager<Domain.Entities.User> userManager;
-    private readonly IConfiguration configuration;
+    private readonly UserManager<User> _userManager;
 
-    public AccessTokenRequestHandler(UserManager<User> userManager, IConfiguration configuration)
+    public AccessTokenRequestHandler(UserManager<User> userManager)
     {
-        this.userManager = userManager;
-        this.configuration = configuration;
+        this._userManager = userManager;
     }
 
     public async Task<TokenResponse> Handle(AccessTokenRequest request, CancellationToken cancellationToken)
     {
         
-        var user = await userManager.FindByEmailAsync(request.Username);
+        var user = await _userManager.FindByEmailAsync(request.Username);
         if(user is null) {throw new Exception("Invalid UserName or Password");}
-        var passwordValid = await userManager.CheckPasswordAsync(user, request.Password);
+        var passwordValid = await _userManager.CheckPasswordAsync(user, request.Password);
         if(!passwordValid) {throw new Exception("Invalid UserName or Password");}
 
         var response = new TokenResponse()
         {
             TokenType = "Bearer",
-            Scope = request.Scope,
-            AccessToken = await GenerateAccessToken(user, request.Scope),
-            IdToken = await GenerateIdToken(user, request.Scope),
-            RefreshToken = await GenerateRefreshToken()
+            Scope = request.Scope ?? "",
+            AccessToken = await GenerateToken(await PrepareAccessClaimsAsync(user, request.Scope??"")),
+            IdToken = await GenerateToken(PrepareIdClaims(user, request.Scope??"")),
+            RefreshToken = GenerateRefreshToken()
         };
         
         return response;
     }
 
-    private async Task<string> GenerateRefreshToken()
+    private  string GenerateRefreshToken()
     {
-        
         var randomNumber = new byte[64];
         using var rng = RandomNumberGenerator.Create();
         rng.GetBytes(randomNumber);
         return Convert.ToBase64String(randomNumber);
     }
     
-    private async Task<string> GenerateIdToken(User user, string scopesString)
+    private  IEnumerable<Claim> PrepareIdClaims(User user, string scopesString)
     {
-        List<string> scopes = new();
-        if (!string.IsNullOrWhiteSpace(scopesString))
-        {
-            scopes = scopesString.Split(' ').ToList();
-            
-        };
+        List<string> scopes = 
+            (!string.IsNullOrWhiteSpace(scopesString))?(new()):(scopesString.Split(' ').ToList());
         var claims = new List<Claim>
         {
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
         };
         if (scopes.Contains("openid"))
         {
-            claims.Add(new Claim(JwtRegisteredClaimNames.Sub, user.UserName));
+            claims.Add(new Claim(JwtRegisteredClaimNames.Sub, user.UserName??""));
         }
         if (scopes.Contains("email"))
         {
@@ -97,40 +90,32 @@ public class AccessTokenRequestHandler : IRequestHandler<AccessTokenRequest,Toke
             claims.Add(new Claim("locale", "pl"));
             claims.Add(new Claim("zoneinfo", "utc"));
         }
-
-        var securitykey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Olab0gaKyrielejson123"));
-        var credentials = new SigningCredentials(securitykey, SecurityAlgorithms.HmacSha256);
-        var token = new JwtSecurityToken(
-            issuer: "Issuer",
-            audience: "Audience",
-            claims: claims,
-            expires: DateTime.UtcNow.AddSeconds(3600),
-            signingCredentials: credentials
-        );
-
-        return new JwtSecurityTokenHandler().WriteToken(token);
+        return claims;
     }
     
-    private async Task<string> GenerateAccessToken(User user, string scopesString)
+    private async Task<IEnumerable<Claim>> PrepareAccessClaimsAsync(User user, string scopesString)
     {
-        List<string> scopes = new();
-        if (!string.IsNullOrWhiteSpace(scopesString))
-        {
-            scopes = scopesString.Split(' ').ToList();
-            
-        };
-        var roles = await userManager.GetRolesAsync(user);
-        var roleClaims = roles.Select(q => new Claim(ClaimTypes.Role, q)).ToList();
-        var userClaims = await userManager.GetClaimsAsync(user);
+        List<string> scopes = 
+            (!string.IsNullOrWhiteSpace(scopesString))?(new()):(scopesString.Split(' ').ToList());
+        var roles = await _userManager.GetRolesAsync(user);
         var claims = new List<Claim>
         {
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+        };
+        if (scopes.Contains("daily_routine"))
+        {
+            var roleClaims = roles.Select(q => new Claim(ClaimTypes.Role, q)).ToList();
+            claims.AddRange(roleClaims);
+            var userClaims = await _userManager.GetClaimsAsync(user);
+            claims.AddRange(userClaims);
         }
-            .Union(userClaims)
-            .Union(roleClaims);
+        return claims;
+    }
 
-        var securitykey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Olab0gaKyrielejson123"));
-        var credentials = new SigningCredentials(securitykey, SecurityAlgorithms.HmacSha256);
+    private Task<string> GenerateToken(IEnumerable<Claim> claims)
+    {
+        var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Olab0gaKyrielejson123"));
+        var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
         var token = new JwtSecurityToken(
             issuer: "Issuer",
             audience: "Audience",
@@ -138,7 +123,6 @@ public class AccessTokenRequestHandler : IRequestHandler<AccessTokenRequest,Toke
             expires: DateTime.UtcNow.AddSeconds(3600),
             signingCredentials: credentials
         );
-
-        return new JwtSecurityTokenHandler().WriteToken(token);
+        return Task.FromResult(new JwtSecurityTokenHandler().WriteToken(token));
     }
 }
