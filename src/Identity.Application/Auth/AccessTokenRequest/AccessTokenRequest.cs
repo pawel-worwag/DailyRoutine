@@ -2,15 +2,16 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Net;
 using System.Security.Claims;
 using System.Security.Cryptography;
-using System.Text;
+using System.Security.Cryptography.X509Certificates;
 using FluentValidation;
+using Identity.Application.Common.Options;
 using Identity.Domain.Entities;
 using Identity.Shared.Commands.Auth.Tokens;
 using Identity.Shared.Common;
 using Identity.Shared.Exceptions;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
-//using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using JwtRegisteredClaimNames = Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames;
 
@@ -36,10 +37,12 @@ public class AccessTokenRequestHandler : IRequestHandler<AccessTokenRequest,Toke
 {
     
     private readonly UserManager<User> _userManager;
+    private readonly JwtOptions _options;
 
-    public AccessTokenRequestHandler(UserManager<User> userManager)
+    public AccessTokenRequestHandler(UserManager<User> userManager, IOptions<JwtOptions> options)
     {
         this._userManager = userManager;
+        _options = options.Value;
     }
 
     public async Task<TokenResponse> Handle(AccessTokenRequest request, CancellationToken cancellationToken)
@@ -73,7 +76,7 @@ public class AccessTokenRequestHandler : IRequestHandler<AccessTokenRequest,Toke
     private  IEnumerable<Claim> PrepareIdClaims(User user, string scopesString)
     {
         List<string> scopes = 
-            (!string.IsNullOrWhiteSpace(scopesString))?(new()):(scopesString.Split(' ').ToList());
+            (string.IsNullOrWhiteSpace(scopesString))?(new()):(scopesString.Split(' ').ToList());
         var claims = new List<Claim>
         {
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
@@ -98,7 +101,7 @@ public class AccessTokenRequestHandler : IRequestHandler<AccessTokenRequest,Toke
     private async Task<IEnumerable<Claim>> PrepareAccessClaimsAsync(User user, string scopesString)
     {
         List<string> scopes = 
-            (!string.IsNullOrWhiteSpace(scopesString))?(new()):(scopesString.Split(' ').ToList());
+            (string.IsNullOrWhiteSpace(scopesString))?(new()):(scopesString.Split(' ').ToList());
         var roles = await _userManager.GetRolesAsync(user);
         var claims = new List<Claim>
         {
@@ -116,15 +119,30 @@ public class AccessTokenRequestHandler : IRequestHandler<AccessTokenRequest,Toke
 
     private Task<string> GenerateToken(IEnumerable<Claim> claims)
     {
-        var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Olab0gaKyrielejson123"));
-        var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
         var token = new JwtSecurityToken(
-            issuer: "Issuer",
-            audience: "Audience",
+            issuer: _options.Issuer,
+            audience: _options.Audience,
             claims: claims,
-            expires: DateTime.UtcNow.AddSeconds(3600),
-            signingCredentials: credentials
+            expires: DateTime.UtcNow.AddSeconds(_options.Expires),
+            signingCredentials: new SigningCredentials(SelectKey(),"RS256")
         );
         return Task.FromResult(new JwtSecurityTokenHandler().WriteToken(token));
+    }
+
+    private X509SecurityKey? SelectKey()
+    {
+        foreach (var keyItem in _options.Keys)
+        {
+            if (File.Exists(keyItem.KeyFile))
+            {
+                var certificate = keyItem.KeyPassword is null ? (new X509Certificate2(keyItem.KeyFile)):(new X509Certificate2(keyItem.KeyFile,keyItem.KeyPassword));
+                var time = DateTime.Now;
+                if(time <= certificate.NotAfter.AddSeconds(-_options.Expires) && time >= certificate.NotBefore && certificate.HasPrivateKey)
+                {
+                    return new X509SecurityKey(certificate);
+                }
+            }
+        }
+        throw new ProblemException(HttpStatusCode.InternalServerError, "key_error", "Valid key not found");
     }
 }

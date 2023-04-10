@@ -19,6 +19,7 @@ public static class DependencyInjection
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
         services.Configure<JwksOptions>(configuration.GetSection("JWKS"));
+        services.Configure<JwtOptions>(configuration.GetSection("JWT"));
         
         return services;
     }
