@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using Identity.Application.Auth.AccessTokenRequest;
 using Identity.Application.Auth.JwksRequest;
+using Identity.Application.Auth.OpenIdConfigurationRequest;
 using Identity.Shared.Commands.Auth.Jwks;
 using Identity.Shared.Commands.Auth.Tokens;
 using Identity.Shared.Common;
@@ -35,9 +36,9 @@ namespace Identity.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("openid-configuration")]
-        public ActionResult GetOpenIdConfiguration()
+        public async Task<IActionResult> GetOpenIdConfiguration()
         {
-            return Ok();
+            return Ok(await _mediator.Send(new OpenIdConfigurationRequest()));
         }
 
         /// <summary>
