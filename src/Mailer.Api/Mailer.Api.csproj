@@ -25,6 +25,7 @@
   </ItemGroup>
   
   <ItemGroup>
+    <ProjectReference Include="..\Mailer.Infrastructure\Mailer.Infrastructure.csproj" />
     <ProjectReference Include="..\Mailer.Persistence\Mailer.Persistence.csproj" />
   </ItemGroup>
 
