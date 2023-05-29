@@ -17,6 +17,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Identity.Application\Identity.Application.csproj" />
+    <ProjectReference Include="..\Shared\DailyRoutine.Shared.Infrastructure\DailyRoutine.Shared.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

@@ -4,5 +4,5 @@ namespace Identity.Application.Common.Interfaces;
 
 public interface IMailSender
 {
-    void SendMailAsync(EmailType type, ICollection<string> recipients, IDictionary<string, string> values);
+    Task SendMailAsync(EmailType type, ICollection<string> recipients, IDictionary<string, string> values);
 }

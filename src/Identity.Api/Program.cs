@@ -1,9 +1,9 @@
 using System.Reflection;
+using DailyRoutine.Shared.Infrastructure.Exceptions;
 using Identity.Infrastructure;
 using Identity.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
-
 
 builder.Services.AddPersistence(builder.Configuration);
 builder.Services.AddInfrastructure(builder.Configuration);
@@ -16,11 +16,10 @@ builder.Services.AddSwaggerGen( options => {
     options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 });
 
-// Add services to the container.
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+app.UseErrorHandling();
 
 app.UseHttpsRedirection();
 
