@@ -27,15 +27,19 @@ public class RabbitMqMailSender : IMailSender
     {
         try
         {
-            var cf = new ConnectionFactory()
+            var cf = new ConnectionFactory
             {
                 HostName = _options.Host,
                 Port = _options.Port,
                 UserName = _options.UserName,
-                Password = _options.Password
+                Password = _options.Password,
+                Ssl =
+                {
+                    Enabled = _options.SslEnabled
+                },
+                RequestedConnectionTimeout = _options.RequestedConnectionTimeout
             };
-            cf.Ssl.Enabled = _options.SslEnabled;
-            cf.RequestedConnectionTimeout = _options.RequestedConnectionTimeout;
+            
             using var connection = cf.CreateConnection();
             using var channel = connection.CreateModel();
 
@@ -56,6 +60,7 @@ public class RabbitMqMailSender : IMailSender
         }
         catch (Exception ex)
         {
+            _logger.LogError(ex.ToString());
             throw new DailyRoutineException(HttpStatusCode.InternalServerError, ex.Message);
         }
         await Task.CompletedTask;
