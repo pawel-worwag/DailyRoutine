@@ -1,4 +1,5 @@
 using Mailer.Application.Common.Interfaces;
+using Mailer.Application.Common.Messages;
 
 namespace Mailer.Api.BackgroudServices;
 
@@ -15,8 +16,15 @@ public class MailBusConsumerService : IHostedService,IDisposable
 
     public Task StartAsync(CancellationToken cancellationToken)
     {
+        _consumer.ConsumeMessage = ConsumeMessage;
         _consumer.Connect();
         return Task.CompletedTask;
+    }
+
+    private bool ConsumeMessage(EmailBusMessage message)
+    {
+        Console.WriteLine($"Sending mail '{message.Type}' to {string.Join(',',message.Recipients)}, with values: {string.Join(',',message.Values.Select(x=> $"{x.Key} = {x.Value}"))}");
+        return true;
     }
 
     public Task StopAsync(CancellationToken cancellationToken)

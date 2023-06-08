@@ -1,6 +1,8 @@
 using System.Text;
+using System.Text.Json;
 using Mailer.Application.Common.Interfaces;
 using Mailer.Application.Common.Messages;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
@@ -13,13 +15,14 @@ public class MailBusConsumer : IMailBusConsumer, IDisposable
     private IConnection? _connection = null;
     private IModel? _channel = null;
     private EventingBasicConsumer? _consumer = null;
+    private ILogger _logger;
+    public IMailBusConsumer.ConsumeMessageDelegate ConsumeMessage { get; set; }
     
-    public MailBusConsumer(IOptions<MailBusOptions> options)
+    public MailBusConsumer(IOptions<MailBusOptions> options, ILogger<MailBusConsumer> logger)
     {
+        _logger = logger;
         _options = options.Value;
     }
-
-
     public void Connect()
     {
         var factory = new ConnectionFactory
@@ -45,9 +48,19 @@ public class MailBusConsumer : IMailBusConsumer, IDisposable
         _consumer.Received += (model, ea) =>
         {
             var body = ea.Body.ToArray();
-            var message = Encoding.UTF8.GetString(body);
-            Console.WriteLine($" [x] Received {message}");
-            _channel.BasicAck(ea.DeliveryTag,false);
+            var messageStr = Encoding.UTF8.GetString(body);
+            var message = JsonSerializer.Deserialize<EmailBusMessage>(messageStr);
+
+            if (ConsumeMessage?.Invoke(message) == true)
+            {
+                _channel.BasicAck(ea.DeliveryTag,false);
+            }
+            else
+            {
+                _logger.LogError("Cannot consume message '{delivery}' from exchange '{queue}'",ea.DeliveryTag,ea.Exchange);
+                _channel.BasicNack(ea.DeliveryTag,false,true);
+                Thread.Sleep(3000);
+            }
         };
         _channel.BasicConsume(_options.Queue, false, _consumer);
     }
@@ -68,6 +81,7 @@ public class MailBusConsumer : IMailBusConsumer, IDisposable
             _connection = null;
         }
     }
+
 
     public void Dispose()
     {

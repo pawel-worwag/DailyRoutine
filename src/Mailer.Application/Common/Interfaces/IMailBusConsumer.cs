@@ -8,4 +8,7 @@ public interface IMailBusConsumer
 
     public void Connect();
     public void Disconnect();
+    public delegate bool ConsumeMessageDelegate(EmailBusMessage message);
+
+    public ConsumeMessageDelegate ConsumeMessage { get; set; }
 }
