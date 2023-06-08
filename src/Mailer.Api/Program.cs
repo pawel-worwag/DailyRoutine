@@ -1,4 +1,5 @@
 using System.Reflection;
+using Mailer.Api.BackgroudServices;
 using Mailer.Infrastructure;
 using Mailer.Persistence;
 
@@ -15,7 +16,7 @@ builder.Services.AddSwaggerGen(options => {
     options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 });
 
-// Add services to the container.
+builder.Services.AddHostedService<MailBusConsumerService>();
 
 var app = builder.Build();
 

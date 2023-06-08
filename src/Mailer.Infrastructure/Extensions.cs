@@ -13,7 +13,7 @@ public static class Extensions
         services.Configure<MailBusOptions>(options=>configuration.GetSection("MailRabbitBus").Bind(options));
         services.Configure<AttachmentsLocalFsStoreOptions>(options=>configuration.GetSection("AttachmentsLocalFsStore").Bind(options));
         services.AddScoped<IAttachmentsStore, AttachmentsLocalFsStore>();
-        services.AddScoped<IMailBusConsumer, MailBusConsumer>();
+        services.AddSingleton<IMailBusConsumer, MailBusConsumer>();
         return services;
     }
 }
