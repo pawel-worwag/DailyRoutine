@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Identity.Application.Common.Enums;
+using Identity.Application.Common.Interfaces;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+#pragma warning disable CS1591
 
 namespace Identity.Api.Controllers
 {
@@ -7,9 +10,29 @@ namespace Identity.Api.Controllers
     [ApiController]
     public class HelloController : ControllerBase
     {
+
+        private readonly IMailBusProducer _mail;
+        public HelloController(IMailBusProducer mail)
+        {
+            _mail = mail;
+        }
+
         [HttpGet]
         public ActionResult Index()
         {
+            return Ok();
+        }
+        
+        [HttpGet("/test")]
+        [ProducesResponseType(typeof(DailyRoutine.Shared.Infrastructure.Exceptions.Dto.ErrorResponse), 500)]
+        [ProducesResponseType(200)]
+        public async Task<ActionResult> ReadFileTest()
+        {
+            await _mail.SendMailAsync(EmailType.HELLO,new List<string>{"jan.testowy@mail.com"},new Dictionary<string, string>()
+            {
+                {"aa","bb"},
+                {"bb","cc"}
+            });
             return Ok();
         }
     }

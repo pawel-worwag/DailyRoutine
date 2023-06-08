@@ -4,11 +4,11 @@ using Microsoft.Extensions.Logging;
 
 namespace Identity.Infrastructure.Mail;
 
-public class DummyMailSender : IMailSender
+public class DummyMailBusProducer : IMailBusProducer
 {
-    private readonly ILogger<DummyMailSender> _logger;
+    private readonly ILogger<DummyMailBusProducer> _logger;
 
-    public DummyMailSender(ILogger<DummyMailSender> logger)
+    public DummyMailBusProducer(ILogger<DummyMailBusProducer> logger)
     {
         _logger = logger;
     }

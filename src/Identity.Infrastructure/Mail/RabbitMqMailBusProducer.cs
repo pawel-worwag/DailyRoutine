@@ -12,12 +12,12 @@ using Microsoft.Extensions.Options;
 
 namespace Identity.Infrastructure.Mail;
 
-public class RabbitMqMailSender : IMailSender
+public class RabbitMqMailBusProducer : IMailBusProducer
 {
     private readonly RabbitMqMailOptions _options;
     private readonly ILogger _logger;
 
-    public RabbitMqMailSender(IOptions<RabbitMqMailOptions> options, ILogger<RabbitMqMailSender> logger)
+    public RabbitMqMailBusProducer(IOptions<RabbitMqMailOptions> options, ILogger<RabbitMqMailBusProducer> logger)
     {
         _logger = logger;
         _options = options.Value;

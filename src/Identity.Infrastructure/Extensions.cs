@@ -10,7 +10,7 @@ public static class Extensions
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         services.Configure<RabbitMqMailOptions>(options=>configuration.GetSection("MailRabbitBus").Bind(options));
-        services.AddScoped<IMailSender, RabbitMqMailSender>();
+        services.AddScoped<IMailBusProducer, RabbitMqMailBusProducer>();
         return services;
     }
 }
