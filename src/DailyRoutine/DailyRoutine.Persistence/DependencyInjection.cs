@@ -10,9 +10,9 @@ public static class DependencyInjection
     public static IServiceCollection AddPersistence(this IServiceCollection services, 
         IConfiguration configuration)
     {
-        services.AddDbContextPool<DailyRutineDbContext>(options => 
+        services.AddDbContextPool<DailyRoutineDbContext>(options => 
             options.UseNpgsql(configuration.GetConnectionString("DailyRutineDatabase")));
-        services.AddScoped<IDailyRutineDbContext, DailyRutineDbContext>();
+        services.AddScoped<IDailyRutineDbContext, DailyRoutineDbContext>();
         return services;
     }
 }

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DailyRoutine.Persistence;
 
-public class DailyRutineDbContext : DbContext, IDailyRutineDbContext
+public class DailyRoutineDbContext : DbContext, IDailyRutineDbContext
 {
     public DbSet<Calendar> Calendars { get; set; }
     public DbSet<Section> Sections { get; set; }
@@ -15,7 +15,7 @@ public class DailyRutineDbContext : DbContext, IDailyRutineDbContext
     public DbSet<ToDoEntry> ToDoEntries { get; set; }
     public DbSet<NutritionEntry> NutritionEntries { get; set; }
 
-    public DailyRutineDbContext(DbContextOptions<DailyRutineDbContext> options) : base(options)
+    public DailyRoutineDbContext(DbContextOptions<DailyRoutineDbContext> options) : base(options)
     {
             
     }

@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DailyRoutine.Persistence.Migrations
 {
-    [DbContext(typeof(DailyRutineDbContext))]
+    [DbContext(typeof(DailyRoutineDbContext))]
     [Migration("20230320192005_IdAsKeyGuidUnique")]
     partial class IdAsKeyGuidUnique
     {

@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DailyRoutine.Persistence.Migrations
 {
-    [DbContext(typeof(DailyRutineDbContext))]
+    [DbContext(typeof(DailyRoutineDbContext))]
     partial class DailyRutineDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

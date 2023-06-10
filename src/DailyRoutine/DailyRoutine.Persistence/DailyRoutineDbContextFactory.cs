@@ -4,12 +4,12 @@ using Microsoft.Extensions.Configuration;
 
 namespace DailyRoutine.Persistence;
 
-public class DailyRutineDbContextFactory : IDesignTimeDbContextFactory<DailyRutineDbContext>
+public class DailyRoutineDbContextFactory : IDesignTimeDbContextFactory<DailyRoutineDbContext>
 {
     private const string ConnectionStringName = "DailyRutineDatabase";
     private const string AspNetCoreEnvironmentVariableName = "ASPNETCORE_ENVIRONMENT";
     
-    public DailyRutineDbContext CreateDbContext(string[] args)
+    public DailyRoutineDbContext CreateDbContext(string[] args)
     {
         var basePath = Directory.GetCurrentDirectory();
         var environmentName = Environment.GetEnvironmentVariable(AspNetCoreEnvironmentVariableName);
@@ -21,8 +21,8 @@ public class DailyRutineDbContextFactory : IDesignTimeDbContextFactory<DailyRuti
             .Build();
         
         var connectionString = configuration.GetConnectionString(ConnectionStringName);
-        var optionsBuilder = new DbContextOptionsBuilder<DailyRutineDbContext>();
+        var optionsBuilder = new DbContextOptionsBuilder<DailyRoutineDbContext>();
         optionsBuilder.UseNpgsql(connectionString);
-        return new DailyRutineDbContext(optionsBuilder.Options);
+        return new DailyRoutineDbContext(optionsBuilder.Options);
     }
 }
