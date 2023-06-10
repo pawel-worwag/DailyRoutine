@@ -22,7 +22,7 @@
     <ProjectReference Include="..\Identity.Application\Identity.Application.csproj" />
     <ProjectReference Include="..\Identity.Infrastructure\Identity.Infrastructure.csproj" />
     <ProjectReference Include="..\Identity.Persistence\Identity.Persistence.csproj" />
-    <ProjectReference Include="..\Shared\DailyRoutine.Shared.Infrastructure\DailyRoutine.Shared.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Shared\DailyRoutine.Shared.Infrastructure\DailyRoutine.Shared.Infrastructure.csproj" />
   </ItemGroup>
   
   <ItemGroup>

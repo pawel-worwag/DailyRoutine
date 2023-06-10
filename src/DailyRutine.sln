@@ -9,39 +9,39 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{9B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mailer", "Mailer", "{EF7E548A-4368-45A8-9330-D9BC6FAD4DEF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyRutine.Api", "DailyRutine.Api\DailyRutine.Api.csproj", "{B7A73192-BEEE-49C7-8075-69DE1AA13D5A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyRutine.Api", "DailyRoutine\DailyRutine.Api\DailyRutine.Api.csproj", "{B7A73192-BEEE-49C7-8075-69DE1AA13D5A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyRutine.Application", "DailyRutine.Application\DailyRutine.Application.csproj", "{1BD3C288-4F3B-437D-9CEC-1CA2DF29DB51}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyRutine.Application", "DailyRoutine\DailyRutine.Application\DailyRutine.Application.csproj", "{1BD3C288-4F3B-437D-9CEC-1CA2DF29DB51}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyRutine.Domain", "DailyRutine.Domain\DailyRutine.Domain.csproj", "{FE9262B6-F9C5-4BBC-8E35-5AAE1FC36077}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyRutine.Domain", "DailyRoutine\DailyRutine.Domain\DailyRutine.Domain.csproj", "{FE9262B6-F9C5-4BBC-8E35-5AAE1FC36077}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyRutine.Frontend", "DailyRutine.Frontend\DailyRutine.Frontend.csproj", "{5752C278-153E-4B17-B276-5FF6015B8C4C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyRutine.Frontend", "DailyRoutine\DailyRutine.Frontend\DailyRutine.Frontend.csproj", "{5752C278-153E-4B17-B276-5FF6015B8C4C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyRutine.Infrastructure", "DailyRutine.Infrastructure\DailyRutine.Infrastructure.csproj", "{66AF4807-A305-4BE3-905D-C9CDA3D961DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyRutine.Infrastructure", "DailyRoutine\DailyRutine.Infrastructure\DailyRutine.Infrastructure.csproj", "{66AF4807-A305-4BE3-905D-C9CDA3D961DE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyRutine.Shared", "DailyRutine.Shared\DailyRutine.Shared.csproj", "{170BD637-A911-4CB1-9C9A-C48FF8B2F283}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyRutine.Shared", "DailyRoutine\DailyRutine.Shared\DailyRutine.Shared.csproj", "{170BD637-A911-4CB1-9C9A-C48FF8B2F283}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyRutine.Persistence", "DailyRutine.Persistence\DailyRutine.Persistence.csproj", "{07A66D83-47D9-4B9E-8104-578F5DDD9048}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyRutine.Persistence", "DailyRoutine\DailyRutine.Persistence\DailyRutine.Persistence.csproj", "{07A66D83-47D9-4B9E-8104-578F5DDD9048}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.Api", "Identity.Api\Identity.Api.csproj", "{8A9E214A-E009-4DB1-8ECD-57C036C6F491}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.Api", "Identity\Identity.Api\Identity.Api.csproj", "{8A9E214A-E009-4DB1-8ECD-57C036C6F491}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.Application", "Identity.Application\Identity.Application.csproj", "{F92AFCAB-B294-436C-9879-6A0C3D7ED7AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.Application", "Identity\Identity.Application\Identity.Application.csproj", "{F92AFCAB-B294-436C-9879-6A0C3D7ED7AE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.Domain", "Identity.Domain\Identity.Domain.csproj", "{BA4EA0B9-20DC-499D-868A-82C2319F064D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.Domain", "Identity\Identity.Domain\Identity.Domain.csproj", "{BA4EA0B9-20DC-499D-868A-82C2319F064D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.Infrastructure", "Identity.Infrastructure\Identity.Infrastructure.csproj", "{BEAA2945-4770-456C-B3BA-A83E7586430B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.Infrastructure", "Identity\Identity.Infrastructure\Identity.Infrastructure.csproj", "{BEAA2945-4770-456C-B3BA-A83E7586430B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.Persistence", "Identity.Persistence\Identity.Persistence.csproj", "{F93FED0F-CF2B-43FF-9EEC-AAEF8BE19E60}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.Persistence", "Identity\Identity.Persistence\Identity.Persistence.csproj", "{F93FED0F-CF2B-43FF-9EEC-AAEF8BE19E60}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mailer.Api", "Mailer.Api\Mailer.Api.csproj", "{ED27EFC7-1162-4195-9FFA-AF8F8820F97B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mailer.Api", "Mailer\Mailer.Api\Mailer.Api.csproj", "{ED27EFC7-1162-4195-9FFA-AF8F8820F97B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mailer.Application", "Mailer.Application\Mailer.Application.csproj", "{77D6C4A5-DE20-4ABD-BD2B-5C71225577CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mailer.Application", "Mailer\Mailer.Application\Mailer.Application.csproj", "{77D6C4A5-DE20-4ABD-BD2B-5C71225577CD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mailer.Domain", "Mailer.Domain\Mailer.Domain.csproj", "{3766A5CA-1E18-40CF-8541-0A6A1C94F6CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mailer.Domain", "Mailer\Mailer.Domain\Mailer.Domain.csproj", "{3766A5CA-1E18-40CF-8541-0A6A1C94F6CF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mailer.Infrastructure", "Mailer.Infrastructure\Mailer.Infrastructure.csproj", "{6626EC8B-7BA5-45A4-B6F2-2965FCAA5BC9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mailer.Infrastructure", "Mailer\Mailer.Infrastructure\Mailer.Infrastructure.csproj", "{6626EC8B-7BA5-45A4-B6F2-2965FCAA5BC9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mailer.Persistence", "Mailer.Persistence\Mailer.Persistence.csproj", "{A736DFBF-902C-4853-8C0A-269ED63D19A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mailer.Persistence", "Mailer\Mailer.Persistence\Mailer.Persistence.csproj", "{A736DFBF-902C-4853-8C0A-269ED63D19A9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{96AE4F0D-6CA9-47CD-9E86-501DE1A893C1}"
 EndProject
