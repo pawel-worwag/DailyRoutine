@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DailyRutine.Application\DailyRutine.Application.csproj" />
+    <ProjectReference Include="..\DailyRoutine.Application\DailyRoutine.Application.csproj" />
   </ItemGroup>
 
   <ItemGroup>

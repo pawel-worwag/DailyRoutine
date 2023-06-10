@@ -3,25 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DailyRutine", "DailyRutine", "{8998E91C-0C9D-48EB-99D4-086639CA40CB}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DailyRoutine", "DailyRoutine", "{8998E91C-0C9D-48EB-99D4-086639CA40CB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{9B2F1BDC-B8F8-4D24-B553-C842C355A63E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mailer", "Mailer", "{EF7E548A-4368-45A8-9330-D9BC6FAD4DEF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyRutine.Api", "DailyRoutine\DailyRutine.Api\DailyRutine.Api.csproj", "{B7A73192-BEEE-49C7-8075-69DE1AA13D5A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyRoutine.Api", "DailyRoutine\DailyRoutine.Api\DailyRoutine.Api.csproj", "{B7A73192-BEEE-49C7-8075-69DE1AA13D5A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyRutine.Application", "DailyRoutine\DailyRutine.Application\DailyRutine.Application.csproj", "{1BD3C288-4F3B-437D-9CEC-1CA2DF29DB51}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyRoutine.Application", "DailyRoutine\DailyRoutine.Application\DailyRoutine.Application.csproj", "{1BD3C288-4F3B-437D-9CEC-1CA2DF29DB51}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyRutine.Domain", "DailyRoutine\DailyRutine.Domain\DailyRutine.Domain.csproj", "{FE9262B6-F9C5-4BBC-8E35-5AAE1FC36077}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyRoutine.Domain", "DailyRoutine\DailyRoutine.Domain\DailyRoutine.Domain.csproj", "{FE9262B6-F9C5-4BBC-8E35-5AAE1FC36077}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyRutine.Frontend", "DailyRoutine\DailyRutine.Frontend\DailyRutine.Frontend.csproj", "{5752C278-153E-4B17-B276-5FF6015B8C4C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyRoutine.Frontend", "DailyRoutine\DailyRoutine.Frontend\DailyRoutine.Frontend.csproj", "{5752C278-153E-4B17-B276-5FF6015B8C4C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyRutine.Infrastructure", "DailyRoutine\DailyRutine.Infrastructure\DailyRutine.Infrastructure.csproj", "{66AF4807-A305-4BE3-905D-C9CDA3D961DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyRoutine.Infrastructure", "DailyRoutine\DailyRoutine.Infrastructure\DailyRoutine.Infrastructure.csproj", "{66AF4807-A305-4BE3-905D-C9CDA3D961DE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyRutine.Shared", "DailyRoutine\DailyRutine.Shared\DailyRutine.Shared.csproj", "{170BD637-A911-4CB1-9C9A-C48FF8B2F283}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyRoutine.Shared", "DailyRoutine\DailyRoutine.Shared\DailyRoutine.Shared.csproj", "{170BD637-A911-4CB1-9C9A-C48FF8B2F283}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyRutine.Persistence", "DailyRoutine\DailyRutine.Persistence\DailyRutine.Persistence.csproj", "{07A66D83-47D9-4B9E-8104-578F5DDD9048}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyRoutine.Persistence", "DailyRoutine\DailyRoutine.Persistence\DailyRoutine.Persistence.csproj", "{07A66D83-47D9-4B9E-8104-578F5DDD9048}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.Api", "Identity\Identity.Api\Identity.Api.csproj", "{8A9E214A-E009-4DB1-8ECD-57C036C6F491}"
 EndProject

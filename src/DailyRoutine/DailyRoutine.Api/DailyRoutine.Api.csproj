@@ -26,11 +26,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DailyRutine.Application\DailyRutine.Application.csproj" />
-    <ProjectReference Include="..\DailyRutine.Domain\DailyRutine.Domain.csproj" />
-    <ProjectReference Include="..\DailyRutine.Infrastructure\DailyRutine.Infrastructure.csproj" />
-    <ProjectReference Include="..\DailyRutine.Persistence\DailyRutine.Persistence.csproj" />
-    <ProjectReference Include="..\DailyRutine.Shared\DailyRutine.Shared.csproj" />
+    <ProjectReference Include="..\DailyRoutine.Application\DailyRoutine.Application.csproj" />
+    <ProjectReference Include="..\DailyRoutine.Domain\DailyRoutine.Domain.csproj" />
+    <ProjectReference Include="..\DailyRoutine.Infrastructure\DailyRoutine.Infrastructure.csproj" />
+    <ProjectReference Include="..\DailyRoutine.Persistence\DailyRoutine.Persistence.csproj" />
+    <ProjectReference Include="..\DailyRoutine.Shared\DailyRoutine.Shared.csproj" />
   </ItemGroup>
 
 </Project>
