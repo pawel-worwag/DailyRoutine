@@ -26,8 +26,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DailyRoutine.Application\DailyRoutine.Application.csproj" />
-    <ProjectReference Include="..\DailyRoutine.Domain\DailyRoutine.Domain.csproj" />
     <ProjectReference Include="..\DailyRoutine.Infrastructure\DailyRoutine.Infrastructure.csproj" />
     <ProjectReference Include="..\DailyRoutine.Persistence\DailyRoutine.Persistence.csproj" />
   </ItemGroup>

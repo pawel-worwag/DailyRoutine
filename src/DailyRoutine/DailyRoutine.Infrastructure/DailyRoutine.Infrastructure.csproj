@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DailyRoutine.Application\DailyRoutine.Application.csproj" />
+  </ItemGroup>
+
 </Project>
