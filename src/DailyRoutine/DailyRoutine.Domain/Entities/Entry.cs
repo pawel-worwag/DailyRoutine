@@ -1,6 +1,6 @@
-using DailyRutine.Domain.Entities.Enums;
+using DailyRoutine.Domain.Entities.Enums;
 
-namespace DailyRutine.Domain.Entities;
+namespace DailyRoutine.Domain.Entities;
 
 public abstract class  Entry
 {

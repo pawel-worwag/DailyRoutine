@@ -1,6 +1,6 @@
-using DailyRutine.Domain.Entities.Enums;
+using DailyRoutine.Domain.Entities.Enums;
 
-namespace DailyRutine.Domain.Entities.Entries;
+namespace DailyRoutine.Domain.Entities.Entries;
 
 public class DecimalEntry : Entry
 {

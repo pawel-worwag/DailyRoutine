@@ -1,10 +1,10 @@
 using System.Reflection;
-using DailyRutine.Application.Comon.Interfaces;
-using DailyRutine.Domain.Entities;
-using DailyRutine.Domain.Entities.Entries;
+using DailyRoutine.Application.Comon.Interfaces;
+using DailyRoutine.Domain.Entities;
+using DailyRoutine.Domain.Entities.Entries;
 using Microsoft.EntityFrameworkCore;
 
-namespace DailyRutine.Persistence;
+namespace DailyRoutine.Persistence;
 
 public class DailyRutineDbContext : DbContext, IDailyRutineDbContext
 {

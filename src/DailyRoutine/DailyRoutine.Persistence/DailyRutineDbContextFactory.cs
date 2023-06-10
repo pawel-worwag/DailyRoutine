@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 
-namespace DailyRutine.Persistence;
+namespace DailyRoutine.Persistence;
 
 public class DailyRutineDbContextFactory : IDesignTimeDbContextFactory<DailyRutineDbContext>
 {

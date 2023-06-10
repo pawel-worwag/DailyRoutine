@@ -1,6 +1,6 @@
-using DailyRutine.Domain.Entities.Entries;
+using DailyRoutine.Domain.Entities.Entries;
 
-namespace DailyRutine.Domain.Entities;
+namespace DailyRoutine.Domain.Entities;
 
 public class Calendar
 {

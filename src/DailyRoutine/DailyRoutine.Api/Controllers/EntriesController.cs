@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DailyRutine.Api.Controllers
+namespace DailyRoutine.Api.Controllers
 {
     /// <summary>
     /// Get list of entries

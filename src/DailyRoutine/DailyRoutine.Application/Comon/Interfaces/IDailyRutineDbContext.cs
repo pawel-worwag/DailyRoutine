@@ -1,8 +1,8 @@
-using DailyRutine.Domain.Entities;
-using DailyRutine.Domain.Entities.Entries;
+using DailyRoutine.Domain.Entities;
+using DailyRoutine.Domain.Entities.Entries;
 using Microsoft.EntityFrameworkCore;
 
-namespace DailyRutine.Application.Comon.Interfaces;
+namespace DailyRoutine.Application.Comon.Interfaces;
 
 public interface IDailyRutineDbContext
 {

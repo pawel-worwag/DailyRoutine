@@ -1,4 +1,4 @@
-namespace DailyRutine.Domain.Entities.Enums;
+namespace DailyRoutine.Domain.Entities.Enums;
 
 public enum WeightUnit
 {

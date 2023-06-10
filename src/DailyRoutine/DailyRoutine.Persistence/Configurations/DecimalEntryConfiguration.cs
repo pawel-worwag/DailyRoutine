@@ -1,8 +1,8 @@
-using DailyRutine.Domain.Entities.Entries;
+using DailyRoutine.Domain.Entities.Entries;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace DailyRutine.Persistence.Configurations;
+namespace DailyRoutine.Persistence.Configurations;
 
 public class DecimalEntryConfiguration : IEntityTypeConfiguration<Domain.Entities.Entries.DecimalEntry>
 {

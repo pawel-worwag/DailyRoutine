@@ -1,8 +1,8 @@
-using DailyRutine.Domain.Entities;
+using DailyRoutine.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace DailyRutine.Persistence.Configurations;
+namespace DailyRoutine.Persistence.Configurations;
 
 public class SectionConfiguration : IEntityTypeConfiguration<Domain.Entities.Section>
 {

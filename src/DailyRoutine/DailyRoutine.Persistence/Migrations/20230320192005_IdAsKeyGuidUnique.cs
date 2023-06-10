@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace DailyRutine.Persistence.Migrations
+namespace DailyRoutine.Persistence.Migrations
 {
     /// <inheritdoc />
     public partial class IdAsKeyGuidUnique : Migration

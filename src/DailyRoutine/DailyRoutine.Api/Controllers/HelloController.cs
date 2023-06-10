@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace DailyRutine.Api.Controllers;
+namespace DailyRoutine.Api.Controllers;
 
 /// <summary>
 /// 

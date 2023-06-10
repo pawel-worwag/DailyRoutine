@@ -1,9 +1,9 @@
-using DailyRutine.Application.Comon.Interfaces;
+using DailyRoutine.Application.Comon.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace DailyRutine.Persistence;
+namespace DailyRoutine.Persistence;
 
 public static class DependencyInjection
 {

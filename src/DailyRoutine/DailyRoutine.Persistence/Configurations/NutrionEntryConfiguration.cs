@@ -1,9 +1,9 @@
-using DailyRutine.Domain.Entities.Entries;
-using DailyRutine.Domain.Entities.Enums;
+using DailyRoutine.Domain.Entities.Entries;
+using DailyRoutine.Domain.Entities.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace DailyRutine.Persistence.Configurations;
+namespace DailyRoutine.Persistence.Configurations;
 
 public class NutrionEntryConfiguration : IEntityTypeConfiguration<Domain.Entities.Entries.NutritionEntry>
 {
