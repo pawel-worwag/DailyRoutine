@@ -1,10 +1,13 @@
 using System.Net.Mail;
+using System.Text;
+using System.Text.Unicode;
 using Mailer.Application.Common.Interfaces;
 using Microsoft.Extensions.Options;
 using MailKit.Net.Smtp;
 using MailKit.Security;
 using Microsoft.Extensions.Options;
 using MimeKit;
+using MimeKit.Utils;
 using SmtpClient = MailKit.Net.Smtp.SmtpClient;
 
 namespace Mailer.Infrastructure.MailClient;
@@ -50,6 +53,22 @@ public class SmtpMailClient : IMailClient
         {
             HtmlBody = data.Body
         };
+
+        foreach (var attachment in data.Attachments)
+        {
+            if (attachment.Inline == true)
+            {
+                var att = body.LinkedResources.Add(attachment.FileName, attachment.Data,
+                    ContentType.Parse(attachment.MimeType));
+                att.ContentId = attachment.Cid;
+                att.ContentDisposition = new ContentDisposition() { Disposition = ContentDisposition.Inline };
+            }
+            else
+            {
+                var att = body.Attachments.Add(attachment.FileName, attachment.Data,
+                    ContentType.Parse(attachment.MimeType));
+            }
+        }
         mail.Body = body.ToMessageBody();
         return mail;
     }
