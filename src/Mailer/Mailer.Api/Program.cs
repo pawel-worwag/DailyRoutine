@@ -1,4 +1,5 @@
 using System.Reflection;
+using DailyRoutine.Shared.Infrastructure.Exceptions;
 using Mailer.Api.BackgroudServices;
 using Mailer.Infrastructure;
 using Mailer.Persistence;
@@ -20,7 +21,7 @@ builder.Services.AddHostedService<MailBusConsumerService>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+app.UseErrorHandling();
 
 app.UseHttpsRedirection();
 
