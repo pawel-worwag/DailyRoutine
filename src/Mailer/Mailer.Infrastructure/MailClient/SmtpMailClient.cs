@@ -1,10 +1,13 @@
+using System.Net;
 using System.Net.Mail;
 using System.Text;
 using System.Text.Unicode;
+using DailyRoutine.Shared.Infrastructure.Exceptions;
 using Mailer.Application.Common.Interfaces;
 using Microsoft.Extensions.Options;
 using MailKit.Net.Smtp;
 using MailKit.Security;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MimeKit;
 using MimeKit.Utils;
@@ -15,27 +18,38 @@ namespace Mailer.Infrastructure.MailClient;
 public class SmtpMailClient : IMailClient
 {
     private readonly SmtpOptions _options;
+    private readonly ILogger _logger;
 
-    public SmtpMailClient(IOptions<SmtpOptions> options)
+    public SmtpMailClient(IOptions<SmtpOptions> options, ILogger<SmtpMailClient> logger)
     {
+        _logger = logger;
         _options = options.Value;
     }
 
     public async Task SendAsync(MailData mail, CancellationToken cancellationToken)
     {
-        using var smtp = new SmtpClient();
-        if (_options.UseSsl)
+        try
         {
-            await smtp.ConnectAsync(_options.Host, _options.Port, SecureSocketOptions.SslOnConnect, cancellationToken);
+            using var smtp = new SmtpClient();
+            if (_options.UseSsl)
+            {
+                await smtp.ConnectAsync(_options.Host, _options.Port, SecureSocketOptions.SslOnConnect,
+                    cancellationToken);
+            }
+            else if (_options.UseStartTls)
+            {
+                await smtp.ConnectAsync(_options.Host, _options.Port, SecureSocketOptions.StartTls, cancellationToken);
+            }
+
+            await smtp.AuthenticateAsync(_options.UserName, _options.Password, cancellationToken);
+            await smtp.SendAsync(PrepareMail(mail), cancellationToken);
+            await smtp.DisconnectAsync(true, cancellationToken);
         }
-        else if (_options.UseStartTls)
+        catch (Exception ex)
         {
-            await smtp.ConnectAsync(_options.Host, _options.Port, SecureSocketOptions.StartTls, cancellationToken);
+            _logger.LogError(ex.ToString());
+            throw new DailyRoutineException(HttpStatusCode.InternalServerError, ex.Message);
         }
-        
-        await smtp.AuthenticateAsync(_options.UserName, _options.Password, cancellationToken);
-        await smtp.SendAsync(PrepareMail(mail), cancellationToken);
-        await smtp.DisconnectAsync(true, cancellationToken);
     }
     
     private MimeMessage PrepareMail(MailData data)

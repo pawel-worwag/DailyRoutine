@@ -8,6 +8,7 @@
 
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Shared\DailyRoutine.Shared.Infrastructure\DailyRoutine.Shared.Infrastructure.csproj" />
     <ProjectReference Include="..\Mailer.Application\Mailer.Application.csproj" />
   </ItemGroup>
 
