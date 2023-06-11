@@ -28,6 +28,12 @@ namespace Mailer.Api.Controllers
         {
             return Ok();
         }
+        [HttpGet("/test")]
+        public async Task<ActionResult> Test(IMailClient client)
+        {
+            await client.SendDemoAsync(new CancellationToken());
+            return Ok();
+        }
 
         [HttpPut("/test/{id:guid}")]
         public async Task<ActionResult> WriteFileTest(Guid id)
