@@ -31,7 +31,12 @@ namespace Mailer.Api.Controllers
         [HttpGet("/test")]
         public async Task<ActionResult> Test(IMailClient client)
         {
-            await client.SendDemoAsync(new CancellationToken());
+            await client.SendAsync(new MailData()
+            {
+                To=new List<string>(){"pawel.worwag@gmail.com"},
+                Subject = "[DailyRoutine] Test",
+                Body = "<html><body><h1>Test</h1><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris feugiat nisl auctor finibus tempor. Donec ullamcorper mollis nunc, eu fermentum eros. Maecenas luctus ac ex at dignissim. Nullam augue est, gravida a sagittis sed, egestas in lectus. Vivamus et turpis ut turpis hendrerit convallis. Fusce eget finibus diam. Aenean tellus dui, laoreet ac aliquet nec, placerat in nisi. Nulla mauris nunc, efficitur nec egestas vitae, maximus et urna.</p></body></html>"
+            },new CancellationToken());
             return Ok();
         }
 

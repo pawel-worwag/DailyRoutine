@@ -18,7 +18,7 @@ public class SmtpMailClient : IMailClient
         _options = options.Value;
     }
 
-    public async Task SendDemoAsync(CancellationToken cancellationToken)
+    public async Task SendAsync(MailData mail, CancellationToken cancellationToken)
     {
         using var smtp = new SmtpClient();
         if (_options.UseSsl)
@@ -31,20 +31,25 @@ public class SmtpMailClient : IMailClient
         }
         
         await smtp.AuthenticateAsync(_options.UserName, _options.Password, cancellationToken);
-        await smtp.SendAsync(PrepareDummyMail(), cancellationToken);
+        await smtp.SendAsync(PrepareMail(mail), cancellationToken);
         await smtp.DisconnectAsync(true, cancellationToken);
     }
-
-    private MimeMessage PrepareDummyMail()
+    
+    private MimeMessage PrepareMail(MailData data)
     {
         var mail = new MimeMessage();
         
         mail.From.Add(new MailboxAddress(_options.DisplayName, _options.From));
         mail.Sender = new MailboxAddress(_options.DisplayName, _options.From);
-        mail.To.Add(MailboxAddress.Parse("pawel.worwag@gmail.com"));
-        var body = new BodyBuilder();
-        mail.Subject = "[MailKit] Mail test";
-        body.HtmlBody = "<html><body><h1>HELLO</h1><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec ligula a elit malesuada dapibus eget ac lectus. Aenean ac varius dui. Vestibulum tincidunt ante mauris, eget aliquam lectus pellentesque a. In hac habitasse platea dictumst. Phasellus lacus lectus, imperdiet vitae rhoncus vitae, imperdiet a mauris. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam condimentum sagittis bibendum. Praesent id euismod sem. Nunc iaculis nulla neque, nec eleifend elit feugiat sit amet. Curabitur at est nibh.</p></body></html>";
+        foreach (var address in data.To)
+        {
+            mail.To.Add(MailboxAddress.Parse(address));
+        }
+        mail.Subject = data.Subject;
+        var body = new BodyBuilder
+        {
+            HtmlBody = data.Body
+        };
         mail.Body = body.ToMessageBody();
         return mail;
     }
