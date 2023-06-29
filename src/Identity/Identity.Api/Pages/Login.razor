@@ -1,38 +1,47 @@
 @page "/auth/login"
 
 <div class="login-widget mt-5">
-    @if (Error is null)
+    @if (Loading)
     {
-        <div class="mb-3">
-            <label for="email-input" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="email-input" placeholder="name@example.com">
-        </div>
-        <div class="mb-3">
-            <label for="password-input" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password-input" placeholder="password">
-        </div>
         <div class="mb-3 row">
-            <div class="col">
-                <input class="form-check-input" type="checkbox" value="" id="remember-checkbox">
-                <label class="form-check-label" for="remember-checkbox">Remember me</label>
-            </div>
-            <div class="col text-end">
-                <NavLink href="/auth/forgot-password">Forgot password?</NavLink>
-            </div>
-        </div>
-        <div class="mb-3">
-            <button class="btn btn-primary" @onclick="SignIn">SIGN IN</button>
-        </div>
-        <div class="mb-3">
-            <p class="text-center">Not a&nbsp;member? <NavLink href="/auth/registration">Registration.</NavLink></p>
+            <p>Loading...</p>
         </div>
     }
     else
     {
-        
-        <div class="mb-3 row">
-            <h1 class="display-6">Bad request</h1>
-            <p>@Error</p>
-        </div>
+        @if (Error is null)
+        {
+            <div class="mb-3">
+                <label for="email-input" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="email-input" placeholder="name@example.com">
+            </div>
+            <div class="mb-3">
+                <label for="password-input" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password-input" placeholder="password">
+            </div>
+            <div class="mb-3 row">
+                <div class="col">
+                    <input class="form-check-input" type="checkbox" value="" id="remember-checkbox" disabled>
+                    <label class="form-check-label" for="remember-checkbox" >Remember me</label>
+                </div>
+                <div class="col text-end">
+                    <NavLink href="/auth/forgot-password">Forgot password?</NavLink>
+                </div>
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-primary" @onclick="SignIn">SIGN IN</button>
+            </div>
+            <div class="mb-3">
+                <p class="text-center">Not a&nbsp;member? <NavLink href="/auth/registration">Registration.</NavLink></p>
+            </div>
+        }
+        else
+        {
+
+            <div class="mb-3 row">
+                <h1 class="display-6">Bad request</h1>
+                <p>@Error</p>
+            </div>
+        }
     }
 </div>

@@ -1,3 +1,4 @@
+using MediatR;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.WebUtilities;
 
@@ -5,8 +6,11 @@ namespace Identity.Api.Pages;
 
 public partial class Login : ComponentBase
 {
-    [Inject] public NavigationManager NavManager { get; set; } = default;
 
+    [Inject] public NavigationManager NavManager { get; set; } = default;
+    [Inject] public IServiceScopeFactory ScopeFactory { get; set; } = default;
+
+    private bool Loading = true;
     private string? Error = null;
     
     private string? ResponeType = null;
@@ -15,13 +19,15 @@ public partial class Login : ComponentBase
     private string? State = null;
     private string? Scope = null;
     
-    protected override void OnInitialized()
+    protected override async void OnInitialized()
     {
         var uri = NavManager.ToAbsoluteUri(NavManager.Uri);
         Console.WriteLine(uri);
         
         ParseQuery(uri.Query);
-        ValidRequest();
+        await ValidRequest();
+        Loading = false;
+        StateHasChanged();
     }
 
     private void SignIn()
@@ -38,6 +44,7 @@ public partial class Login : ComponentBase
 
         //NavManager.NavigateTo($"/auth/redirect?{parameters}", forceLoad: true);
         parameters += "&access_token=cnreuybvejubveuvbuer&expires_in=3600";
+        Console.WriteLine($"Redirect to: {RedirectUri}?{parameters}");
         NavManager.NavigateTo($"{RedirectUri}?{parameters}", forceLoad: true);
     }
 
@@ -51,18 +58,39 @@ public partial class Login : ComponentBase
         Scope = queryStrings.Where(p => p.Key == "scope").Select(p=>p.Value).FirstOrDefault();
     }
 
-    private void ValidRequest()
+    private async Task ValidRequest()
     {
-        if (string.IsNullOrWhiteSpace(ResponeType))
+        try
         {
-            Error = $"Response type is null, empty or whitespace.";
-            return;
+            if (string.IsNullOrWhiteSpace(ResponeType))
+            {
+                Error = $"Response type is null, empty or whitespace.";
+                return;
+            }
+
+            if (ResponeType != "token")
+            {
+                Error = $"Unsupported response type - '{ResponeType}'.";
+                return;
+            }
+
+            using var scope = ScopeFactory.CreateScope();
+            var mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
+            var result = await mediator.Send(new Application.Auth.Clients.VerifyClient.VerifyClientRequest()
+            {
+                ClientId = Guid.Parse(ClientId),
+                RedirectUri = RedirectUri
+            });
+
+            if (!result.IsValid)
+            {
+                Error = result.Error;
+                return;
+            }
         }
-        
-        if (ResponeType != "token")
+        catch (Exception ex)
         {
-            Error = $"Unsupported response type - '{ResponeType}'.";
-            return;
+            Error = "Exception: " + ex.Message;
         }
     }
 }
