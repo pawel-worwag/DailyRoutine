@@ -12,12 +12,16 @@ public partial class Login : ComponentBase
 
     private bool Loading = true;
     private string? Error = null;
+    private string? Warning = null;
     
     private string? ResponeType = null;
     private string? ClientId = null;
     private string? RedirectUri = null;
     private string? State = null;
     private string? Scope = null;
+    
+    private string Email = string.Empty;
+    private string Password = string.Empty;
     
     protected override async void OnInitialized()
     {
@@ -31,6 +35,23 @@ public partial class Login : ComponentBase
     }
 
     private void SignIn()
+    {
+        if (string.IsNullOrWhiteSpace(Email))
+        {
+            Warning = "Email is empty.";
+            StateHasChanged();
+            return;
+        }
+        if (string.IsNullOrWhiteSpace(Password))
+        {
+            Warning = "Password is empty.";
+            StateHasChanged();
+            return;
+        }
+        RedirectToFallback();
+    }
+
+    private void RedirectToFallback()
     {
         string parameters = $"redirect_uri={RedirectUri}&token_type=Bearer";
         if (Scope is not null)
@@ -47,7 +68,7 @@ public partial class Login : ComponentBase
         Console.WriteLine($"Redirect to: {RedirectUri}?{parameters}");
         NavManager.NavigateTo($"{RedirectUri}?{parameters}", forceLoad: true);
     }
-
+    
     private void ParseQuery(string query)
     {
         var queryStrings = QueryHelpers.ParseQuery(query);

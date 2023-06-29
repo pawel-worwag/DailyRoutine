@@ -13,11 +13,11 @@
         {
             <div class="mb-3">
                 <label for="email-input" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="email-input" placeholder="name@example.com">
+                <input type="email" class="form-control" id="email-input" placeholder="name@example.com" @bind="Email">
             </div>
             <div class="mb-3">
                 <label for="password-input" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password-input" placeholder="password">
+                <input type="password" class="form-control" id="password-input" placeholder="password" @bind="Password">
             </div>
             <div class="mb-3 row">
                 <div class="col">
@@ -28,6 +28,14 @@
                     <NavLink href="/auth/forgot-password">Forgot password?</NavLink>
                 </div>
             </div>
+            @if (Warning is not null)
+            {
+                <div class="mb-3 card text-white bg-danger">
+                    <div class="card-body">
+                        <p class="card-text">@Warning</p>
+                    </div>
+                </div>
+            }
             <div class="mb-3">
                 <button class="btn btn-primary" @onclick="SignIn">SIGN IN</button>
             </div>
