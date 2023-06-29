@@ -19,6 +19,8 @@ public partial class Login : ComponentBase
     private string? RedirectUri = null;
     private string? State = null;
     private string? Scope = null;
+    private string? AccessToken = "cnreuybvejubveuvbuer";
+    private int? ExpiresIn = 3600;
     
     private string Email = string.Empty;
     private string Password = string.Empty;
@@ -29,13 +31,14 @@ public partial class Login : ComponentBase
         Console.WriteLine(uri);
         
         ParseQuery(uri.Query);
-        await ValidRequest();
+        await ValidRequestAsync();
         Loading = false;
         StateHasChanged();
     }
 
-    private void SignIn()
+    private async void SignIn()
     {
+        Warning = null;
         if (string.IsNullOrWhiteSpace(Email))
         {
             Warning = "Email is empty.";
@@ -48,9 +51,39 @@ public partial class Login : ComponentBase
             StateHasChanged();
             return;
         }
+
+        await VerifyCredentialsAsync();
         RedirectToFallback();
     }
 
+    private async Task<bool> VerifyCredentialsAsync()
+    {
+        try
+        {
+        using var scope = ScopeFactory.CreateScope();
+        var mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
+        var result = await mediator.Send(new Application.Auth.Users.VerifyCredentials.VerifyCredentialsRequest()
+        {
+            Email = Email,
+            Password = Password
+        });
+        if (!result.IsValid)
+        {
+            Warning = result.Error;
+            StateHasChanged();
+            return false;
+        }
+        return true;
+
+        }
+        catch (Exception e)
+        {
+            Warning = $"Exception: {e.Message}";
+            StateHasChanged();
+            return false;
+        }
+    }
+    
     private void RedirectToFallback()
     {
         string parameters = $"redirect_uri={RedirectUri}&token_type=Bearer";
@@ -62,9 +95,7 @@ public partial class Login : ComponentBase
         {
             parameters += $"&state={State}";
         }
-
-        //NavManager.NavigateTo($"/auth/redirect?{parameters}", forceLoad: true);
-        parameters += "&access_token=cnreuybvejubveuvbuer&expires_in=3600";
+        parameters += $"&access_token={AccessToken}&expires_in={ExpiresIn}";
         Console.WriteLine($"Redirect to: {RedirectUri}?{parameters}");
         NavManager.NavigateTo($"{RedirectUri}?{parameters}", forceLoad: true);
     }
@@ -79,7 +110,7 @@ public partial class Login : ComponentBase
         Scope = queryStrings.Where(p => p.Key == "scope").Select(p=>p.Value).FirstOrDefault();
     }
 
-    private async Task ValidRequest()
+    private async Task ValidRequestAsync()
     {
         try
         {
