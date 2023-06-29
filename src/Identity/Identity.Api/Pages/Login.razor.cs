@@ -18,24 +18,10 @@ public partial class Login : ComponentBase
     protected override void OnInitialized()
     {
         var uri = NavManager.ToAbsoluteUri(NavManager.Uri);
-        var queryStrings = QueryHelpers.ParseQuery(uri.Query);
+        Console.WriteLine(uri);
         
-        ResponeType = queryStrings.Where(p => p.Key == "response_type").Select(p=>p.Value).FirstOrDefault();
-        ClientId = queryStrings.Where(p => p.Key == "client_id").Select(p=>p.Value).FirstOrDefault();
-        RedirectUri = queryStrings.Where(p => p.Key == "redirect_uri").Select(p=>p.Value).FirstOrDefault();
-        State = queryStrings.Where(p => p.Key == "state").Select(p=>p.Value).FirstOrDefault();
-        Scope = queryStrings.Where(p => p.Key == "scope").Select(p=>p.Value).FirstOrDefault();
-
-        if (string.IsNullOrWhiteSpace(ResponeType))
-        {
-            Error = $"Response type is null, empty or whitespace.";
-            return;
-        }
-        if (ResponeType != "token")
-        {
-            Error = $"Unsupported response type - '{ResponeType}'.";
-            return;
-        }
+        ParseQuery(uri.Query);
+        ValidRequest();
     }
 
     private void SignIn()
@@ -53,5 +39,30 @@ public partial class Login : ComponentBase
         //NavManager.NavigateTo($"/auth/redirect?{parameters}", forceLoad: true);
         parameters += "&access_token=cnreuybvejubveuvbuer&expires_in=3600";
         NavManager.NavigateTo($"{RedirectUri}?{parameters}", forceLoad: true);
+    }
+
+    private void ParseQuery(string query)
+    {
+        var queryStrings = QueryHelpers.ParseQuery(query);
+        ResponeType = queryStrings.Where(p => p.Key == "response_type").Select(p=>p.Value).FirstOrDefault();
+        ClientId = queryStrings.Where(p => p.Key == "client_id").Select(p=>p.Value).FirstOrDefault();
+        RedirectUri = queryStrings.Where(p => p.Key == "redirect_uri").Select(p=>p.Value).FirstOrDefault();
+        State = queryStrings.Where(p => p.Key == "state").Select(p=>p.Value).FirstOrDefault();
+        Scope = queryStrings.Where(p => p.Key == "scope").Select(p=>p.Value).FirstOrDefault();
+    }
+
+    private void ValidRequest()
+    {
+        if (string.IsNullOrWhiteSpace(ResponeType))
+        {
+            Error = $"Response type is null, empty or whitespace.";
+            return;
+        }
+        
+        if (ResponeType != "token")
+        {
+            Error = $"Unsupported response type - '{ResponeType}'.";
+            return;
+        }
     }
 }
