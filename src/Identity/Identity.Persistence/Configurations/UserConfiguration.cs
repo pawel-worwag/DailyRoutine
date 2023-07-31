@@ -17,10 +17,6 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.HasMany(p => p.Roles)
             .WithMany(p => p.Users)
             .UsingEntity("RS_UsersRoles");
-        /*
-    "UsersRoles",
-    l => l.HasOne(typeof(User)).WithMany().HasForeignKey("UserId").HasPrincipalKey(nameof(User.Id)),
-    r => r.HasOne(typeof(Role)).WithMany().HasForeignKey("RoleId").HasPrincipalKey(nameof(Role.Id)),
-    j=> j.HasKey("UserId", "RoleId"));*/
+        builder.HasMany(typeof(UserClaim), "UserClaims").WithOne(nameof(UserClaim.User)).HasForeignKey("Id");
     }
 }
