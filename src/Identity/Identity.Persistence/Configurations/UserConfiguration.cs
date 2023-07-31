@@ -13,6 +13,6 @@ public class UserConfiguration : IEntityTypeConfiguration<Domain.Entities.User>
         builder.HasKey(p => p.Id);
         builder.HasIndex(p => p.Guid).IsUnique();
         builder.Property(p => p.Guid).IsRequired();
-        builder.Property(p => p.NormalizedEmail).HasConversion<string>(address => address.Value, s => new NormalizedEmailAddress(s) );
+        builder.Property(p => p.NormalizedEmail).IsRequired().HasConversion<string>(address => address.Value, s => new NormalizedEmailAddress(s) );
     }
 }

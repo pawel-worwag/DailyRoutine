@@ -2,6 +2,8 @@ namespace Identity.Domain.ValueObjects;
 
 public record NormalizedEmailAddress
 {
+    public string Value { get; }
+    
     public NormalizedEmailAddress(string value)
     {
         if (value.Count(x => x == '@') != 1)
@@ -10,5 +12,4 @@ public record NormalizedEmailAddress
         };
         Value = value.ToUpperInvariant();
     }
-    public string Value { get; }
 }
