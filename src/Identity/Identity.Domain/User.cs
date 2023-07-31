@@ -1,6 +1,6 @@
 using Identity.Domain.ValueObjects;
 
-namespace Identity.Domain.Entities;
+namespace Identity.Domain;
 
 public class User
 {

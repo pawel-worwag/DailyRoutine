@@ -1,3 +1,4 @@
+using Identity.Domain;
 using Identity.Domain.Entities;
 using Identity.Domain.ValueObjects;
 using Microsoft.EntityFrameworkCore;
@@ -5,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Identity.Persistence.Configurations;
 
-public class UserConfiguration : IEntityTypeConfiguration<Domain.Entities.User>
+public class UserConfiguration : IEntityTypeConfiguration<User>
 {
     public void Configure(EntityTypeBuilder<User> builder)
     {
