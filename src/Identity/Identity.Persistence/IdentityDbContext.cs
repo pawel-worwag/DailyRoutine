@@ -9,6 +9,7 @@ public class IdentityDbContext : DbContext,IIdentityDbContext
     public DbSet<Domain.Entities.ConfirmRegistrationToken> RegistrationTokens { get; set; }
     public DbSet<Domain.Entities.RecoveryPasswordToken> RecoveryPasswordTokens { get; set; }
     public DbSet<Domain.Entities.Client> Clients { get; set; }
+    public DbSet<Domain.User> Users { get; set; }
 
     public IdentityDbContext(DbContextOptions<IdentityDbContext> options) : base(options)
     {

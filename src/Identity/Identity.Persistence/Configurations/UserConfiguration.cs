@@ -15,8 +15,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.Property(p => p.Guid).IsRequired();
         builder.Property(p => p.NormalizedEmail).IsRequired().HasConversion<string>(address => address.Value, s => new NormalizedEmailAddress(s) );
         builder.HasMany(p => p.Roles)
-            .WithMany(p => p.Users)
-            .UsingEntity("RS_UsersRoles");
+            .WithMany(p => p.Users);
         builder.HasMany(typeof(UserClaim), "UserClaims").WithOne(nameof(UserClaim.User)).HasForeignKey("Id");
     }
 }
