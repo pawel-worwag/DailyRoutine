@@ -1,5 +1,4 @@
 using Identity.Application.Common.Interfaces;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,9 +12,6 @@ public static class DependencyInjection
     {
         services.AddDbContextPool<IdentityDbContext>(options => 
             options.UseNpgsql(configuration.GetConnectionString("IdentityDatabase")));
-        services.AddIdentityCore<Domain.Entities.User>()
-            .AddRoles<Domain.Entities.Role>()
-            .AddEntityFrameworkStores<IdentityDbContext>();
         services.AddScoped<IIdentityDbContext, IdentityDbContext>();
         return services;
     }

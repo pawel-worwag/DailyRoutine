@@ -9,5 +9,6 @@ public class RoleConfiguration : IEntityTypeConfiguration<Domain.Entities.Role>
     public void Configure(EntityTypeBuilder<Role> builder)
     {
         builder.ToTable("Roles");
+        builder.HasNoKey();
     }
 }

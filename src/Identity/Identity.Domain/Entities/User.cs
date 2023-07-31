@@ -1,8 +1,12 @@
+using Identity.Domain.ValueObjects;
+
 namespace Identity.Domain.Entities;
 
-using Microsoft.AspNetCore.Identity;
-
-public class User : IdentityUser<int>
+public class User
 {
-    public Guid Guid { get; set; } = Guid.NewGuid();
+    public int Id { get; private set; }
+    public Guid Guid { get; private set; } = Guid.NewGuid();
+    public NormalizedEmailAddress NormalizedEmail { get; set; }
+    public bool EmailConfirmed { get; set; }
+    public string PasswordHash { get; set; }
 }

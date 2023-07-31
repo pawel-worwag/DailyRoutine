@@ -1,4 +1,3 @@
-using Identity.Application.Auth.Clients.GetAllRegisteredClients;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,11 +16,8 @@ public class ClientController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<Application.Auth.Clients.GetAllRegisteredClients.Dto.Response>> GetAllRegisteredClients()
+    public ActionResult GetAllRegisteredClients()
     {
-        return Ok(await _mediator.Send(new Application.Auth.Clients.GetAllRegisteredClients.GetAllRegisteredClients()
-        {
-
-        }));
+        return Ok();
     }
 }
