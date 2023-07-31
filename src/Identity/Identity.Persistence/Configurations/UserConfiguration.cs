@@ -1,5 +1,4 @@
 using Identity.Domain;
-using Identity.Domain.Entities;
 using Identity.Domain.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -15,5 +14,13 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.HasIndex(p => p.Guid).IsUnique();
         builder.Property(p => p.Guid).IsRequired();
         builder.Property(p => p.NormalizedEmail).IsRequired().HasConversion<string>(address => address.Value, s => new NormalizedEmailAddress(s) );
+        builder.HasMany(p => p.Roles)
+            .WithMany(p => p.Users)
+            .UsingEntity("RS_UsersRoles");
+        /*
+    "UsersRoles",
+    l => l.HasOne(typeof(User)).WithMany().HasForeignKey("UserId").HasPrincipalKey(nameof(User.Id)),
+    r => r.HasOne(typeof(Role)).WithMany().HasForeignKey("RoleId").HasPrincipalKey(nameof(Role.Id)),
+    j=> j.HasKey("UserId", "RoleId"));*/
     }
 }
