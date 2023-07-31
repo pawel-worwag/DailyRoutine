@@ -13,5 +13,6 @@ public class RoleConfiguration : IEntityTypeConfiguration<Role>
         builder.ToTable("Roles");
         builder.HasKey(p => p.Id);
         builder.Property(p => p.NormalizedName).IsRequired().HasConversion<string>(name => name.Value, s => new NormalizedName(s));
+        builder.HasMany(p => p.Claims).WithOne(p => p.Role).IsRequired();
     }
 }
