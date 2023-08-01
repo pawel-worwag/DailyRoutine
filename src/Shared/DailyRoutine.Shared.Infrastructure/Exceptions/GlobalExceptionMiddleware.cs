@@ -1,5 +1,6 @@
 using System.Net;
 using System.Text.Json;
+using DailyRoutine.Shared.Abstractions.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.Extensions.Logging;
@@ -23,7 +24,7 @@ public class GlobalExceptionMiddleware
         {
             await _next(context);
         }
-        catch (CustomException ex)
+        catch (Abstractions.Exceptions.CustomException ex)
         {
             _logger.LogError(ex.ToString());
             context.Response.StatusCode = (int)ex.StatusCode;
@@ -31,7 +32,7 @@ public class GlobalExceptionMiddleware
             {
                 Error = ex.Error,
                 Description = ex.Description,
-                Details = new Dictionary<string,string> { {"exception_type", ex.GetType().FullName } }
+                Details = new Dictionary<string, string> { {"exception_type", ex.GetType().FullName } }
             });
         }
         catch (Exception ex)
