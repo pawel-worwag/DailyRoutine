@@ -61,7 +61,7 @@ public class RabbitMqMailBusProducer : IMailBusProducer
         catch (Exception ex)
         {
             _logger.LogError(ex.ToString());
-            throw new DailyRoutineException(HttpStatusCode.InternalServerError, ex.Message);
+            throw new CustomException(HttpStatusCode.InternalServerError, ex.Message);
         }
         await Task.CompletedTask;
     }

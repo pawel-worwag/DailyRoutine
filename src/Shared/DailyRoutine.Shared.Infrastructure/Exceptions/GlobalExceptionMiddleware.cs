@@ -23,13 +23,15 @@ public class GlobalExceptionMiddleware
         {
             await _next(context);
         }
-        catch (DailyRoutineException ex)
+        catch (CustomException ex)
         {
             _logger.LogError(ex.ToString());
             context.Response.StatusCode = (int)ex.StatusCode;
             await context.Response.WriteAsJsonAsync(new Dto.ErrorResponse()
             {
-                Errors = ex.Errors
+                Error = ex.Error,
+                Description = ex.Description,
+                Details = new Dictionary<string,string> { {"exception_type", ex.GetType().FullName } }
             });
         }
         catch (Exception ex)
@@ -38,8 +40,10 @@ public class GlobalExceptionMiddleware
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
             await context.Response.WriteAsJsonAsync(new Dto.ErrorResponse()
             {
-                Errors = new List<string>(){ex.Message}
-            });
+                Error = "unknown_error",
+                Description =  ex.Message ,
+                Details = new Dictionary<string, string> { { "exception_type", ex.GetType().FullName } }
+            }) ;
         }
     }
 }
