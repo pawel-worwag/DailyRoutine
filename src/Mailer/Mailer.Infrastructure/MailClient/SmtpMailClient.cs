@@ -1,16 +1,10 @@
 using System.Net;
-using System.Net.Mail;
-using System.Text;
-using System.Text.Unicode;
-using DailyRoutine.Shared.Infrastructure.Exceptions;
+using DailyRoutine.Shared.Abstractions.Exceptions;
 using Mailer.Application.Common.Interfaces;
 using Microsoft.Extensions.Options;
-using MailKit.Net.Smtp;
 using MailKit.Security;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using MimeKit;
-using MimeKit.Utils;
 using SmtpClient = MailKit.Net.Smtp.SmtpClient;
 
 namespace Mailer.Infrastructure.MailClient;
@@ -70,7 +64,7 @@ public class SmtpMailClient : IMailClient
 
         foreach (var attachment in data.Attachments)
         {
-            if (attachment.Inline == true)
+            if (attachment.Inline)
             {
                 var att = body.LinkedResources.Add(attachment.FileName, attachment.Data,
                     ContentType.Parse(attachment.MimeType));
@@ -79,8 +73,8 @@ public class SmtpMailClient : IMailClient
             }
             else
             {
-                var att = body.Attachments.Add(attachment.FileName, attachment.Data,
-                    ContentType.Parse(attachment.MimeType));
+                //var att = body.Attachments.Add(attachment.FileName, attachment.Data,
+                //    ContentType.Parse(attachment.MimeType));
             }
         }
         mail.Body = body.ToMessageBody();

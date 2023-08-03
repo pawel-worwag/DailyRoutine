@@ -1,4 +1,5 @@
 using System.Net;
+using DailyRoutine.Shared.Abstractions.Exceptions;
 using DailyRoutine.Shared.Infrastructure.Exceptions;
 using Mailer.Application.Common.Interfaces;
 using Microsoft.Extensions.Logging;
