@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Security.Claims;
+using Identity.Domain.Entities;
 using Identity.Domain.ValueObjects;
 using Claim = Identity.Domain.ValueObjects.Claim;
 
@@ -44,4 +45,16 @@ public class User
         EmailConfirmationToken = new EmailConfirmationToken(this, validBefore);
         return EmailConfirmationToken;
     }
+
+    protected HashSet<PasswordRecoveryToken> _passwordRecoveryTokens { get; private set; } =
+        new HashSet<PasswordRecoveryToken>();
+
+    public PasswordRecoveryToken CreatePasswordRecoveryToken(DateTime validAfter, DateTime validBefore)
+    {
+        var token = new PasswordRecoveryToken(this, validAfter, validBefore);
+        _passwordRecoveryTokens.Add(token);
+        return token;
+    }
+
+    public IReadOnlyCollection<PasswordRecoveryToken> PasswordRecoveryTokens => _passwordRecoveryTokens;
 }

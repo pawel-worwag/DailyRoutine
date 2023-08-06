@@ -1,4 +1,5 @@
 using Identity.Domain;
+using Identity.Domain.Entities;
 using Identity.Domain.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -21,5 +22,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             .HasForeignKey("Id");
         builder.HasOne(typeof(EmailConfirmationToken),"EmailConfirmationToken")
             .WithOne(nameof(EmailConfirmationToken.User));
+        builder.HasMany(typeof(PasswordRecoveryToken), "PasswordRecoveryTokens")
+            .WithOne(nameof(PasswordRecoveryToken.User)).HasForeignKey("UserId");
     }
 }

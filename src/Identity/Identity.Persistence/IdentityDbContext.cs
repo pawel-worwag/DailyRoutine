@@ -8,7 +8,7 @@ public class IdentityDbContext : DbContext,IIdentityDbContext
 {
     public DbSet<Domain.User> Users { get; set; }
     
-    public DbSet<Domain.Entities.RecoveryPasswordToken> RecoveryPasswordTokens { get; set; }
+    public DbSet<Domain.Entities.PasswordRecoveryToken> RecoveryPasswordTokens { get; set; }
     public DbSet<Domain.Entities.Client> Clients { get; set; }
 
     public IdentityDbContext(DbContextOptions<IdentityDbContext> options) : base(options)
