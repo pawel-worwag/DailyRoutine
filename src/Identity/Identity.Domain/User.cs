@@ -36,4 +36,12 @@ public class User
                 .Union(Roles.SelectMany(p => p.Claims.Select(c => new Claim(c.ClaimType, c.ClaimValue)))).ToList();
         }
     }
+    
+    protected EmailConfirmationToken? EmailConfirmationToken { get; private set; }
+
+    public EmailConfirmationToken CreateEmailConfirmationToken(DateTime validBefore)
+    {
+        EmailConfirmationToken = new EmailConfirmationToken(this, validBefore);
+        return EmailConfirmationToken;
+    }
 }
