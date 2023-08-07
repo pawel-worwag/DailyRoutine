@@ -1,3 +1,4 @@
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Mailer.Api.Controllers;
@@ -9,6 +10,17 @@ namespace Mailer.Api.Controllers;
 [ApiController]
 public class AttachmentsController : ControllerBase
 {
+    private readonly IMediator _mediator;
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="mediator"></param>
+    public AttachmentsController(IMediator mediator)
+    {
+        _mediator = mediator;
+    }
+
     /// <summary>
     /// List of uploaded files
     /// </summary>
@@ -16,9 +28,12 @@ public class AttachmentsController : ControllerBase
     /// <param name="skip"></param>
     /// <returns></returns>
     [HttpGet]
-    public IActionResult GetMultimediaList(int take = 50, int skip = 0)
+    public async Task<ActionResult<Application.Attachments.GetAttachments.GetAttachmentsResponse>> GetMultimediaList(int take = 50, int skip = 0)
     {
-        return Ok();
+        return Ok(await _mediator.Send(new Application.Attachments.GetAttachments.GetAttachmentsRequest()
+        {
+            
+        }));
     }
 
     /// <summary>

@@ -13,6 +13,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mailer.Infrastructure", "Ma
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mailer.Api", "Mailer.Api\Mailer.Api.csproj", "{7497B60C-1333-4EA0-8E0B-02A35DB404E5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scratches", "Scratches", "{5ACA7FB4-44FC-49D8-AA08-D42D6957BBD2}"
+	ProjectSection(SolutionItems) = preProject
+		Mailer.http = Mailer.http
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

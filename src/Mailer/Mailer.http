@@ -1,0 +1,1 @@
+GET http://{{baseurl}}/api/mail-management/attachments
