@@ -32,7 +32,8 @@ public class AttachmentsController : ControllerBase
     {
         return Ok(await _mediator.Send(new Application.Attachments.GetAttachments.GetAttachmentsRequest()
         {
-            
+            Take = take,
+            Skip = skip
         }));
     }
 

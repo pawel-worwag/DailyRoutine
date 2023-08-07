@@ -6,7 +6,8 @@ namespace Mailer.Application.Attachments.GetAttachments;
 
 public record GetAttachmentsRequest : IRequest<GetAttachmentsResponse>
 {
-    
+    public int Take { get; init; } = 50;
+    public int Skip { get; init; } = 0;
 };
 
 internal class GetAttachmentsHandler : IRequestHandler<GetAttachmentsRequest, GetAttachmentsResponse>
@@ -20,7 +21,7 @@ internal class GetAttachmentsHandler : IRequestHandler<GetAttachmentsRequest, Ge
 
     public async Task<GetAttachmentsResponse> Handle(GetAttachmentsRequest request, CancellationToken cancellationToken)
     {
-        var records = await _dbc.Attachments.Include(p=>p.Templates).OrderBy(p => p.Name).AsNoTracking().ToListAsync(cancellationToken);
+        var records = await _dbc.Attachments.Include(p=>p.Templates).OrderBy(p => p.Name).Take(request.Take).Skip(request.Skip).AsNoTracking().ToListAsync(cancellationToken);
         var attachments = new List<Attachment>();
 
         foreach (var att in records)
@@ -39,7 +40,7 @@ internal class GetAttachmentsHandler : IRequestHandler<GetAttachmentsRequest, Ge
         var response = new GetAttachmentsResponse()
         {
             Attachments = attachments,
-            Count = records.Count
+            AllAttachmentsCount = records.Count
         };
         return response;
     }
