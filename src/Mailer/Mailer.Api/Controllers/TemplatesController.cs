@@ -41,7 +41,7 @@ namespace Mailer.Api.Controllers
         /// Add new template
         /// </summary>
         /// <returns></returns>
-        [HttpPut("templates")]
+        [HttpPost("templates")]
         public ActionResult AddTemplate()
         {
             return Ok();
@@ -63,7 +63,7 @@ namespace Mailer.Api.Controllers
         /// </summary>
         /// <param name="guid"></param>
         /// <returns></returns>
-        [HttpPost("templates/{guid}")]
+        [HttpPut("templates/{guid}")]
         public ActionResult UpdateTemplate(Guid guid)
         {
             return Ok();
@@ -96,7 +96,7 @@ namespace Mailer.Api.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpPut("templates/{guid}/attachments")]
+        [HttpPost("templates/{guid}/attachments")]
         public IActionResult AddRelatedMultimediaFile(Guid id)
         {
             return Ok();

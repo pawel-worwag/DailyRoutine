@@ -41,7 +41,7 @@ public class AttachmentsController : ControllerBase
     /// Add new multimedia file
     /// </summary>
     /// <returns></returns>
-    [HttpPut]
+    [HttpPost]
     public IActionResult AddNewMultimediaFile()
     {
         return Ok();
@@ -52,7 +52,7 @@ public class AttachmentsController : ControllerBase
     /// </summary>
     /// <param name="guid"></param>
     /// <returns></returns>
-    [HttpPost("{guid}")]
+    [HttpPut("{guid}")]
     public IActionResult UpdateMultimediaFile(Guid guid)
     {
         return Ok();
