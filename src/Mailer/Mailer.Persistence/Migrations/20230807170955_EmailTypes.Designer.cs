@@ -3,6 +3,7 @@ using System;
 using Mailer.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Mailer.Persistence.Migrations
 {
     [DbContext(typeof(MailerDbContext))]
-    partial class MailerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230807170955_EmailTypes")]
+    partial class EmailTypes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,20 +27,20 @@ namespace Mailer.Persistence.Migrations
 
             modelBuilder.Entity("AttachmentTemplate", b =>
                 {
+                    b.Property<int>("AttachmentsId")
+                        .HasColumnType("integer");
+
                     b.Property<int>("TemplatesId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("_attachmentsId")
-                        .HasColumnType("integer");
+                    b.HasKey("AttachmentsId", "TemplatesId");
 
-                    b.HasKey("TemplatesId", "_attachmentsId");
-
-                    b.HasIndex("_attachmentsId");
+                    b.HasIndex("TemplatesId");
 
                     b.ToTable("TemplateAttachments", (string)null);
                 });
 
-            modelBuilder.Entity("Mailer.Domain.Attachment", b =>
+            modelBuilder.Entity("Mailer.Domain.Entities.Attachment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -61,7 +64,7 @@ namespace Mailer.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Path")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -73,7 +76,7 @@ namespace Mailer.Persistence.Migrations
                     b.ToTable("Attachments", (string)null);
                 });
 
-            modelBuilder.Entity("Mailer.Domain.EmailType", b =>
+            modelBuilder.Entity("Mailer.Domain.Entities.EmailType", b =>
                 {
                     b.Property<string>("Name")
                         .HasMaxLength(30)
@@ -84,7 +87,7 @@ namespace Mailer.Persistence.Migrations
                     b.ToTable("EmailTypes", (string)null);
                 });
 
-            modelBuilder.Entity("Mailer.Domain.Language", b =>
+            modelBuilder.Entity("Mailer.Domain.Entities.Language", b =>
                 {
                     b.Property<string>("CultureName")
                         .HasMaxLength(30)
@@ -95,7 +98,7 @@ namespace Mailer.Persistence.Migrations
                     b.ToTable("Languages", (string)null);
                 });
 
-            modelBuilder.Entity("Mailer.Domain.Template", b =>
+            modelBuilder.Entity("Mailer.Domain.Entities.Template", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -136,28 +139,28 @@ namespace Mailer.Persistence.Migrations
 
             modelBuilder.Entity("AttachmentTemplate", b =>
                 {
-                    b.HasOne("Mailer.Domain.Template", null)
+                    b.HasOne("Mailer.Domain.Entities.Attachment", null)
+                        .WithMany()
+                        .HasForeignKey("AttachmentsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Mailer.Domain.Entities.Template", null)
                         .WithMany()
                         .HasForeignKey("TemplatesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("Mailer.Domain.Attachment", null)
-                        .WithMany()
-                        .HasForeignKey("_attachmentsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
-            modelBuilder.Entity("Mailer.Domain.Template", b =>
+            modelBuilder.Entity("Mailer.Domain.Entities.Template", b =>
                 {
-                    b.HasOne("Mailer.Domain.Language", "Language")
+                    b.HasOne("Mailer.Domain.Entities.Language", "Language")
                         .WithMany()
                         .HasForeignKey("LanguageCultureName")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Mailer.Domain.EmailType", "Type")
+                    b.HasOne("Mailer.Domain.Entities.EmailType", "Type")
                         .WithMany()
                         .HasForeignKey("TypeName")
                         .OnDelete(DeleteBehavior.Cascade)

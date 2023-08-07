@@ -1,4 +1,5 @@
-using Mailer.Domain.Entities;
+using Mailer.Domain;
+using Mailer.Domain;
 using Microsoft.EntityFrameworkCore;
 
 namespace Mailer.Application.Common.Interfaces;

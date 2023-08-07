@@ -1,10 +1,10 @@
-using Mailer.Domain.Entities;
+using Mailer.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Mailer.Persistence.Configurations;
 
-public class TemplateConfiguration : IEntityTypeConfiguration<Domain.Entities.Template>
+public class TemplateConfiguration : IEntityTypeConfiguration<Template>
 {
     public void Configure(EntityTypeBuilder<Template> builder)
     {
@@ -16,8 +16,8 @@ public class TemplateConfiguration : IEntityTypeConfiguration<Domain.Entities.Te
         builder.HasOne(p => p.Language).WithMany().IsRequired();
         builder.Property(p => p.Subject).IsRequired();
         builder.Property(p => p.BodyEncoded).IsRequired();
-        builder.HasMany(p=>p.Attachments)
-            .WithMany(p=>p.Templates)
-            .UsingEntity(j=>j.ToTable("TemplateAttachments"));
+        builder.HasMany(typeof(Attachment), "_attachments")
+            .WithMany(nameof(Attachment.Templates))
+            .UsingEntity(j => j.ToTable("TemplateAttachments"));
     }
 }

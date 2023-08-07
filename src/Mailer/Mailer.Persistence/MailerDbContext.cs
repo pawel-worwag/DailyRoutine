@@ -1,6 +1,6 @@
 using System.Reflection;
 using Mailer.Application.Common.Interfaces;
-using Mailer.Domain.Entities;
+using Mailer.Domain;
 using Microsoft.EntityFrameworkCore;
 
 namespace Mailer.Persistence;
