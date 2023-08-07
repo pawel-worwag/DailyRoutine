@@ -188,7 +188,7 @@ namespace Identity.Persistence.Migrations
             migrationBuilder.CreateIndex(
                 name: "EmailIndex",
                 table: "Users",
-                column: "NormalizedEmail");
+                column: "NormalizedEmailAddress");
 
             migrationBuilder.CreateIndex(
                 name: "UserNameIndex",

@@ -1,10 +1,10 @@
-using Mailer.Domain.Entities;
+using Mailer.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Mailer.Persistence.Configurations;
 
-public class LanguageConfiguration : IEntityTypeConfiguration<Domain.Entities.Language>
+public class LanguageConfiguration : IEntityTypeConfiguration<Language>
 {
     public void Configure(EntityTypeBuilder<Language> builder)
     {

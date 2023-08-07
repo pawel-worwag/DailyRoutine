@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mailer.Domain", "Mailer.Domain\Mailer.Domain.csproj", "{B8333C13-7AAE-4A8A-81C7-BB753B8C3425}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mailer.Application", "Mailer.Application\Mailer.Application.csproj", "{941D31E8-8DCA-47EE-9322-E569394512AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mailer.Persistence", "Mailer.Persistence\Mailer.Persistence.csproj", "{505FB209-F8BA-4687-8B8A-ACFE74C71EA9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mailer.Infrastructure", "Mailer.Infrastructure\Mailer.Infrastructure.csproj", "{88AF4A85-BD3F-4BE6-B59C-ECCF3CC481CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mailer.Api", "Mailer.Api\Mailer.Api.csproj", "{7497B60C-1333-4EA0-8E0B-02A35DB404E5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B8333C13-7AAE-4A8A-81C7-BB753B8C3425}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8333C13-7AAE-4A8A-81C7-BB753B8C3425}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8333C13-7AAE-4A8A-81C7-BB753B8C3425}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8333C13-7AAE-4A8A-81C7-BB753B8C3425}.Release|Any CPU.Build.0 = Release|Any CPU
+		{941D31E8-8DCA-47EE-9322-E569394512AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{941D31E8-8DCA-47EE-9322-E569394512AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{941D31E8-8DCA-47EE-9322-E569394512AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{941D31E8-8DCA-47EE-9322-E569394512AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{505FB209-F8BA-4687-8B8A-ACFE74C71EA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{505FB209-F8BA-4687-8B8A-ACFE74C71EA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{505FB209-F8BA-4687-8B8A-ACFE74C71EA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{505FB209-F8BA-4687-8B8A-ACFE74C71EA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88AF4A85-BD3F-4BE6-B59C-ECCF3CC481CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88AF4A85-BD3F-4BE6-B59C-ECCF3CC481CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88AF4A85-BD3F-4BE6-B59C-ECCF3CC481CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88AF4A85-BD3F-4BE6-B59C-ECCF3CC481CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7497B60C-1333-4EA0-8E0B-02A35DB404E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7497B60C-1333-4EA0-8E0B-02A35DB404E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7497B60C-1333-4EA0-8E0B-02A35DB404E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7497B60C-1333-4EA0-8E0B-02A35DB404E5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

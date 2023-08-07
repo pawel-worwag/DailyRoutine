@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Identity.Persistence;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Identity.Api.Controllers
 {
@@ -10,6 +12,13 @@ namespace Identity.Api.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
+        private readonly IdentityDbContext _dbc;
+
+        public UsersController(IdentityDbContext dbc)
+        {
+            _dbc = dbc;
+        }
+
         /// <summary>
         /// Get list of registered users
         /// </summary>
@@ -17,8 +26,9 @@ namespace Identity.Api.Controllers
         /// <param name="Skip"></param>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult GetUsersList(int Take = 50, int Skip = 0)
+        public async Task<ActionResult> GetUsersList(int Take = 50, int Skip = 0)
         {
+            var users = await _dbc.Users.Include(p=>p.Roles).ThenInclude(p=>p.Claims).Include("UserClaims").ToListAsync();
             return Ok();
         }
 

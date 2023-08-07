@@ -1,4 +1,5 @@
 using System.Net;
+using DailyRoutine.Shared.Abstractions.Exceptions;
 using DailyRoutine.Shared.Infrastructure.Exceptions;
 using Mailer.Application.Common.Interfaces;
 using Microsoft.Extensions.Logging;
@@ -33,7 +34,7 @@ public class AttachmentsLocalFsStore : IAttachmentsStore
             catch (Exception ex)
             {
                 _logger.LogError(ex.ToString());
-                throw new DailyRoutineException(HttpStatusCode.InternalServerError, ex.Message);
+                throw new CustomException(HttpStatusCode.InternalServerError, ex.Message);
             }
     }
 
@@ -48,7 +49,7 @@ public class AttachmentsLocalFsStore : IAttachmentsStore
         catch (Exception ex)
         {
             _logger.LogError(ex.ToString());
-            throw new DailyRoutineException(HttpStatusCode.InternalServerError, ex.Message);
+            throw new CustomException(HttpStatusCode.InternalServerError, ex.Message);
         }
     }
 
@@ -58,7 +59,7 @@ public class AttachmentsLocalFsStore : IAttachmentsStore
         var fullPath = Path.GetFullPath(path);
         if (string.Compare(fullPath, path, StringComparison.Ordinal)!=0)
         {
-            throw new DailyRoutineException(HttpStatusCode.BadRequest,"Path traversal detected");
+            throw new CustomException(HttpStatusCode.BadRequest,"Path traversal detected");
         }
         return false;
     }
