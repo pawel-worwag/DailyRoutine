@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using System.Text;
+using Mailer.Api.Common;
 using Mailer.Application.Common.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +12,7 @@ namespace Mailer.Api.Controllers
     /// </summary>
     [Route("api/mail-management")]
     [ApiController]
+    [ProducesDefaultContentType]
     public class HelloController : ControllerBase
     {
         private IAttachmentsStore _store;

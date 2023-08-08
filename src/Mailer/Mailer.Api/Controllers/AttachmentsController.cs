@@ -1,3 +1,4 @@
+using Mailer.Api.Common;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,6 +9,7 @@ namespace Mailer.Api.Controllers;
 /// </summary>
 [Route("api/mail-management/attachments")]
 [ApiController]
+[ProducesDefaultContentType]
 public class AttachmentsController : ControllerBase
 {
     private readonly IMediator _mediator;
@@ -38,7 +40,7 @@ public class AttachmentsController : ControllerBase
     }
 
     /// <summary>
-    /// Add new multimedia file
+    /// [TO-DO] Add new multimedia file
     /// </summary>
     /// <returns></returns>
     [HttpPost]
@@ -48,7 +50,7 @@ public class AttachmentsController : ControllerBase
     }
 
     /// <summary>
-    /// Update multimedia file
+    /// [TO-DO] Update multimedia file
     /// </summary>
     /// <param name="guid"></param>
     /// <returns></returns>
@@ -59,7 +61,7 @@ public class AttachmentsController : ControllerBase
     }
 
     /// <summary>
-    /// Delete multimedia file
+    /// [TO-DO] Delete multimedia file
     /// </summary>
     /// <param name="guid"></param>
     /// <returns></returns>
@@ -70,7 +72,7 @@ public class AttachmentsController : ControllerBase
     }
 
     /// <summary>
-    /// Get thumbnail/icon of multimedia file
+    /// [TO-DO] Get thumbnail/icon of multimedia file
     /// </summary>
     /// <param name="guid"></param>
     /// <returns></returns>

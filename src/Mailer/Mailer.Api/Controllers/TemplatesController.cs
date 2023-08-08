@@ -1,4 +1,5 @@
-﻿using Mailer.Application.Templates.GetAllowedEmailTypes;
+﻿using Mailer.Api.Common;
+using Mailer.Application.Templates.GetAllowedEmailTypes;
 using Mailer.Application.Templates.GetAllowedLanguages;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -12,6 +13,7 @@ namespace Mailer.Api.Controllers
     /// </summary>
     [Route("api/mail-management")]
     [ApiController]
+    [ProducesDefaultContentType]
     public class TemplatesController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -45,7 +47,7 @@ namespace Mailer.Api.Controllers
         }
 
         /// <summary>
-        /// List of templates
+        /// [TO-DO] List of templates
         /// </summary>
         /// <returns></returns>
         [HttpGet("templates")]
@@ -55,7 +57,7 @@ namespace Mailer.Api.Controllers
         }
 
         /// <summary>
-        /// Add new template
+        /// [TO-DO] Add new template
         /// </summary>
         /// <returns></returns>
         [HttpPost("templates")]
@@ -65,7 +67,7 @@ namespace Mailer.Api.Controllers
         }
 
         /// <summary>
-        /// Get template tetails
+        /// [TO-DO] Get template tetails
         /// </summary>
         /// <param name="guid"></param>
         /// <returns></returns>
@@ -76,7 +78,7 @@ namespace Mailer.Api.Controllers
         }
 
         /// <summary>
-        /// Update template
+        /// [TO-DO] Update template
         /// </summary>
         /// <param name="guid"></param>
         /// <returns></returns>
@@ -87,7 +89,7 @@ namespace Mailer.Api.Controllers
         }
 
         /// <summary>
-        /// Send a test email
+        /// [TO-DO] Send a test email
         /// </summary>
         /// <param name="guid"></param>
         /// <returns></returns>
@@ -98,7 +100,7 @@ namespace Mailer.Api.Controllers
         }
 
         /// <summary>
-        /// Get list of related multimedia files
+        /// [TO-DO] Get list of related multimedia files
         /// </summary>
         /// <param name="guid"></param>
         /// <returns></returns>
@@ -109,7 +111,7 @@ namespace Mailer.Api.Controllers
         }
 
         /// <summary>
-        /// Add related multimedia file
+        /// [TO-DO] Add related multimedia file
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -120,7 +122,7 @@ namespace Mailer.Api.Controllers
         }
         
         /// <summary>
-        /// Delete related multimedia file
+        /// [TO-DO] Delete related multimedia file
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
