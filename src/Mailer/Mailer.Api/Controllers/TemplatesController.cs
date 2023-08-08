@@ -1,4 +1,5 @@
-﻿using Mailer.Application.Templates.GetAllowedLanguages;
+﻿using Mailer.Application.Templates.GetAllowedEmailTypes;
+using Mailer.Application.Templates.GetAllowedLanguages;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -37,9 +38,9 @@ namespace Mailer.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("allowed-email-types")]
-        public ActionResult GetAllowedEmailTypes()
+        public async Task<ActionResult<GetAllowedEmailTypesResponse>> GetAllowedEmailTypes()
         {
-            return Ok();
+            return Ok(await _mediator.Send(new GetAllowedEmailTypesRequest()));
         }
 
         /// <summary>

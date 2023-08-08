@@ -40,7 +40,7 @@ internal class GetAttachmentsHandler : IRequestHandler<GetAttachmentsRequest, Ge
         var response = new GetAttachmentsResponse()
         {
             Attachments = attachments,
-            AllAttachmentsCount = records.Count
+            AllCount = records.Count
         };
         return response;
     }
