@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace Mailer.Application.Templates.GetAllowedEmailTypes;
 
-public record GetAllowedEmailTypesResponse
+public record Response
 {
     [JsonPropertyName("email-types")]
     public required IReadOnlyCollection<string> EmailTypes { get; init; } = default!;

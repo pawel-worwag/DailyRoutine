@@ -28,7 +28,7 @@ public class AttachmentsController : ControllerBase
     /// <param name="skip"></param>
     /// <returns></returns>
     [HttpGet]
-    public async Task<ActionResult<Application.Attachments.GetAttachments.GetAttachmentsResponse>> GetMultimediaList(int take = 50, int skip = 0)
+    public async Task<ActionResult<Application.Attachments.GetAttachments.Response>> GetMultimediaList(int take = 50, int skip = 0)
     {
         return Ok(await _mediator.Send(new Application.Attachments.GetAttachments.GetAttachmentsRequest()
         {

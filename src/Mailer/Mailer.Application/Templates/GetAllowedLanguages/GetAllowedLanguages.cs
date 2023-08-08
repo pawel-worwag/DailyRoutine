@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Mailer.Application.Templates.GetAllowedLanguages;
 
-public record GetAllowedLanguagesRequest : IRequest<GetAllowedLanguagesResponse>
+public record GetAllowedLanguagesRequest : IRequest<Response>
 {
 };
 
-internal class GetAllowedLanguagesHandler : IRequestHandler<GetAllowedLanguagesRequest, GetAllowedLanguagesResponse>
+internal class GetAllowedLanguagesHandler : IRequestHandler<GetAllowedLanguagesRequest, Response>
 {
     private readonly IMailerDbContext _dbc;
 
@@ -17,13 +17,13 @@ internal class GetAllowedLanguagesHandler : IRequestHandler<GetAllowedLanguagesR
         _dbc = dbc;
     }
 
-    public async Task<GetAllowedLanguagesResponse> Handle(GetAllowedLanguagesRequest request,
+    public async Task<Response> Handle(GetAllowedLanguagesRequest request,
         CancellationToken cancellationToken)
     {
         var languages = await _dbc.Languages.OrderBy(p => p.CultureName)
             .Select(p => p.CultureName)
             .ToListAsync(cancellationToken);
-        return new GetAllowedLanguagesResponse()
+        return new Response()
         {
             Languages = languages,
             AllCount = languages.Count

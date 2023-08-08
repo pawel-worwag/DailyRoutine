@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace Mailer.Application.Attachments.GetAttachments;
 
-public record GetAttachmentsResponse
+public record Response
 {
     [JsonPropertyName("attachments")]
     public required ICollection<Attachment> Attachments { get; init; } = default!;

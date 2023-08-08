@@ -3,6 +3,7 @@ using Mailer.Application.Templates.GetAllowedLanguages;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Response = Mailer.Application.Templates.GetAllowedLanguages.Response;
 
 namespace Mailer.Api.Controllers
 {
@@ -28,7 +29,7 @@ namespace Mailer.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("allowed-languages")]
-        public async Task<ActionResult<GetAllowedLanguagesResponse>> GetAllowedLanguages()
+        public async Task<ActionResult<Response>> GetAllowedLanguages()
         {
             return Ok(await _mediator.Send(new GetAllowedLanguagesRequest()));
         }
@@ -38,7 +39,7 @@ namespace Mailer.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("allowed-email-types")]
-        public async Task<ActionResult<GetAllowedEmailTypesResponse>> GetAllowedEmailTypes()
+        public async Task<ActionResult<Application.Templates.GetAllowedEmailTypes.Response>> GetAllowedEmailTypes()
         {
             return Ok(await _mediator.Send(new GetAllowedEmailTypesRequest()));
         }

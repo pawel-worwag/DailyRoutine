@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Mailer.Application.Templates.GetAllowedEmailTypes;
 
-public record GetAllowedEmailTypesRequest : IRequest<GetAllowedEmailTypesResponse>
+public record GetAllowedEmailTypesRequest : IRequest<Response>
 {
 }
 
-internal class GetAllowedEmailTypesHandler : IRequestHandler<GetAllowedEmailTypesRequest, GetAllowedEmailTypesResponse>
+internal class GetAllowedEmailTypesHandler : IRequestHandler<GetAllowedEmailTypesRequest, Response>
 {
     private readonly IMailerDbContext _dbc;
 
@@ -17,11 +17,11 @@ internal class GetAllowedEmailTypesHandler : IRequestHandler<GetAllowedEmailType
         _dbc = dbc;
     }
 
-    public async Task<GetAllowedEmailTypesResponse> Handle(GetAllowedEmailTypesRequest request,
+    public async Task<Response> Handle(GetAllowedEmailTypesRequest request,
         CancellationToken cancellationToken)
     {
         var types = await _dbc.EmailTypes.Select(p => p.Name).ToListAsync(cancellationToken);
-        return new GetAllowedEmailTypesResponse()
+        return new Response()
         {
             EmailTypes = types,
             AllCount = types.Count

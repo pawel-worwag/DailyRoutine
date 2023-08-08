@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Mailer.Application.Attachments.GetAttachments;
 
-public record GetAttachmentsRequest : IRequest<GetAttachmentsResponse>
+public record GetAttachmentsRequest : IRequest<Response>
 {
     public int Take { get; init; } = 50;
     public int Skip { get; init; } = 0;
 };
 
-internal class GetAttachmentsHandler : IRequestHandler<GetAttachmentsRequest, GetAttachmentsResponse>
+internal class GetAttachmentsHandler : IRequestHandler<GetAttachmentsRequest, Response>
 {
     private readonly IMailerDbContext _dbc;
 
@@ -19,7 +19,7 @@ internal class GetAttachmentsHandler : IRequestHandler<GetAttachmentsRequest, Ge
         _dbc = dbc;
     }
 
-    public async Task<GetAttachmentsResponse> Handle(GetAttachmentsRequest request, CancellationToken cancellationToken)
+    public async Task<Response> Handle(GetAttachmentsRequest request, CancellationToken cancellationToken)
     {
         var records = await _dbc.Attachments.Include(p=>p.Templates).OrderBy(p => p.Name).Take(request.Take).Skip(request.Skip).AsNoTracking().ToListAsync(cancellationToken);
         var attachments = new List<Attachment>();
@@ -37,7 +37,7 @@ internal class GetAttachmentsHandler : IRequestHandler<GetAttachmentsRequest, Ge
             });
         }
         
-        var response = new GetAttachmentsResponse()
+        var response = new Response()
         {
             Attachments = attachments,
             AllCount = records.Count
