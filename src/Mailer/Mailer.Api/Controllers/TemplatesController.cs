@@ -1,20 +1,35 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Mailer.Application.Templates.GetAllowedLanguages;
+using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Mailer.Api.Controllers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [Route("api/mail-management")]
     [ApiController]
     public class TemplatesController : ControllerBase
     {
+        private readonly IMediator _mediator;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mediator"></param>
+        public TemplatesController(IMediator mediator)
+        {
+            _mediator = mediator;
+        }
+
         /// <summary>
         /// List of allowed languages
         /// </summary>
         /// <returns></returns>
         [HttpGet("allowed-languages")]
-        public ActionResult GetAllowedLanguages()
+        public async Task<ActionResult<GetAllowedLanguagesResponse>> GetAllowedLanguages()
         {
-            return Ok();
+            return Ok(await _mediator.Send(new GetAllowedLanguagesRequest()));
         }
 
         /// <summary>

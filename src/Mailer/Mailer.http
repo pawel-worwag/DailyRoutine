@@ -1,1 +1,6 @@
 GET http://{{baseurl}}/api/mail-management/attachments
+
+
+###
+
+GET http://{{baseurl}}/api/mail-management/allowed-languages
