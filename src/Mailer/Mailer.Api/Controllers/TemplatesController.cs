@@ -47,7 +47,7 @@ public class TemplatesController : ControllerBase
     }
 
     /// <summary>
-    /// [TO-DO] List of templates
+    /// List of templates
     /// </summary>
     /// <returns></returns>
     [HttpGet("templates")]
