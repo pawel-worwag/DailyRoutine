@@ -100,14 +100,17 @@ public class TemplatesController : ControllerBase
     }
 
     /// <summary>
-    /// [TO-DO] Get list of related multimedia files
+    /// Get list of related multimedia files
     /// </summary>
     /// <param name="guid"></param>
     /// <returns></returns>
     [HttpGet("templates/{guid:guid}/attachments")]
-    public IActionResult GetRelatedMultimediaFiles(Guid guid)
+    public async Task<ActionResult<Mailer.Application.Templates.GetTemplateAttachments.Response>> GetRelatedMultimediaFiles(Guid guid)
     {
-        return Ok(guid);
+        return Ok(await _mediator.Send(new Mailer.Application.Templates.GetTemplateAttachments.GetTemplateAttachmentsRequest
+        {
+            TemplateGuid = guid
+        }));
     }
 
     /// <summary>

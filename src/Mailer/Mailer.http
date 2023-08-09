@@ -12,3 +12,7 @@ GET http://{{baseurl}}/api/mail-management/allowed-email-types
 ###
 
 GET http://{{baseurl}}/api/mail-management/templates
+
+###
+
+GET http://{{baseurl}}/api/mail-management/templates/d6dd2fa4-f14f-4411-98f3-80439566114f/attachments
