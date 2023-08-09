@@ -1,4 +1,5 @@
 using Mailer.Application.Common.Interfaces;
+using Mailer.Application.CustomExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -35,10 +36,9 @@ internal class GetTemplatesHandler : IRequestHandler<GetTemplatesRequest, Respon
 
         
         var templates = await _dbc.Templates
-            .Include("_attachments")
-            .Include(p=>p.Language)
-            .Include(p=>p.Type)
-            .AsNoTracking().ToListAsync(cancellationToken);
+            .WithAllIncludes()
+            .AsNoTracking()
+            .ToListAsync(cancellationToken);
 
         foreach (var template in templates)
         {
