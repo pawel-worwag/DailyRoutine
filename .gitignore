@@ -4,4 +4,4 @@ obj/
 bin/
 appsettings.Development.json
 .DS_store
-.idea
+**/.idea/
