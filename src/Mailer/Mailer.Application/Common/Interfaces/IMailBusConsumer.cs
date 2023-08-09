@@ -10,5 +10,5 @@ public interface IMailBusConsumer
     public void Disconnect();
     public delegate bool ConsumeMessageDelegate(EmailBusMessage message);
 
-    public ConsumeMessageDelegate ConsumeMessage { get; set; }
+    public ConsumeMessageDelegate? ConsumeMessage { get; set; }
 }
