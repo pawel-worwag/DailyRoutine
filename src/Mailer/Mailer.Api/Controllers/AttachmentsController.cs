@@ -32,7 +32,7 @@ public class AttachmentsController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<Application.Attachments.GetAttachments.Response>> GetMultimediaList(int take = 50, int skip = 0)
     {
-        return Ok(await _mediator.Send(new Application.Attachments.GetAttachments.GetAttachmentsRequest()
+        return Ok(await _mediator.Send(new Application.Attachments.GetAttachments.GetAttachmentsRequest
         {
             Take = take,
             Skip = skip
@@ -54,10 +54,10 @@ public class AttachmentsController : ControllerBase
     /// </summary>
     /// <param name="guid"></param>
     /// <returns></returns>
-    [HttpPut("{guid}")]
+    [HttpPut("{guid:guid}")]
     public IActionResult UpdateMultimediaFile(Guid guid)
     {
-        return Ok();
+        return Ok(guid);
     }
 
     /// <summary>
@@ -65,10 +65,10 @@ public class AttachmentsController : ControllerBase
     /// </summary>
     /// <param name="guid"></param>
     /// <returns></returns>
-    [HttpDelete("{guid}")]
+    [HttpDelete("{guid:guid}")]
     public IActionResult DeleteMultimediaFile(Guid guid)
     {
-        return Ok();
+        return Ok(guid);
     }
 
     /// <summary>
@@ -76,9 +76,9 @@ public class AttachmentsController : ControllerBase
     /// </summary>
     /// <param name="guid"></param>
     /// <returns></returns>
-    [HttpGet("{guid}/thumbnail")]
+    [HttpGet("{guid:guid}/thumbnail")]
     public IActionResult GetThumbnail(Guid guid)
     {
-        return Ok();
+        return Ok(guid);
     }
 }

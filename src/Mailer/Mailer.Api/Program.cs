@@ -1,6 +1,6 @@
 using System.Reflection;
 using DailyRoutine.Shared.Infrastructure.Exceptions;
-using Mailer.Api.BackgroudServices;
+using Mailer.Api.BackgroundServices;
 using Mailer.Application;
 using Mailer.Infrastructure;
 using Mailer.Persistence;

@@ -1,35 +1,23 @@
-﻿using System.Net;
-using System.Text;
-using Mailer.Api.Common;
-using Mailer.Application.Common.Interfaces;
-using Microsoft.AspNetCore.Http;
+﻿using Mailer.Api.Common;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Mailer.Api.Controllers
+namespace Mailer.Api.Controllers;
+
+/// <summary>
+/// 
+/// </summary>
+[Route("api/mail-management")]
+[ApiController]
+[ProducesDefaultContentType]
+public class HelloController : ControllerBase
 {
     /// <summary>
     /// 
     /// </summary>
-    [Route("api/mail-management")]
-    [ApiController]
-    [ProducesDefaultContentType]
-    public class HelloController : ControllerBase
+    /// <returns></returns>
+    [HttpGet]
+    public ActionResult Index()
     {
-        private IAttachmentsStore _store;
-
-        public HelloController(IAttachmentsStore store)
-        {
-            _store = store;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
-        public ActionResult Index()
-        {
-            return Ok();
-        }
+        return Ok();
     }
 }
