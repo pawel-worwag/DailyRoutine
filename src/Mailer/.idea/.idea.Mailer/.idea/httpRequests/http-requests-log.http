@@ -1,3 +1,57 @@
+GET https://localhost:7050/api/mail-management/templates
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-08-09T204239.200.json
+
+###
+
+GET https://localhost:7050/api/mail-management/templates
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-08-09T204143.200.json
+
+###
+
+GET https://localhost:7050/api/mail-management/templates
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-08-09T204007.200.json
+
+###
+
+GET https://localhost:7050/api/mail-management/templates
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-08-09T203736.200.json
+
+###
+
+GET https://localhost:7050/api/mail-management/templates
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-08-09T203634.500.json
+
+###
+
+GET https://localhost:7050/api/mail-management/templates
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-08-09T201059.500.json
+
+###
+
 GET https://localhost:7050/api/mail-management/allowed-email-types
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)

@@ -8,3 +8,7 @@ GET http://{{baseurl}}/api/mail-management/allowed-languages
 ###
 
 GET http://{{baseurl}}/api/mail-management/allowed-email-types
+
+###
+
+GET http://{{baseurl}}/api/mail-management/templates

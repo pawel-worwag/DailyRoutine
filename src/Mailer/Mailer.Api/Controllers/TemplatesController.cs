@@ -1,6 +1,7 @@
 ﻿using Mailer.Api.Common;
 using Mailer.Application.Templates.GetAllowedEmailTypes;
 using Mailer.Application.Templates.GetAllowedLanguages;
+using Mailer.Application.Templates.GetTemplates;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Response = Mailer.Application.Templates.GetAllowedLanguages.Response;
@@ -50,9 +51,9 @@ public class TemplatesController : ControllerBase
     /// </summary>
     /// <returns></returns>
     [HttpGet("templates")]
-    public ActionResult GetTemplates()
+    public async Task<ActionResult<Mailer.Application.Templates.GetTemplates.Response>> GetTemplates()
     {
-        return Ok();
+        return Ok(await _mediator.Send(new GetTemplatesRequest()));
     }
 
     /// <summary>
