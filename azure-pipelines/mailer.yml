@@ -11,7 +11,7 @@ variables:
    major: 0
    minor: 0
    brpatch: $[counter(variables['build.sourcebranchname'], 0)]
-   revision: $(Rev:.r)
+   revision: $(Build.BuildId)
 
 name: $(major).$(minor).$(revision)-$(Build.SourceBranchName)
 
