@@ -10,8 +10,9 @@ pool: u4.local
 variables: 
    major: 0
    minor: 0
+   version: $(major).$(minor)$(Rev:.r)_$(Build.SourceBranchName)
 
-name: $(major).$(minor)$(Rev:.r)-$(Build.SourceBranchName)
+name: $(version)
 
 stages: 
 - stage: Building
