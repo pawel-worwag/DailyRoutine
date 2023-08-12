@@ -10,9 +10,8 @@ pool: u4.local
 variables: 
    major: 0
    minor: 0
-   version: $(major).$(minor)$(Rev:.r)_$(Build.SourceBranchName)
 
-name: $(version)
+name: $(major).$(minor)$(Rev:.r)_$(Build.SourceBranchName)
 
 stages: 
 - stage: Building
@@ -31,6 +30,7 @@ stages:
       inputs:
         command: 'build'
         projects: 'src/Mailer/Mailer.Api'
+        arguments: '-c Release /p:AssemblyVersion=$(major).$(minor)$(Rev:.r) /p:Version=$(major).$(minor)$(Rev:.r)_$(Build.SourceBranchName)'
   - job: Publish
     dependsOn: Build
     steps:
@@ -39,7 +39,7 @@ stages:
         command: 'publish'
         publishWebProjects: false
         projects: 'src/Mailer/Mailer.Api'
-        arguments: '-c Release  --output $(Build.ArtifactStagingDirectory)'
+        arguments: '-c Release  --output $(Build.ArtifactStagingDirectory) /p:AssemblyVersion=$(major).$(minor)$(Rev:.r) /p:Version=$(major).$(minor)$(Rev:.r)_$(Build.SourceBranchName)'
         zipAfterPublish: True
         modifyOutputPath: true
     - task: PublishBuildArtifacts@1
