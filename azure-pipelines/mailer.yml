@@ -11,8 +11,9 @@ variables:
    major: 0
    minor: 0
    brpatch: $[counter(variables['build.sourcebranchname'], 0)]
+   revision: $(Rev:.r)
 
-name: $(major).$(minor).$(brpatch)-$(Build.SourceBranchName)
+name: $(major).$(minor).$(revision)-$(Build.SourceBranchName)
 
 stages: 
 - stage: Building
@@ -35,8 +36,8 @@ stages:
   - job: Publish
     dependsOn: Build
     variables:
-      vassemblyersion: $(major).$(minor).$(brpatch)
-      version: $(major).$(minor).$(brpatch)-$(Build.SourceBranchName)
+      vassemblyersion: $(major).$(minor).$(revision)
+      version: $(major).$(minor).$(revision)-$(Build.SourceBranchName)
     steps:
     - task: DotNetCoreCLI@2
       inputs:
