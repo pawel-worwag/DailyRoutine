@@ -4,8 +4,12 @@
 # https://aka.ms/yaml
 
 trigger: none
-
 pool: u4.local
+
+
+variables: 
+  BuildNumber: '1.0.0-CI+$(Build.BuildNumber)'
+
 stages: 
 - stage: Building
   jobs:
@@ -19,6 +23,8 @@ stages:
   - job: Build 
     dependsOn: Restore
     steps:
+    - script: echo $(BuildNumber)
+    - script: echo $(Build.BuildNumber)
     - task: DotNetCoreCLI@2
       inputs:
         command: 'build'
@@ -31,10 +37,10 @@ stages:
         command: 'publish'
         publishWebProjects: false
         projects: 'src/Mailer/Mailer.Api'
-        arguments: '-c Release  --output $(Build.ArtifactStagingDirectory)/Mailer'
+        arguments: '-c Release  --output $(Build.ArtifactStagingDirectory)'
         zipAfterPublish: True
         modifyOutputPath: true
     - task: PublishBuildArtifacts@1
       inputs:
-        PathToPublish: '$(Build.ArtifactStagingDirectory)/Mailer'
+        PathToPublish: '$(Build.ArtifactStagingDirectory)'
         ArtifactName: 'Mailer'
