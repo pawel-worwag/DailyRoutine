@@ -22,3 +22,11 @@ stages:
       inputs:
         command: 'build'
         projects: 'src/Mailer/Mailer.Api'
+  - job: Publish
+    steps:
+    - task: DotNetCoreCLI@2
+      inputs:
+        command: 'publish'
+        publishWebProjects: false
+        projects: 'src/Mailer/Mailer.Api'
+        zipAfterPublish: True
