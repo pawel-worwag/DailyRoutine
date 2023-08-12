@@ -11,7 +11,7 @@ variables:
    major: 0
    minor: 0
 
-name: $(major).$(minor)$(Rev:.r)
+name: $(major).$(minor).$(Rev:.r)-$(Build.SourceBranch)
 
 stages: 
 - stage: Building
