@@ -50,4 +50,4 @@ stages:
     - task: PublishBuildArtifacts@1
       inputs:
         PathToPublish: '$(Build.ArtifactStagingDirectory)'
-        ArtifactName: 'Mailer'
+        ArtifactName: 'Mailer-$(major).$(minor).$(Build.BuildId)-$(Build.SourceBranchName)'
