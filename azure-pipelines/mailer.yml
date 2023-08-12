@@ -31,10 +31,10 @@ stages:
         command: 'publish'
         publishWebProjects: false
         projects: 'src/Mailer/Mailer.Api'
-        arguments: '-c Release'
+        arguments: '-c Release  --output $(Build.ArtifactStagingDirectory)/Mailer'
         zipAfterPublish: True
+        modifyOutputPath: true
     - task: PublishBuildArtifacts@1
       inputs:
-        PathToPublish: '$(Build.ArtifactStagingDirectory)'
+        PathToPublish: '$(Build.ArtifactStagingDirectory)/Mailer'
         ArtifactName: 'Mailer'
-        publishLocation: 'Container'
