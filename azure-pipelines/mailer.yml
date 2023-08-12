@@ -10,8 +10,9 @@ pool: u4.local
 variables: 
    major: 0
    minor: 0
+   brpatch: $[counter(variables['build.sourcebranchname'], 0)]
 
-name: $(major).$(minor).$(Rev)_$(Build.SourceBranchName)
+name: $(major).$(minor).$(brpatch)_$(Build.SourceBranchName)
 
 stages: 
 - stage: Building
@@ -34,8 +35,8 @@ stages:
   - job: Publish
     dependsOn: Build
     variables:
-      vassemblyersion: $(major).$(minor).$(Rev)
-      version: $(major).$(minor).$(Rev)_$(Build.SourceBranchName)
+      vassemblyersion: $(major).$(minor).$(brpatch)
+      version: $(major).$(minor).$(brpatch)_$(Build.SourceBranchName)
     steps:
     - task: DotNetCoreCLI@2
       inputs:
