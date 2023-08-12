@@ -33,13 +33,16 @@ stages:
         arguments: '-c Release'
   - job: Publish
     dependsOn: Build
+    variables:
+      vassemblyersion: $(major).$(minor)$(Rev:.r)
+      version: $(major).$(minor)$(Rev:.r)_$(Build.SourceBranchName)
     steps:
     - task: DotNetCoreCLI@2
       inputs:
         command: 'publish'
         publishWebProjects: false
         projects: 'src/Mailer/Mailer.Api'
-        arguments: '-c Release  --output $(Build.ArtifactStagingDirectory) /p:AssemblyVersion=$(major).$(minor)$(Rev:.r) /p:Version=$(major).$(minor)$(Rev:.r)_$(Build.SourceBranchName)'
+        arguments: '-c Release  --output $(Build.ArtifactStagingDirectory) /p:AssemblyVersion=$(vassemblyersion) /p:Version=$(version)'
         zipAfterPublish: True
         modifyOutputPath: true
     - task: PublishBuildArtifacts@1
