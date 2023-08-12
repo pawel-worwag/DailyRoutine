@@ -49,10 +49,9 @@ stages:
         publishWebProjects: false
         projects: 'src/Mailer/Mailer.Api'
         arguments: '-c Release  --output $(Build.ArtifactStagingDirectory)/Mailer-$(major).$(minor).$(Build.BuildId)-$(Build.SourceBranchName) /p:AssemblyVersion=$(vassemblyersion) /p:Version=$(version)'
-        zipAfterPublish: True
-        modifyOutputPath: true
     - task: PublishBuildArtifacts@1
       inputs:
         PathToPublish: '$(Build.ArtifactStagingDirectory)/Mailer-$(major).$(minor).$(Build.BuildId)-$(Build.SourceBranchName)'
         ArtifactName: 'Mailer'
         PublishLocation: 'Container'
+        StoreAsTar: True
