@@ -1,0 +1,52 @@
+
+trigger: none
+pool: u4.local
+
+variables: 
+   major: 0
+   minor: 0
+   brpatch: $[counter(variables['build.sourcebranchname'], 0)]
+   revision: $(Build.BuildId)
+
+name: $(major).$(minor).$(Build.BuildId)-$(Build.SourceBranchName)
+
+stages: 
+- stage: Building
+  jobs:
+  - job: Restore
+    steps:
+    - task: DotNetCoreCLI@2
+      inputs:
+        command: 'restore'
+        projects: 'src/Mailer/**/*.csproj'
+        feedsToUse: 'select'
+  - job: Build 
+    dependsOn: Restore
+    steps:
+    - task: DotNetCoreCLI@2
+      inputs:
+        command: 'build'
+        projects: 'src/Mailer/Mailer.Api'
+        arguments: '-c Release'
+  - job: Testing
+    dependsOn: Build
+    steps:
+      - script: 'echo TODO'
+  - job: Publish
+    dependsOn: Testing
+    variables:
+      vassemblyersion: $(major).$(minor).$(Build.BuildId)
+      version: $(major).$(minor).$(Build.BuildId)-$(Build.SourceBranchName)
+    steps:
+    - task: DotNetCoreCLI@2
+      inputs:
+        command: 'publish'
+        publishWebProjects: false
+        projects: 'src/Mailer/Mailer.Api'
+        arguments: '-c Release  --output $(Build.ArtifactStagingDirectory)/Mailer-$(major).$(minor).$(Build.BuildId)-$(Build.SourceBranchName) /p:AssemblyVersion=$(vassemblyersion) /p:Version=$(version)'
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathToPublish: '$(Build.ArtifactStagingDirectory)/Mailer-$(major).$(minor).$(Build.BuildId)-$(Build.SourceBranchName)'
+        ArtifactName: 'Mailer-$(major).$(minor).$(Build.BuildId)-$(Build.SourceBranchName)'
+        PublishLocation: 'Container'
+        StoreAsTar: True
