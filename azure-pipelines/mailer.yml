@@ -23,8 +23,8 @@ stages:
   - job: Build 
     dependsOn: Restore
     steps:
-    - script: echo $(BuildNumber)
-    - script: echo $(Build.BuildNumber)
+    - script: echo BUILD:$(BuildNumber)
+    - script: echo BUILD:$(Build.BuildNumber)
     - task: DotNetCoreCLI@2
       inputs:
         command: 'build'
