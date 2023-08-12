@@ -30,7 +30,7 @@ stages:
       inputs:
         command: 'build'
         projects: 'src/Mailer/Mailer.Api'
-        arguments: '-c Release /p:AssemblyVersion=$(major).$(minor)$(Rev:.r) /p:Version=$(major).$(minor)$(Rev:.r)_$(Build.SourceBranchName)'
+        arguments: '-c Release'
   - job: Publish
     dependsOn: Build
     steps:
