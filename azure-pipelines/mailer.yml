@@ -33,8 +33,12 @@ stages:
         command: 'build'
         projects: 'src/Mailer/Mailer.Api'
         arguments: '-c Release'
-  - job: Publish
+  - job: Testing
     dependsOn: Build
+    steps:
+      - script: 'echo TODO'
+  - job: Publish
+    dependsOn: Testing
     variables:
       vassemblyersion: $(major).$(minor).$(Build.BuildId)
       version: $(major).$(minor).$(Build.BuildId)-$(Build.SourceBranchName)
@@ -51,3 +55,4 @@ stages:
       inputs:
         PathToPublish: '$(Build.ArtifactStagingDirectory)/Mailer-$(major).$(minor).$(Build.BuildId)-$(Build.SourceBranchName)'
         ArtifactName: 'Mailer'
+        PublishLocation: 'Container'
