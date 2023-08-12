@@ -11,7 +11,7 @@ variables:
    major: 0
    minor: 0
 
-name: $(major).$(minor)$(Rev:.r)_$(Build.SourceBranchName)
+name: $(major).$(minor).$(rev)_$(Build.SourceBranchName)
 
 stages: 
 - stage: Building
@@ -34,8 +34,8 @@ stages:
   - job: Publish
     dependsOn: Build
     variables:
-      vassemblyersion: $(major).$(minor)$(Rev:.r)
-      version: $(major).$(minor)$(Rev:.r)_$(Build.SourceBranchName)
+      vassemblyersion: $(major).$(minor).$(rev)
+      version: $(major).$(minor).$(rev)_$(Build.SourceBranchName)
     steps:
     - task: DotNetCoreCLI@2
       inputs:
