@@ -6,8 +6,7 @@
 trigger:
 - dev
 
-pool:
-  vmImage: u4.local
+pool: u4.local
 
 steps:
 - script: echo Hello, world!
