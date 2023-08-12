@@ -17,12 +17,14 @@ stages:
         projects: 'src/Mailer/**/*.csproj'
         feedsToUse: 'select'
   - job: Build 
+    dependsOn: Restore
     steps:
     - task: DotNetCoreCLI@2
       inputs:
         command: 'build'
         projects: 'src/Mailer/Mailer.Api'
   - job: Publish
+    dependsOn: Build
     steps:
     - task: DotNetCoreCLI@2
       inputs:
