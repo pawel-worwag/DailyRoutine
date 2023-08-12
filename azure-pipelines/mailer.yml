@@ -1,11 +1,6 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
 
 trigger: none
 pool: u4.local
-
 
 variables: 
    major: 0
@@ -52,6 +47,6 @@ stages:
     - task: PublishBuildArtifacts@1
       inputs:
         PathToPublish: '$(Build.ArtifactStagingDirectory)/Mailer-$(major).$(minor).$(Build.BuildId)-$(Build.SourceBranchName)'
-        ArtifactName: 'Mailer'
+        #ArtifactName: 'Mailer'
         PublishLocation: 'Container'
         StoreAsTar: True
