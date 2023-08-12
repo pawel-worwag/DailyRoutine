@@ -9,15 +9,10 @@ pool: u4.local
 stages: 
 - stage: Building
   jobs:
-  - job: A
+  - job: Restore
     steps:
-    - script: echo Hello, world!
-
-#  steps:
-#  - script: echo Hello, world!
-#    displayName: 'Run a one-line script'
-#
-#  - script: |
-#      echo Add other tasks to build, test, and deploy your project.
-#      echo See https://aka.ms/yaml
-#    displayName: 'Run a multi-line script'
+    - task: DotNetCoreCLI@2
+      inputs:
+        command: 'restore'
+        projects: 'src/Mailer/**/*.csproj'
+        feedsToUse: 'select'
