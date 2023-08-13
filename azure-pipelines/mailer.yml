@@ -43,11 +43,11 @@ stages:
         command: 'publish'
         publishWebProjects: false
         projects: 'src/Mailer/Mailer.Api'
-        arguments: '-c Release  --output $(Build.ArtifactStagingDirectory)/Mailer-$(major).$(minor).$(Build.BuildId)-$(Build.SourceBranchName) /p:AssemblyVersion=$(vassemblyersion) /p:Version=$(version)'
+        arguments: '-c Release  --output $(Build.ArtifactStagingDirectory) /p:AssemblyVersion=$(vassemblyersion) /p:Version=$(version)'
     - task: PublishBuildArtifacts@1
       inputs:
-        PathToPublish: '$(Build.ArtifactStagingDirectory)/Mailer-$(major).$(minor).$(Build.BuildId)-$(Build.SourceBranchName)'
-        ArtifactName: 'Mailer-$(major).$(minor).$(Build.BuildId)-$(Build.SourceBranchName)'
+        PathToPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'Mailer'
         PublishLocation: 'Container'
         StoreAsTar: True
 - stage: Deployment
@@ -63,4 +63,4 @@ stages:
           steps:
           - download: current
             displayName: Download artifacts
-          - script: ls $(Agent.BuildDirectory)
+          - script: ls $(Agent.BuildDirectory)/Mailer
