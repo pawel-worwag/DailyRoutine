@@ -49,6 +49,18 @@ public class AttachmentsController : ControllerBase
         return Ok();
     }
 
+       
+    /// <summary>
+    /// [TO-DO] Get multimedia  details
+    /// </summary>
+    /// <param name="guid"></param>
+    /// <returns></returns>
+    [HttpGet("{guid:guid}")]
+    public IActionResult GetDetails(Guid guid)
+    {
+        return Ok(guid);
+    }
+    
     /// <summary>
     /// [TO-DO] Update multimedia file
     /// </summary>
@@ -78,6 +90,17 @@ public class AttachmentsController : ControllerBase
     /// <returns></returns>
     [HttpGet("{guid:guid}/thumbnail")]
     public IActionResult GetThumbnail(Guid guid)
+    {
+        return Ok(guid);
+    }
+    
+    /// <summary>
+    /// [TO-DO] Get multimedia file
+    /// </summary>
+    /// <param name="guid"></param>
+    /// <returns></returns>
+    [HttpGet("{guid:guid}/file")]
+    public IActionResult GetFile(Guid guid)
     {
         return Ok(guid);
     }
