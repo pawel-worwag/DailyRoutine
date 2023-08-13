@@ -15,8 +15,8 @@ public class MailBusConsumer : IMailBusConsumer, IDisposable
     private IConnection? _connection = null;
     private IModel? _channel = null;
     private EventingBasicConsumer? _consumer = null;
-    private ILogger _logger;
-    public IMailBusConsumer.ConsumeMessageDelegate ConsumeMessage { get; set; }
+    private readonly ILogger _logger;
+    public IMailBusConsumer.ConsumeMessageDelegate ConsumeMessage { get; set; } = default!;
     
     public MailBusConsumer(IOptions<MailBusOptions> options, ILogger<MailBusConsumer> logger)
     {
@@ -51,7 +51,7 @@ public class MailBusConsumer : IMailBusConsumer, IDisposable
             var messageStr = Encoding.UTF8.GetString(body);
             var message = JsonSerializer.Deserialize<EmailBusMessage>(messageStr);
 
-            if (ConsumeMessage?.Invoke(message) == true)
+            if (message is not null && ConsumeMessage?.Invoke(message) == true)
             {
                 _channel.BasicAck(ea.DeliveryTag,false);
             }

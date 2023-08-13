@@ -15,6 +15,10 @@ namespace Mailer.Api.Controllers
     {
         private IAttachmentsStore _store;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="store"></param>
         public HelloController(IAttachmentsStore store)
         {
             _store = store;
@@ -29,6 +33,12 @@ namespace Mailer.Api.Controllers
         {
             return Ok();
         }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="client"></param>
+        /// <returns></returns>
         [HttpGet("/test")]
         public async Task<ActionResult> Test(IMailClient client)
         {
@@ -61,6 +71,11 @@ namespace Mailer.Api.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPut("/test/{id:guid}")]
         public async Task<ActionResult> WriteFileTest(Guid id)
         {
@@ -71,6 +86,11 @@ namespace Mailer.Api.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("/test/{id:guid}")]
         public async Task<ActionResult> ReadFileTest(Guid id)
         {
