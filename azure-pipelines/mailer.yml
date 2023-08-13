@@ -53,7 +53,7 @@ stages:
 - stage: Deployment
   dependsOn: Building
   jobs:
-  - deployment: u4-dev
+  - deployment: u4_dev
     environment:
       name: u4
       resourceName: bestyja 
