@@ -50,3 +50,17 @@ stages:
         ArtifactName: 'Mailer-$(major).$(minor).$(Build.BuildId)-$(Build.SourceBranchName)'
         PublishLocation: 'Container'
         StoreAsTar: True
+- stage: Deployment
+  dependsOn: Building
+  jobs:
+  - deployment: u4-dev
+    environment:
+      name: u4
+      resourceName: bestyja 
+    strategy: 
+      runOnce:
+        deploy:
+          steps:
+          - download: current
+            displayName: Download artifacts
+          - script: ls $(Agent.BuildDirectory)
