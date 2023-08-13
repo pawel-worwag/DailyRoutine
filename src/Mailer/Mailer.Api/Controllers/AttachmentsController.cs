@@ -51,14 +51,17 @@ public class AttachmentsController : ControllerBase
 
        
     /// <summary>
-    /// [TO-DO] Get multimedia  details
+    /// Get multimedia  details
     /// </summary>
     /// <param name="guid"></param>
     /// <returns></returns>
     [HttpGet("{guid:guid}")]
-    public IActionResult GetDetails(Guid guid)
+    public async Task<ActionResult<Application.Attachments.GetDetails.Response>> GetDetails(Guid guid)
     {
-        return Ok(guid);
+        return Ok(await _mediator.Send(new Mailer.Application.Attachments.GetDetails.GetDetailsRequest
+        {
+            Guid = guid
+        }));
     }
     
     /// <summary>
