@@ -1,6 +1,5 @@
 GET http://{{baseurl}}/api/mail-management/attachments
 
-
 ###
 
 GET http://{{baseurl}}/api/mail-management/allowed-languages
@@ -16,3 +15,40 @@ GET http://{{baseurl}}/api/mail-management/templates
 ###
 
 GET http://{{baseurl}}/api/mail-management/templates/d6dd2fa4-f14f-4411-98f3-80439566114f/attachments
+
+###
+
+POST http://{{baseurl}}/api/mail-management/attachments
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="File"; filename="unnamed.png"
+
+// change path to correct
+< /Users/Shared/unnamed.png 
+
+--boundary
+Content-Disposition: form-data; name="Name"
+
+unnamed.png
+
+--boundary
+Content-Disposition: form-data; name="MediaType"
+
+image/png
+
+--boundary
+Content-Disposition: form-data; name="Description"
+
+xyz
+
+--boundary
+Content-Disposition: form-data; name="Inline"
+
+true
+ 
+--boundary--
+
+###
+
+GET http://{{baseurl}}/api/mail-management/attachments/9e4e7514-4c88-4c8c-a8be-710bb30368b0

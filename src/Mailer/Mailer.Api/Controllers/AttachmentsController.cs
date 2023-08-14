@@ -42,11 +42,36 @@ public class AttachmentsController : ControllerBase
     /// <summary>
     /// [TO-DO] Add new multimedia file
     /// </summary>
+    /// <param name="dto"></param>
+    /// <param name="file"></param>
     /// <returns></returns>
     [HttpPost]
-    public IActionResult AddNewMultimediaFile()
+    [Consumes("multipart/form-data")]
+    public async Task<IActionResult> AddNewMultimediaFile([FromForm] Models.Attachments.AddNewAttachmentDto dto)
     {
-        return Ok();
+        if (dto.File.Length <= 0)
+        {
+            throw new Exception("File size is 0.");
+        }
+        var filePath = Path.GetTempFileName();
+        
+        await using (var stream = System.IO.File.Create(filePath))
+        {
+            await dto.File.CopyToAsync(stream);
+        }
+
+        var id = await _mediator.Send(new Application.Attachments.AddAttachment.AddAttachmentRequest
+        {
+            Name = dto.Name,
+            Description = dto.Description,
+            MediaType = dto.MediaType,
+            Inline = dto.Inline,
+            FileTempPath = filePath
+        });
+        
+        System.IO.File.Delete(filePath);
+        var url = this.Url.Action("GetDetails", new{guid=id});
+        return Created(new Uri(url,UriKind.Relative), null);
     }
 
        
