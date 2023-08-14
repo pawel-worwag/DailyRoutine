@@ -1,3 +1,4 @@
+using System.Net;
 using Mailer.Api.Common;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -30,7 +31,8 @@ public class AttachmentsController : ControllerBase
     /// <param name="skip"></param>
     /// <returns></returns>
     [HttpGet]
-    public async Task<ActionResult<Application.Attachments.GetAttachments.Response>> GetMultimediaList(int take = 50, int skip = 0)
+    public async Task<ActionResult<Application.Attachments.GetAttachments.Response>> GetMultimediaList(int take = 50,
+        int skip = 0)
     {
         return Ok(await _mediator.Send(new Application.Attachments.GetAttachments.GetAttachmentsRequest
         {
@@ -40,21 +42,23 @@ public class AttachmentsController : ControllerBase
     }
 
     /// <summary>
-    /// [TO-DO] Add new multimedia file
+    /// Add new multimedia file
     /// </summary>
     /// <param name="dto"></param>
-    /// <param name="file"></param>
     /// <returns></returns>
+    /// <exception cref="Exception"></exception>
     [HttpPost]
     [Consumes("multipart/form-data")]
+    [ProducesResponseType((int)HttpStatusCode.Created)]
     public async Task<IActionResult> AddNewMultimediaFile([FromForm] Models.Attachments.AddNewAttachmentDto dto)
     {
         if (dto.File.Length <= 0)
         {
             throw new Exception("File size is 0.");
         }
+
         var filePath = Path.GetTempFileName();
-        
+
         await using (var stream = System.IO.File.Create(filePath))
         {
             await dto.File.CopyToAsync(stream);
@@ -68,13 +72,13 @@ public class AttachmentsController : ControllerBase
             Inline = dto.Inline,
             FileTempPath = filePath
         });
-        
+
         System.IO.File.Delete(filePath);
-        var url = this.Url.Action("GetDetails", new{guid=id});
-        return Created(new Uri(url,UriKind.Relative), null);
+        var url = this.Url.Action("GetDetails", new { guid = id });
+        return Created(new Uri(url, UriKind.Relative), null);
     }
 
-       
+
     /// <summary>
     /// Get multimedia  details
     /// </summary>
@@ -88,7 +92,7 @@ public class AttachmentsController : ControllerBase
             Guid = guid
         }));
     }
-    
+
     /// <summary>
     /// [TO-DO] Update multimedia file
     /// </summary>
@@ -121,7 +125,7 @@ public class AttachmentsController : ControllerBase
     {
         return Ok(guid);
     }
-    
+
     /// <summary>
     /// [TO-DO] Get multimedia file
     /// </summary>
