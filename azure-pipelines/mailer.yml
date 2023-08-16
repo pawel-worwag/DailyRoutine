@@ -46,7 +46,7 @@ stages:
         command: 'publish'
         publishWebProjects: false
         projects: 'src/Mailer/Mailer.Api'
-        arguments: '-c Release  --output $(Build.ArtifactStagingDirectory) /p:AssemblyVersion=$(vassemblyersion) /p:Version=$(version)'
+        arguments: '-c Release -f linux-x64 --output $(Build.ArtifactStagingDirectory) /p:AssemblyVersion=$(vassemblyersion) /p:Version=$(version)'
     - task: PublishBuildArtifacts@1
       inputs:
         PathToPublish: '$(Build.ArtifactStagingDirectory)'
