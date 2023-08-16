@@ -127,13 +127,17 @@ public class AttachmentsController : ControllerBase
     }
 
     /// <summary>
-    /// [TO-DO] Get multimedia file
+    /// Get multimedia file
     /// </summary>
     /// <param name="guid"></param>
     /// <returns></returns>
     [HttpGet("{guid:guid}/file")]
-    public IActionResult GetFile(Guid guid)
+    public async Task<IActionResult> GetFile(Guid guid)
     {
-        return Ok(guid);
+        var meta = await _mediator.Send(new Application.Attachments.DownloadAttachment.DownloadAttachment
+        {
+            Guid = guid
+        });
+        return File(await System.IO.File.ReadAllBytesAsync(meta.FileTempPath),meta.MimeType,meta.Name);
     }
 }
