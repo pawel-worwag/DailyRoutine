@@ -116,14 +116,18 @@ public class AttachmentsController : ControllerBase
     }
 
     /// <summary>
-    /// [TO-DO] Get thumbnail/icon of multimedia file
+    /// Get thumbnail/icon of multimedia file
     /// </summary>
     /// <param name="guid"></param>
     /// <returns></returns>
     [HttpGet("{guid:guid}/thumbnail")]
-    public IActionResult GetThumbnail(Guid guid)
+    public async Task<IActionResult> GetThumbnail(Guid guid)
     {
-        return Ok(guid);
+        var meta = await _mediator.Send(new Application.Attachments.DownloadThumbnail.DownloadThumbnailRequest
+        {
+            Guid = guid
+        });
+        return File(await System.IO.File.ReadAllBytesAsync(meta.FileTempPath),"image/png",meta.Name);
     }
 
     /// <summary>

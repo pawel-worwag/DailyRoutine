@@ -55,4 +55,8 @@ GET http://{{baseurl}}/api/mail-management/attachments/9e4e7514-4c88-4c8c-a8be-7
 
 ###
 
-GET https://{{baseurl}}/api/mail-management/attachments/aed1aee5-ffc3-4891-b3e9-eba26a77fcc2/file
+GET https://{{baseurl}}/api/mail-management/attachments/8ed2b9b9-a3dc-494a-ad08-f9001c44609c/file
+
+###
+
+GET https://{{baseurl}}/api/mail-management/attachments/8ed2b9b9-a3dc-494a-ad08-f9001c44609c/thumbnail
