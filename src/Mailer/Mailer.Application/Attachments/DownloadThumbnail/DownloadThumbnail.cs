@@ -1,7 +1,9 @@
+using Mailer.Application.Common.Exceptions;
 using Mailer.Application.Common.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using SkiaSharp;
+using NotSupportedException = System.NotSupportedException;
 
 namespace Mailer.Application.Attachments.DownloadThumbnail;
 
@@ -27,12 +29,12 @@ internal class DownloadThumbnailHandler : IRequestHandler<DownloadThumbnailReque
             .FirstOrDefaultAsync(cancellationToken);
         if (attachment is null)
         {
-            throw new Exception($"Attachment {request.Guid} not found.");
+            throw new NotFoundException($"Attachment {request.Guid} not found.");
         }
 
         if (attachment.MediaType != "image/png")
         {
-            throw new Exception($"Type {attachment.MediaType} is not supported yet.");
+            throw new NotSupportedException($"Type {attachment.MediaType} is not supported yet.");
         }
         
         var filePath = Path.GetTempFileName();

@@ -1,3 +1,4 @@
+using Mailer.Application.Common.Exceptions;
 using Mailer.Application.Common.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -28,7 +29,7 @@ internal class GetDetailsHandler:IRequestHandler<GetDetailsRequest,Response>
 
         if (attachment is null)
         {
-            throw new Exception($"Attachment {request.Guid} not found.");
+            throw new NotFoundException($"Attachment {request.Guid} not found.");
         }
 
         var templates = attachment.Templates.Select(p => new Template

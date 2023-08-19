@@ -1,6 +1,5 @@
-using System.Net;
-using DailyRoutine.Shared.Abstractions.Exceptions;
 using Mailer.Application.Common.Interfaces;
+using Mailer.Infrastructure.Common.Exceptions;
 using Microsoft.Extensions.Options;
 using MailKit.Security;
 using Microsoft.Extensions.Logging;
@@ -42,7 +41,7 @@ public class SmtpMailClient : IMailClient
         catch (Exception ex)
         {
             _logger.LogError(ex.ToString());
-            throw new CustomException(HttpStatusCode.InternalServerError, ex.Message);
+            throw new SmtpException(ex.Message,ex);
         }
     }
     

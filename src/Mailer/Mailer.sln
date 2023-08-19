@@ -18,6 +18,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scratches", "Scratches", "{
 		Mailer.http = Mailer.http
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mailer.Shared.Abstractions", "Mailer.Shared\Mailer.Shared.Abstractions\Mailer.Shared.Abstractions.csproj", "{0CF96AE2-515D-41CE-A73F-ADFE7BBD4E70}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,5 +49,9 @@ Global
 		{7497B60C-1333-4EA0-8E0B-02A35DB404E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7497B60C-1333-4EA0-8E0B-02A35DB404E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7497B60C-1333-4EA0-8E0B-02A35DB404E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CF96AE2-515D-41CE-A73F-ADFE7BBD4E70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CF96AE2-515D-41CE-A73F-ADFE7BBD4E70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CF96AE2-515D-41CE-A73F-ADFE7BBD4E70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CF96AE2-515D-41CE-A73F-ADFE7BBD4E70}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

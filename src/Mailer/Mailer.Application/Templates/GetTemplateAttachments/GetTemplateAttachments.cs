@@ -1,3 +1,4 @@
+using Mailer.Application.Common.Exceptions;
 using Mailer.Application.Common.Interfaces;
 using Mailer.Application.CustomExtensions;
 using MediatR;
@@ -25,7 +26,7 @@ internal class GetTemplateAttachmentsHandler : IRequestHandler<GetTemplateAttach
             .FirstOrDefaultAsync(cancellationToken);
         if (template is null)
         {
-            throw new Exception("Template not found");
+            throw new NotFoundException("Template not found");
         }
 
         return new Response

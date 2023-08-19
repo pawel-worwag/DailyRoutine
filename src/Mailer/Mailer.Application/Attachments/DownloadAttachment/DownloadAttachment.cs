@@ -1,3 +1,4 @@
+using Mailer.Application.Common.Exceptions;
 using Mailer.Application.Common.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -26,7 +27,7 @@ internal class Handler : IRequestHandler<DownloadAttachment, Response>
             .FirstOrDefaultAsync(cancellationToken);
         if (attachment is null)
         {
-            throw new Exception($"Attachment {request.Guid} not found.");
+            throw new NotFoundException($"Attachment {request.Guid} not found.");
         }
 
         var filePath = Path.GetTempFileName();
