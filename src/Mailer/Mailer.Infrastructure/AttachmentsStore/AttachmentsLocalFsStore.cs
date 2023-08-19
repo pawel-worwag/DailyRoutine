@@ -51,6 +51,22 @@ public class AttachmentsLocalFsStore : IAttachmentsStore
         }
     }
 
+    public async Task DeleteFileAsync(string fileName, CancellationToken cancellationToken)
+    {
+        DetectPathTraversal(fileName);
+        try
+        {
+            var path = _options.BasePath + Path.DirectorySeparatorChar + fileName;
+            File.Delete(path);
+        }
+        catch (Exception ex)
+        {
+            throw new IOException( ex.Message,ex);
+        }
+
+        await Task.CompletedTask;
+    }
+
     private bool DetectPathTraversal(string fileName)
     {
         var path = _options.BasePath + Path.DirectorySeparatorChar + fileName;
