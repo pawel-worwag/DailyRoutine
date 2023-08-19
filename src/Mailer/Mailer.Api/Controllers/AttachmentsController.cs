@@ -75,7 +75,7 @@ public class AttachmentsController : ControllerBase
 
         System.IO.File.Delete(filePath);
         var url = this.Url.Action("GetDetails", new { guid = id });
-        return Created(new Uri(url, UriKind.Relative), null);
+        return Created(new Uri(url!, UriKind.Relative), null);
     }
 
 

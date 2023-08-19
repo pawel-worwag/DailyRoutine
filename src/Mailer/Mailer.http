@@ -51,7 +51,7 @@ true
 
 ###
 
-GET http://{{baseurl}}/api/mail-management/attachments/9e4e7514-4c88-4c8c-a8be-710bb30368b0
+GET http://{{baseurl}}/api/mail-management/attachments/9e4e7514-4c88-4c8c-a8be-710bb30368b6
 
 ###
 

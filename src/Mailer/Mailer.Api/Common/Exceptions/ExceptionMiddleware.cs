@@ -6,6 +6,9 @@ using ApplicationException = Mailer.Application.Common.Exceptions.ApplicationExc
 
 namespace Mailer.Api.Common.Exceptions;
 
+/// <summary>
+/// 
+/// </summary>
 public class ExceptionMiddleware
 {
     private readonly RequestDelegate _next;
