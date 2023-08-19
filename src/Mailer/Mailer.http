@@ -60,3 +60,7 @@ GET https://{{baseurl}}/api/mail-management/attachments/8ed2b9b9-a3dc-494a-ad08-
 ###
 
 GET https://{{baseurl}}/api/mail-management/attachments/8ed2b9b9-a3dc-494a-ad08-f9001c44609c/thumbnail
+
+###
+
+DELETE https://{{baseurl}}/api/mail-management/attachments/8ed2b9b9-a3dc-494a-ad08-f9001c44609c

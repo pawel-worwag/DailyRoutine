@@ -105,13 +105,17 @@ public class AttachmentsController : ControllerBase
     }
 
     /// <summary>
-    /// [TO-DO] Delete multimedia file
+    /// Delete multimedia file
     /// </summary>
     /// <param name="guid"></param>
     /// <returns></returns>
     [HttpDelete("{guid:guid}")]
-    public IActionResult DeleteMultimediaFile(Guid guid)
+    public async Task<IActionResult> DeleteMultimediaFile(Guid guid)
     {
+        await _mediator.Send(new Application.Attachments.DeleteAttachment.DeleteAttachmentRequest
+        {
+            Guid = guid
+        });
         return Ok(guid);
     }
 
