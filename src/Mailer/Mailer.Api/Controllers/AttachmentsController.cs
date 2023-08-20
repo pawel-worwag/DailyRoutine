@@ -1,5 +1,7 @@
 using System.Net;
 using Mailer.Api.Common;
+using Mailer.Api.Common.Exceptions;
+using Mailer.Api.Models.Attachments;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -42,7 +44,7 @@ public class AttachmentsController : ControllerBase
     }
 
     /// <summary>
-    /// Add new multimedia file
+    /// Add new attachment
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
@@ -80,7 +82,7 @@ public class AttachmentsController : ControllerBase
 
 
     /// <summary>
-    /// Get multimedia  details
+    /// Get attachment details
     /// </summary>
     /// <param name="guid"></param>
     /// <returns></returns>
@@ -94,18 +96,27 @@ public class AttachmentsController : ControllerBase
     }
 
     /// <summary>
-    /// [TO-DO] Update multimedia file
+    /// Update attachment metadata
     /// </summary>
     /// <param name="guid"></param>
+    /// <param name="dto"></param>
     /// <returns></returns>
     [HttpPut("{guid:guid}")]
-    public IActionResult UpdateMultimediaFile(Guid guid)
+    public async Task<IActionResult> UpdateMultimediaFile(Guid guid, UpdateAttachmentMetadataDto dto)
     {
-        return Ok(guid);
+        await _mediator.Send(new Application.Attachments.UpdateAttachmentMetadata.UpdateAttachmentMetadataRequest
+        {
+            Guid = guid,
+            Name = dto.Name,
+            MediaType = dto.MediaType,
+            Description = dto.Description,
+            Inline = dto.Inline
+        });
+        return Ok();
     }
 
     /// <summary>
-    /// Delete multimedia file
+    /// Delete attachment
     /// </summary>
     /// <param name="guid"></param>
     /// <returns></returns>
@@ -120,7 +131,7 @@ public class AttachmentsController : ControllerBase
     }
 
     /// <summary>
-    /// Get thumbnail/icon of multimedia file
+    /// [PARTIAL] Get thumbnail/icon of multimedia file
     /// </summary>
     /// <param name="guid"></param>
     /// <returns></returns>
@@ -147,5 +158,36 @@ public class AttachmentsController : ControllerBase
             Guid = guid
         });
         return File(await System.IO.File.ReadAllBytesAsync(meta.FileTempPath),meta.MimeType,meta.Name);
+    }
+
+    /// <summary>
+    /// Update attachment file
+    /// </summary>
+    /// <param name="guid"></param>
+    /// <param name="file"></param>
+    /// <returns></returns>
+    [HttpPut("{guid:guid}/file")]
+    public async Task<IActionResult> UpdateFile(Guid guid, [FromForm] IFormFile file)
+    {
+        if (file.Length <= 0)
+        {
+            throw new EmptyFileException("File size is 0.");
+        }
+
+        var filePath = Path.GetTempFileName();
+
+        await using (var stream = System.IO.File.Create(filePath))
+        {
+            await file.CopyToAsync(stream);
+        }
+
+        await _mediator.Send(new Application.Attachments.UpdateAttachmentFile.UpdateAttachmentFileRequest
+        {
+            Guid = guid,
+            FileTempPath = filePath
+        });
+        
+        System.IO.File.Delete(filePath);
+        return Ok();
     }
 }

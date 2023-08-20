@@ -7,11 +7,16 @@ namespace Mailer.Application.Attachments.AddAttachment;
 
 public record AddAttachmentRequest : IRequest<Guid>
 {
-    [JsonPropertyName("name")] public required string Name { get; init; }
-    [JsonPropertyName("media-type")] public required string MediaType { get; init; }
-    [JsonPropertyName("description")] public required string Description { get; init; }
-    [JsonPropertyName("inline")] public required bool Inline { get; init; }
-    [JsonPropertyName("file")] public required string FileTempPath { get; init; }
+    [JsonPropertyName("name")] 
+    public required string Name { get; init; }
+    [JsonPropertyName("media-type")] 
+    public required string MediaType { get; init; }
+    [JsonPropertyName("description")] 
+    public required string Description { get; init; }
+    [JsonPropertyName("inline")] 
+    public required bool Inline { get; init; }
+    [JsonPropertyName("file")] 
+    public required string FileTempPath { get; init; }
 };
 
 internal class AddAttachmentHandler : IRequestHandler<AddAttachmentRequest, Guid>

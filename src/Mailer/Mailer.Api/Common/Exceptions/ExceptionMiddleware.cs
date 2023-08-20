@@ -43,6 +43,7 @@ public class ExceptionMiddleware
                 case DomainException:
                 case InfrastructureException:
                 case ApplicationException:
+                case ApiException:
                 {
                     var exception = (CustomException)ex;
                     context.Response.StatusCode = (int)exception.HttpCode;

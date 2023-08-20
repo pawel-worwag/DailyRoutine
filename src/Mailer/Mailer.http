@@ -1,20 +1,25 @@
 GET http://{{baseurl}}/api/mail-management/attachments
+Content-Type: application/json
 
 ###
 
 GET http://{{baseurl}}/api/mail-management/allowed-languages
+Content-Type: application/json
 
 ###
 
 GET http://{{baseurl}}/api/mail-management/allowed-email-types
+Content-Type: application/json
 
 ###
 
 GET http://{{baseurl}}/api/mail-management/templates
+Content-Type: application/json
 
 ###
 
 GET http://{{baseurl}}/api/mail-management/templates/d6dd2fa4-f14f-4411-98f3-80439566114f/attachments
+Content-Type: application/json
 
 ###
 
@@ -52,15 +57,42 @@ true
 ###
 
 GET http://{{baseurl}}/api/mail-management/attachments/9e4e7514-4c88-4c8c-a8be-710bb30368b6
+Content-Type: application/json
 
 ###
 
 GET https://{{baseurl}}/api/mail-management/attachments/8ed2b9b9-a3dc-494a-ad08-f9001c44609c/file
+Content-Type: application/json
 
 ###
 
 GET https://{{baseurl}}/api/mail-management/attachments/8ed2b9b9-a3dc-494a-ad08-f9001c44609c/thumbnail
+Content-Type: application/json
 
 ###
 
 DELETE https://{{baseurl}}/api/mail-management/attachments/8ed2b9b9-a3dc-494a-ad08-f9001c44609c
+Content-Type: application/json
+
+###
+PUT https://{{baseurl}}/api/mail-management/attachments/8ed2b9b9-a3dc-494a-ad08-f9001c44609c
+Content-Type: application/json
+
+{
+"name": "unnamed.png",
+"media-type": "image/png",
+"description": "Unnamed file example",
+"inline": true
+}
+
+###
+PUT https://{{baseurl}}/api/mail-management/attachments/8ed2b9b9-a3dc-494a-ad08-f9001c44609c/file
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="File"; filename="unnamed.png"
+
+// change path to correct
+< /Users/Shared/unnamed.png 
+
+--boundary--
