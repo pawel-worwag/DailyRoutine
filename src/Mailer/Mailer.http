@@ -96,3 +96,8 @@ Content-Disposition: form-data; name="File"; filename="unnamed.png"
 < /Users/Shared/unnamed.png 
 
 --boundary--
+
+###
+
+GET https://{{baseurl}}/api/mail-management/attachments/aed1aee5-ffc3-4891-b3e9-eba26a77fcc2/thumbnail
+Content-Type: application/json
