@@ -17,6 +17,7 @@ namespace Mailer.Api.Controllers;
 public class TemplatesController : ControllerBase
 {
     private readonly IMediator _mediator;
+
     /// <summary>
     /// 
     /// </summary>
@@ -57,13 +58,22 @@ public class TemplatesController : ControllerBase
     }
 
     /// <summary>
-    /// [TO-DO] Add new template
+    /// Add new template
     /// </summary>
     /// <returns></returns>
     [HttpPost("templates")]
-    public ActionResult AddTemplate()
+    public async Task<ActionResult> AddTemplate(Models.Templates.AddNewTemplateDto dto)
     {
-        return Ok();
+        var id = await _mediator.Send(new Application.Templates.AddTemplate.AddTemplateRequest
+        {
+            Type = dto.Type,
+            Language = dto.Language,
+            Subject = dto.Subject,
+            BodyEncoded = dto.BodyEncoded,
+            Attachments = dto.Attachments
+        });
+        var url = this.Url.Action("GetTemplate", new { guid = id });
+        return Created(new Uri(url!, UriKind.Relative), null);
     }
 
     /// <summary>
@@ -102,6 +112,7 @@ public class TemplatesController : ControllerBase
         return Ok(guid);
     }
 
+    /*
     /// <summary>
     /// Get list of related multimedia files
     /// </summary>
@@ -115,7 +126,8 @@ public class TemplatesController : ControllerBase
             TemplateGuid = guid
         }));
     }
-
+    */
+    /*
     /// <summary>
     /// [TO-DO] Add related multimedia file
     /// </summary>
@@ -126,7 +138,8 @@ public class TemplatesController : ControllerBase
     {
         return Ok(guid);
     }
-        
+    */
+    /*
     /// <summary>
     /// [TO-DO] Delete related multimedia file
     /// </summary>
@@ -137,4 +150,5 @@ public class TemplatesController : ControllerBase
     {
         return Ok(guid);
     }
+    */
 }
