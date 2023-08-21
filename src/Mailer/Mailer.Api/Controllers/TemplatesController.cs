@@ -67,14 +67,17 @@ public class TemplatesController : ControllerBase
     }
 
     /// <summary>
-    /// [TO-DO] Get template details
+    /// Get template details
     /// </summary>
     /// <param name="guid"></param>
     /// <returns></returns>
     [HttpGet("templates/{guid:guid}")]
-    public ActionResult GetTemplate(Guid guid)
+    public async Task<ActionResult<Application.Templates.GetDetails.Response>> GetTemplate(Guid guid)
     {
-        return Ok(guid);
+        return Ok(await _mediator.Send(new Application.Templates.GetDetails.GetDetailsRequest
+        {
+            Guid = guid
+        }));
     }
 
     /// <summary>

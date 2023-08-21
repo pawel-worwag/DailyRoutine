@@ -101,3 +101,8 @@ Content-Disposition: form-data; name="File"; filename="unnamed.png"
 
 GET https://{{baseurl}}/api/mail-management/attachments/aed1aee5-ffc3-4891-b3e9-eba26a77fcc2/thumbnail
 Content-Type: application/json
+
+
+###
+
+GET https://{{baseurl}}/api/mail-management/templates/c0ce5a5e-64b4-4377-85bb-97cde0d503cc
