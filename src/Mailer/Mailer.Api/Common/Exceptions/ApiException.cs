@@ -27,7 +27,11 @@ public abstract class ApiException : CustomException
     protected ApiException(string? message) : base(message)
     {
     }
-    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="message"></param>
+    /// <param name="innerException"></param>
     protected ApiException(string? message, Exception? innerException) : base(message, innerException)
     {
     }
