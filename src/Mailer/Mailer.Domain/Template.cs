@@ -37,6 +37,11 @@ public class Template
         _attachments.Add(attachment);
     }
 
+    public void ClearAttachments()
+    {
+        _attachments.Clear();
+    }
+    
     public void AddAttachments(ICollection<Attachment> attachments)
     {
         foreach (var attachment in attachments)

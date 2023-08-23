@@ -1,4 +1,5 @@
 ﻿using Mailer.Api.Common;
+using Mailer.Api.Models.Templates;
 using Mailer.Application.Templates.GetAllowedEmailTypes;
 using Mailer.Application.Templates.GetAllowedLanguages;
 using Mailer.Application.Templates.GetTemplates;
@@ -91,14 +92,22 @@ public class TemplatesController : ControllerBase
     }
 
     /// <summary>
-    /// [TO-DO] Update template
+    /// Update template
     /// </summary>
     /// <param name="guid"></param>
+    /// <param name="dto"></param>
     /// <returns></returns>
     [HttpPut("templates/{guid:guid}")]
-    public ActionResult UpdateTemplate(Guid guid)
+    public async Task<ActionResult> UpdateTemplate(Guid guid, UpdateTemplateDto dto)
     {
-        return Ok(guid);
+        await _mediator.Send(new Application.Templates.UpdateTemplate.UpdateTemplateRequest
+        {
+            Guid = guid,
+            Subject = dto.Subject,
+            BodyEncoded = dto.BodyEncoded,
+            Attachments = dto.Attachments
+        });
+        return Ok();
     }
 
     /// <summary>

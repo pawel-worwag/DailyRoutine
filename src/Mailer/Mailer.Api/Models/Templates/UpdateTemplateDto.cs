@@ -5,18 +5,8 @@ namespace Mailer.Api.Models.Templates;
 /// <summary>
 /// 
 /// </summary>
-public record AddNewTemplateDto
+public record UpdateTemplateDto
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    [JsonPropertyName("type")]
-    public required string Type { get; init; }
-    /// <summary>
-    /// 
-    /// </summary>
-    [JsonPropertyName("language")]
-    public required string Language { get; init; }
     /// <summary>
     /// 
     /// </summary>

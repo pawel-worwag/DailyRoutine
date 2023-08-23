@@ -106,8 +106,8 @@ Content-Type: application/json
 ###
 
 GET https://{{baseurl}}/api/mail-management/templates/35f3fa1a-52cf-4b81-9c19-a5b49d871ec5
-
 Content-Type: application/json
+
 ###
 
 POST https://{{baseurl}}/api/mail-management/templates
@@ -117,6 +117,20 @@ Content-Type: application/json
   "type": "restore-password",
   "language": "en",
   "subject": "Restore password",
+  "body-encoded": "PGh0bWw+Cjxib2R5Pgo8aDE+SEVMTE88L0gxPgo8L2JvZHk+CjwvaHRtbD4=",
+  "attachment-ids": [
+    "8ed2b9b9-a3dc-494a-ad08-f9001c44609c",
+    "aed1aee5-ffc3-4891-b3e9-eba26a77fcc2"
+  ]
+}
+
+###
+
+PUT https://{{baseurl}}/api/mail-management/templates/35f3fa1a-52cf-4b81-9c19-a5b49d871ec5
+Content-Type: application/json
+
+{
+  "subject": "Restore password -2",
   "body-encoded": "PGh0bWw+Cjxib2R5Pgo8aDE+SEVMTE88L0gxPgo8L2JvZHk+CjwvaHRtbD4=",
   "attachment-ids": [
     "8ed2b9b9-a3dc-494a-ad08-f9001c44609c",
