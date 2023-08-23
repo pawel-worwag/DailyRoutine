@@ -35,7 +35,7 @@ Content-Disposition: form-data; name="File"; filename="unnamed.png"
 --boundary
 Content-Disposition: form-data; name="Name"
 
-unnamed.png
+u.p
 
 --boundary
 Content-Disposition: form-data; name="MediaType"

@@ -2,8 +2,10 @@ using System.Net;
 using Mailer.Api.Common;
 using Mailer.Api.Common.Exceptions;
 using Mailer.Api.Models.Attachments;
+using Mailer.Shared.Abstractions.Exceptions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Mailer.Api.Controllers;
 
@@ -54,6 +56,10 @@ public class AttachmentsController : ControllerBase
     [ProducesResponseType((int)HttpStatusCode.Created)]
     public async Task<IActionResult> AddNewMultimediaFile([FromForm] Models.Attachments.AddNewAttachmentDto dto)
     {
+        if (!ModelState.IsValid)
+        {
+            throw new CustomValidationException(ModelState);
+        }
         if (dto.File.Length <= 0)
         {
             throw new Exception("File size is 0.");

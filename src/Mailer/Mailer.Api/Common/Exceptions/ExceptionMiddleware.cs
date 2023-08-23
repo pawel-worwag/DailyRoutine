@@ -40,6 +40,18 @@ public class ExceptionMiddleware
             _logger.LogError(ex.ToString());
             switch (ex)
             {
+                case CustomValidationException:
+                {
+                    var exception = (CustomValidationException)ex;
+                    context.Response.StatusCode = (int)exception.HttpCode;
+                    await context.Response.WriteAsJsonAsync(new ErrorResponse
+                    {
+                        Error = exception.Error,
+                        Description = exception.Message,
+                        ValidationErrors = exception.ValidationErrors
+                    });
+                    break;
+                }
                 case DomainException:
                 case InfrastructureException:
                 case ApplicationException:

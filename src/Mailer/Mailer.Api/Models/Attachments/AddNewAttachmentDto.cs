@@ -1,5 +1,6 @@
 using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
+using FluentValidation;
 
 namespace Mailer.Api.Models.Attachments;
 
@@ -34,3 +35,11 @@ public record AddNewAttachmentDto
     [JsonPropertyName("file")]
     public required IFormFile File { get; init; }
 };
+
+internal class AddNewAttachmentDtoValidator : AbstractValidator<AddNewAttachmentDto>
+{
+    public AddNewAttachmentDtoValidator()
+    {
+        RuleFor(x => x.Name).Length(5, 20);
+    }
+}

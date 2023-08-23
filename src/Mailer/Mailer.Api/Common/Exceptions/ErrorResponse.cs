@@ -26,4 +26,11 @@ public record ErrorResponse
     [JsonPropertyName("error_uri")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public string? ErrorUri { get; init; } = null;
+
+    /// <summary>
+    /// 
+    /// </summary>
+    [JsonPropertyName("validation_errors")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public ICollection<string>? ValidationErrors { get; init; } = null;
 };

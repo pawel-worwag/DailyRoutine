@@ -4,6 +4,7 @@ using Mailer.Api.Common.Exceptions;
 using Mailer.Application;
 using Mailer.Infrastructure;
 using Mailer.Persistence;
+using Mailer.Api.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,7 @@ builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplicationLayer(builder.Configuration);
 
 builder.Services.AddControllers();
+builder.Services.AddValidators();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options => {
