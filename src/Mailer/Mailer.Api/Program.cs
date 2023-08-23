@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Reflection;
 using Mailer.Api.BackgroundServices;
 using Mailer.Api.Common.Exceptions;
@@ -5,6 +6,7 @@ using Mailer.Application;
 using Mailer.Infrastructure;
 using Mailer.Persistence;
 using Mailer.Api.Models;
+using Microsoft.AspNetCore.Localization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,9 +24,28 @@ builder.Services.AddSwaggerGen(options => {
     options.CustomSchemaIds(type => type.FullName?.Replace("Mailer.Application.",""));
 });
 
+builder.Services.Configure<RequestLocalizationOptions>(options =>
+{
+    var supportedCultures = new[] { "en", "pl" };
+    options.SetDefaultCulture(supportedCultures[0])
+        .AddSupportedCultures(supportedCultures)
+        .AddSupportedUICultures(supportedCultures);
+});
+
 builder.Services.AddHostedService<MailBusConsumerService>();
 
 var app = builder.Build();
+
+
+var supportedCultures = new[] { new CultureInfo("en"), new CultureInfo("pl") };
+app.UseRequestLocalization(new RequestLocalizationOptions()
+{
+    DefaultRequestCulture = new RequestCulture(new CultureInfo("en")),
+    SupportedCultures = supportedCultures,
+    SupportedUICultures = supportedCultures,
+    FallBackToParentCultures = true,
+    FallBackToParentUICultures = true,
+});
 
 app.UseErrorHandling();
 

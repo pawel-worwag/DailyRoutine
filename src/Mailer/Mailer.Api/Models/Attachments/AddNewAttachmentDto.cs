@@ -40,6 +40,8 @@ internal class AddNewAttachmentDtoValidator : AbstractValidator<AddNewAttachment
 {
     public AddNewAttachmentDtoValidator()
     {
-        RuleFor(x => x.Name).Length(5, 20);
+        RuleFor(x => x.Name)
+            .Length(5, 20).WithName("name");
+            //.WithMessage("Field '{PropertyName}' is not valid. Min length is {MinLength} and max lenght is {MaxLength}. Entered {TotalLength} characters.");
     }
 }

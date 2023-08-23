@@ -25,6 +25,7 @@ Content-Type: application/json
 
 POST http://{{baseurl}}/api/mail-management/attachments
 Content-Type: multipart/form-data; boundary=boundary
+Accept-Language: en
 
 --boundary
 Content-Disposition: form-data; name="File"; filename="unnamed.png"

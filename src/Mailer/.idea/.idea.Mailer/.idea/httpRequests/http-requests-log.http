@@ -1,0 +1,1278 @@
+POST https://localhost:7050/api/mail-management/attachments
+Content-Type: multipart/form-data; boundary=boundary
+Accept-Language: en
+Content-Length: 1204
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+--boundary
+Content-Disposition: form-data; name="File"; filename="unnamed.png"
+
+< /Users/Shared/unnamed.png
+--boundary
+Content-Disposition: form-data; name="Name"
+
+u.p
+--boundary
+Content-Disposition: form-data; name="MediaType"
+
+image/png
+--boundary
+Content-Disposition: form-data; name="Description"
+
+xyz
+--boundary
+Content-Disposition: form-data; name="Inline"
+
+true
+--boundary--
+
+<> 2023-08-23T210836.400.json
+
+###
+
+POST https://localhost:7050/api/mail-management/attachments
+Content-Type: multipart/form-data; boundary=boundary
+Accept-Language: pl
+Content-Length: 1204
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+--boundary
+Content-Disposition: form-data; name="File"; filename="unnamed.png"
+
+< /Users/Shared/unnamed.png
+--boundary
+Content-Disposition: form-data; name="Name"
+
+u.p
+--boundary
+Content-Disposition: form-data; name="MediaType"
+
+image/png
+--boundary
+Content-Disposition: form-data; name="Description"
+
+xyz
+--boundary
+Content-Disposition: form-data; name="Inline"
+
+true
+--boundary--
+
+<> 2023-08-23T210831.400.json
+
+###
+
+POST https://localhost:7050/api/mail-management/attachments
+Content-Type: multipart/form-data; boundary=boundary
+Accept-Language: en
+Content-Length: 1204
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+--boundary
+Content-Disposition: form-data; name="File"; filename="unnamed.png"
+
+< /Users/Shared/unnamed.png
+--boundary
+Content-Disposition: form-data; name="Name"
+
+u.p
+--boundary
+Content-Disposition: form-data; name="MediaType"
+
+image/png
+--boundary
+Content-Disposition: form-data; name="Description"
+
+xyz
+--boundary
+Content-Disposition: form-data; name="Inline"
+
+true
+--boundary--
+
+<> 2023-08-23T210824.400.json
+
+###
+
+POST https://localhost:7050/api/mail-management/attachments
+Content-Type: multipart/form-data; boundary=boundary
+Accept-Language: en
+Content-Length: 1204
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+--boundary
+Content-Disposition: form-data; name="File"; filename="unnamed.png"
+
+< /Users/Shared/unnamed.png
+--boundary
+Content-Disposition: form-data; name="Name"
+
+u.p
+--boundary
+Content-Disposition: form-data; name="MediaType"
+
+image/png
+--boundary
+Content-Disposition: form-data; name="Description"
+
+xyz
+--boundary
+Content-Disposition: form-data; name="Inline"
+
+true
+--boundary--
+
+<> 2023-08-23T210237.400.json
+
+###
+
+POST https://localhost:7050/api/mail-management/attachments
+Content-Type: multipart/form-data; boundary=boundary
+Accept-Language: en
+Content-Length: 1204
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+--boundary
+Content-Disposition: form-data; name="File"; filename="unnamed.png"
+
+< /Users/Shared/unnamed.png
+--boundary
+Content-Disposition: form-data; name="Name"
+
+u.p
+--boundary
+Content-Disposition: form-data; name="MediaType"
+
+image/png
+--boundary
+Content-Disposition: form-data; name="Description"
+
+xyz
+--boundary
+Content-Disposition: form-data; name="Inline"
+
+true
+--boundary--
+
+<> 2023-08-23T210111.400.json
+
+###
+
+POST https://localhost:7050/api/mail-management/attachments
+Content-Type: multipart/form-data; boundary=boundary
+Content-Language: en
+Content-Length: 1204
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+--boundary
+Content-Disposition: form-data; name="File"; filename="unnamed.png"
+
+< /Users/Shared/unnamed.png
+--boundary
+Content-Disposition: form-data; name="Name"
+
+u.p
+--boundary
+Content-Disposition: form-data; name="MediaType"
+
+image/png
+--boundary
+Content-Disposition: form-data; name="Description"
+
+xyz
+--boundary
+Content-Disposition: form-data; name="Inline"
+
+true
+--boundary--
+
+<> 2023-08-23T210102.400.json
+
+###
+
+POST https://localhost:7050/api/mail-management/attachments
+Content-Type: multipart/form-data; boundary=boundary
+Content-Language: pl
+Content-Length: 1204
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+--boundary
+Content-Disposition: form-data; name="File"; filename="unnamed.png"
+
+< /Users/Shared/unnamed.png
+--boundary
+Content-Disposition: form-data; name="Name"
+
+u.p
+--boundary
+Content-Disposition: form-data; name="MediaType"
+
+image/png
+--boundary
+Content-Disposition: form-data; name="Description"
+
+xyz
+--boundary
+Content-Disposition: form-data; name="Inline"
+
+true
+--boundary--
+
+<> 2023-08-23T210056.400.json
+
+###
+
+POST https://localhost:7050/api/mail-management/attachments
+Content-Type: multipart/form-data; boundary=boundary
+Content-Language: pl
+Content-Length: 1204
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+--boundary
+Content-Disposition: form-data; name="File"; filename="unnamed.png"
+
+< /Users/Shared/unnamed.png
+--boundary
+Content-Disposition: form-data; name="Name"
+
+u.p
+--boundary
+Content-Disposition: form-data; name="MediaType"
+
+image/png
+--boundary
+Content-Disposition: form-data; name="Description"
+
+xyz
+--boundary
+Content-Disposition: form-data; name="Inline"
+
+true
+--boundary--
+
+<> 2023-08-23T205948.400.json
+
+###
+
+POST https://localhost:7050/api/mail-management/attachments
+Content-Type: multipart/form-data; boundary=boundary
+Accept-Language: pl
+Content-Length: 1204
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+--boundary
+Content-Disposition: form-data; name="File"; filename="unnamed.png"
+
+< /Users/Shared/unnamed.png
+--boundary
+Content-Disposition: form-data; name="Name"
+
+u.p
+--boundary
+Content-Disposition: form-data; name="MediaType"
+
+image/png
+--boundary
+Content-Disposition: form-data; name="Description"
+
+xyz
+--boundary
+Content-Disposition: form-data; name="Inline"
+
+true
+--boundary--
+
+<> 2023-08-23T205937.400.json
+
+###
+
+POST https://localhost:7050/api/mail-management/attachments
+Content-Type: multipart/form-data; boundary=boundary
+Accept-Language: pl
+Content-Length: 1204
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+--boundary
+Content-Disposition: form-data; name="File"; filename="unnamed.png"
+
+< /Users/Shared/unnamed.png
+--boundary
+Content-Disposition: form-data; name="Name"
+
+u.p
+--boundary
+Content-Disposition: form-data; name="MediaType"
+
+image/png
+--boundary
+Content-Disposition: form-data; name="Description"
+
+xyz
+--boundary
+Content-Disposition: form-data; name="Inline"
+
+true
+--boundary--
+
+<> 2023-08-23T205933.400.json
+
+###
+
+POST https://localhost:7050/api/mail-management/attachments
+Content-Type: multipart/form-data; boundary=boundary
+Content-Length: 1204
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+--boundary
+Content-Disposition: form-data; name="File"; filename="unnamed.png"
+
+< /Users/Shared/unnamed.png
+--boundary
+Content-Disposition: form-data; name="Name"
+
+u.p
+--boundary
+Content-Disposition: form-data; name="MediaType"
+
+image/png
+--boundary
+Content-Disposition: form-data; name="Description"
+
+xyz
+--boundary
+Content-Disposition: form-data; name="Inline"
+
+true
+--boundary--
+
+<> 2023-08-23T205926.400.json
+
+###
+
+POST https://localhost:7050/api/mail-management/attachments
+Content-Type: multipart/form-data; boundary=boundary
+Accept-Language: en
+Content-Length: 1204
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+--boundary
+Content-Disposition: form-data; name="File"; filename="unnamed.png"
+
+< /Users/Shared/unnamed.png
+--boundary
+Content-Disposition: form-data; name="Name"
+
+u.p
+--boundary
+Content-Disposition: form-data; name="MediaType"
+
+image/png
+--boundary
+Content-Disposition: form-data; name="Description"
+
+xyz
+--boundary
+Content-Disposition: form-data; name="Inline"
+
+true
+--boundary--
+
+<> 2023-08-23T205842.400.json
+
+###
+
+POST https://localhost:7050/api/mail-management/attachments
+Content-Type: multipart/form-data; boundary=boundary
+Content-Language: en
+Accept-Language: en
+Content-Length: 1204
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+--boundary
+Content-Disposition: form-data; name="File"; filename="unnamed.png"
+
+< /Users/Shared/unnamed.png
+--boundary
+Content-Disposition: form-data; name="Name"
+
+u.p
+--boundary
+Content-Disposition: form-data; name="MediaType"
+
+image/png
+--boundary
+Content-Disposition: form-data; name="Description"
+
+xyz
+--boundary
+Content-Disposition: form-data; name="Inline"
+
+true
+--boundary--
+
+<> 2023-08-23T205828.400.json
+
+###
+
+POST https://localhost:7050/api/mail-management/attachments
+Content-Type: multipart/form-data; boundary=boundary
+Content-Language: en
+Accept-Language: en
+Content-Length: 1204
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+--boundary
+Content-Disposition: form-data; name="File"; filename="unnamed.png"
+
+< /Users/Shared/unnamed.png
+--boundary
+Content-Disposition: form-data; name="Name"
+
+u.p
+--boundary
+Content-Disposition: form-data; name="MediaType"
+
+image/png
+--boundary
+Content-Disposition: form-data; name="Description"
+
+xyz
+--boundary
+Content-Disposition: form-data; name="Inline"
+
+true
+--boundary--
+
+<> 2023-08-23T205700.400.json
+
+###
+
+POST https://localhost:7050/api/mail-management/attachments
+Content-Type: multipart/form-data; boundary=boundary
+Content-Language: en
+Accept-Language: en
+Content-Length: 1204
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+--boundary
+Content-Disposition: form-data; name="File"; filename="unnamed.png"
+
+< /Users/Shared/unnamed.png
+--boundary
+Content-Disposition: form-data; name="Name"
+
+u.p
+--boundary
+Content-Disposition: form-data; name="MediaType"
+
+image/png
+--boundary
+Content-Disposition: form-data; name="Description"
+
+xyz
+--boundary
+Content-Disposition: form-data; name="Inline"
+
+true
+--boundary--
+
+<> 2023-08-23T205657.400.json
+
+###
+
+POST https://localhost:7050/api/mail-management/attachments
+Content-Type: multipart/form-data; boundary=boundary
+Content-Language: en
+Content-Length: 1204
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+--boundary
+Content-Disposition: form-data; name="File"; filename="unnamed.png"
+
+< /Users/Shared/unnamed.png
+--boundary
+Content-Disposition: form-data; name="Name"
+
+u.p
+--boundary
+Content-Disposition: form-data; name="MediaType"
+
+image/png
+--boundary
+Content-Disposition: form-data; name="Description"
+
+xyz
+--boundary
+Content-Disposition: form-data; name="Inline"
+
+true
+--boundary--
+
+<> 2023-08-23T205612.400.json
+
+###
+
+POST https://localhost:7050/api/mail-management/attachments
+Content-Type: multipart/form-data; boundary=boundary
+Content-Language: pl
+Content-Length: 1204
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+--boundary
+Content-Disposition: form-data; name="File"; filename="unnamed.png"
+
+< /Users/Shared/unnamed.png
+--boundary
+Content-Disposition: form-data; name="Name"
+
+u.p
+--boundary
+Content-Disposition: form-data; name="MediaType"
+
+image/png
+--boundary
+Content-Disposition: form-data; name="Description"
+
+xyz
+--boundary
+Content-Disposition: form-data; name="Inline"
+
+true
+--boundary--
+
+<> 2023-08-23T205602.400.json
+
+###
+
+POST https://localhost:7050/api/mail-management/attachments
+Content-Type: multipart/form-data; boundary=boundary
+Content-Length: 1204
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+--boundary
+Content-Disposition: form-data; name="File"; filename="unnamed.png"
+
+< /Users/Shared/unnamed.png
+--boundary
+Content-Disposition: form-data; name="Name"
+
+u.p
+--boundary
+Content-Disposition: form-data; name="MediaType"
+
+image/png
+--boundary
+Content-Disposition: form-data; name="Description"
+
+xyz
+--boundary
+Content-Disposition: form-data; name="Inline"
+
+true
+--boundary--
+
+<> 2023-08-23T205516.400.json
+
+###
+
+POST https://localhost:7050/api/mail-management/attachments
+Content-Type: multipart/form-data; boundary=boundary
+Content-Length: 1204
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+--boundary
+Content-Disposition: form-data; name="File"; filename="unnamed.png"
+
+< /Users/Shared/unnamed.png
+--boundary
+Content-Disposition: form-data; name="Name"
+
+u.p
+--boundary
+Content-Disposition: form-data; name="MediaType"
+
+image/png
+--boundary
+Content-Disposition: form-data; name="Description"
+
+xyz
+--boundary
+Content-Disposition: form-data; name="Inline"
+
+true
+--boundary--
+
+<> 2023-08-23T205419.400.json
+
+###
+
+POST https://localhost:7050/api/mail-management/attachments
+Content-Type: multipart/form-data; boundary=boundary
+Content-Length: 1204
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+--boundary
+Content-Disposition: form-data; name="File"; filename="unnamed.png"
+
+< /Users/Shared/unnamed.png
+--boundary
+Content-Disposition: form-data; name="Name"
+
+u.p
+--boundary
+Content-Disposition: form-data; name="MediaType"
+
+image/png
+--boundary
+Content-Disposition: form-data; name="Description"
+
+xyz
+--boundary
+Content-Disposition: form-data; name="Inline"
+
+true
+--boundary--
+
+<> 2023-08-23T203829.400.json
+
+###
+
+POST https://localhost:7050/api/mail-management/attachments
+Content-Type: multipart/form-data; boundary=boundary
+Content-Length: 1204
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+--boundary
+Content-Disposition: form-data; name="File"; filename="unnamed.png"
+
+< /Users/Shared/unnamed.png
+--boundary
+Content-Disposition: form-data; name="Name"
+
+u.p
+--boundary
+Content-Disposition: form-data; name="MediaType"
+
+image/png
+--boundary
+Content-Disposition: form-data; name="Description"
+
+xyz
+--boundary
+Content-Disposition: form-data; name="Inline"
+
+true
+--boundary--
+
+<> 2023-08-23T203715.400.json
+
+###
+
+POST https://localhost:7050/api/mail-management/attachments
+Content-Type: multipart/form-data; boundary=boundary
+Content-Length: 1204
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+--boundary
+Content-Disposition: form-data; name="File"; filename="unnamed.png"
+
+< /Users/Shared/unnamed.png
+--boundary
+Content-Disposition: form-data; name="Name"
+
+u.p
+--boundary
+Content-Disposition: form-data; name="MediaType"
+
+image/png
+--boundary
+Content-Disposition: form-data; name="Description"
+
+xyz
+--boundary
+Content-Disposition: form-data; name="Inline"
+
+true
+--boundary--
+
+<> 2023-08-23T203645.400.json
+
+###
+
+POST https://localhost:7050/api/mail-management/attachments
+Content-Type: multipart/form-data; boundary=boundary
+Content-Length: 1204
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+--boundary
+Content-Disposition: form-data; name="File"; filename="unnamed.png"
+
+< /Users/Shared/unnamed.png
+--boundary
+Content-Disposition: form-data; name="Name"
+
+u.p
+--boundary
+Content-Disposition: form-data; name="MediaType"
+
+image/png
+--boundary
+Content-Disposition: form-data; name="Description"
+
+xyz
+--boundary
+Content-Disposition: form-data; name="Inline"
+
+true
+--boundary--
+
+<> 2023-08-23T202703.400.json
+
+###
+
+POST https://localhost:7050/api/mail-management/attachments
+Content-Type: multipart/form-data; boundary=boundary
+Content-Length: 1204
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+--boundary
+Content-Disposition: form-data; name="File"; filename="unnamed.png"
+
+< /Users/Shared/unnamed.png
+--boundary
+Content-Disposition: form-data; name="Name"
+
+u.p
+--boundary
+Content-Disposition: form-data; name="MediaType"
+
+image/png
+--boundary
+Content-Disposition: form-data; name="Description"
+
+xyz
+--boundary
+Content-Disposition: form-data; name="Inline"
+
+true
+--boundary--
+
+<> 2023-08-23T202612.400.json
+
+###
+
+POST https://localhost:7050/api/mail-management/attachments
+Content-Type: multipart/form-data; boundary=boundary
+Content-Length: 1204
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+--boundary
+Content-Disposition: form-data; name="File"; filename="unnamed.png"
+
+< /Users/Shared/unnamed.png
+--boundary
+Content-Disposition: form-data; name="Name"
+
+u.p
+--boundary
+Content-Disposition: form-data; name="MediaType"
+
+image/png
+--boundary
+Content-Disposition: form-data; name="Description"
+
+xyz
+--boundary
+Content-Disposition: form-data; name="Inline"
+
+true
+--boundary--
+
+<> 2023-08-23T200322.500.json
+
+###
+
+POST https://localhost:7050/api/mail-management/attachments
+Content-Type: multipart/form-data; boundary=boundary
+Content-Length: 1204
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+--boundary
+Content-Disposition: form-data; name="File"; filename="unnamed.png"
+
+< /Users/Shared/unnamed.png
+--boundary
+Content-Disposition: form-data; name="Name"
+
+u.p
+--boundary
+Content-Disposition: form-data; name="MediaType"
+
+image/png
+--boundary
+Content-Disposition: form-data; name="Description"
+
+xyz
+--boundary
+Content-Disposition: form-data; name="Inline"
+
+true
+--boundary--
+
+<> 2023-08-23T195850.400.json
+
+###
+
+POST https://localhost:7050/api/mail-management/attachments
+Content-Type: multipart/form-data; boundary=boundary
+Content-Length: 1204
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+--boundary
+Content-Disposition: form-data; name="File"; filename="unnamed.png"
+
+< /Users/Shared/unnamed.png
+--boundary
+Content-Disposition: form-data; name="Name"
+
+u.p
+--boundary
+Content-Disposition: form-data; name="MediaType"
+
+image/png
+--boundary
+Content-Disposition: form-data; name="Description"
+
+xyz
+--boundary
+Content-Disposition: form-data; name="Inline"
+
+true
+--boundary--
+
+<> 2023-08-23T195826.400.json
+
+###
+
+POST https://localhost:7050/api/mail-management/attachments
+Content-Type: multipart/form-data; boundary=boundary
+Content-Length: 1204
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+--boundary
+Content-Disposition: form-data; name="File"; filename="unnamed.png"
+
+< /Users/Shared/unnamed.png
+--boundary
+Content-Disposition: form-data; name="Name"
+
+u.p
+--boundary
+Content-Disposition: form-data; name="MediaType"
+
+image/png
+--boundary
+Content-Disposition: form-data; name="Description"
+
+xyz
+--boundary
+Content-Disposition: form-data; name="Inline"
+
+true
+--boundary--
+
+###
+
+POST https://localhost:7050/api/mail-management/attachments
+Content-Type: multipart/form-data; boundary=boundary
+Content-Length: 1204
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+--boundary
+Content-Disposition: form-data; name="File"; filename="unnamed.png"
+
+< /Users/Shared/unnamed.png
+--boundary
+Content-Disposition: form-data; name="Name"
+
+u.p
+--boundary
+Content-Disposition: form-data; name="MediaType"
+
+image/png
+--boundary
+Content-Disposition: form-data; name="Description"
+
+xyz
+--boundary
+Content-Disposition: form-data; name="Inline"
+
+true
+--boundary--
+
+###
+
+GET https://localhost:7050/api/mail-management/templates/35f3fa1a-52cf-4b81-9c19-a5b49d871ec5
+Content-Length: 30
+Content-Type: */*; charset=UTF-8
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+Content-Type: application/json
+
+<> 2023-08-23T162438.200.json
+
+###
+
+PUT https://localhost:7050/api/mail-management/templates/35f3fa1a-52cf-4b81-9c19-a5b49d871ec5
+Content-Type: application/json
+Content-Length: 234
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "subject": "Restore password -2",
+  "body-encoded": "PGh0bWw+Cjxib2R5Pgo8aDE+SEVMTE88L0gxPgo8L2JvZHk+CjwvaHRtbD4=",
+  "attachment-ids": [
+    "8ed2b9b9-a3dc-494a-ad08-f9001c44609c",
+    "aed1aee5-ffc3-4891-b3e9-eba26a77fcc2"
+  ]
+}
+
+###
+
+GET https://localhost:7050/api/mail-management/templates/35f3fa1a-52cf-4b81-9c19-a5b49d871ec5
+Content-Length: 30
+Content-Type: */*; charset=UTF-8
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+Content-Type: application/json
+
+<> 2023-08-23T162404.200.json
+
+###
+
+PUT https://localhost:7050/api/mail-management/templates/35f3fa1a-52cf-4b81-9c19-a5b49d871ec5
+Content-Type: application/json
+Content-Length: 234
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "subject": "Restore password -2",
+  "body-encoded": "PGh0bWw+Cjxib2R5Pgo8aDE+SEVMTE88L0gxPgo8L2JvZHk+CjwvaHRtbD4=",
+  "attachment-ids": [
+    "8ed2b9b9-a3dc-494a-ad08-f9001c44609c",
+    "aed1aee5-ffc3-4891-b3e9-eba26a77fcc2"
+  ]
+}
+
+###
+
+GET https://localhost:7050/api/mail-management/templates/35f3fa1a-52cf-4b81-9c19-a5b49d871ec5
+Content-Length: 30
+Content-Type: */*; charset=UTF-8
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+Content-Type: application/json
+
+<> 2023-08-23T162349.200.json
+
+###
+
+PUT https://localhost:7050/api/mail-management/templates/35f3fa1a-52cf-4b81-9c19-a5b49d871ec5
+Content-Type: application/json
+Content-Length: 234
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "subject": "Restore password -2",
+  "body-encoded": "PGh0bWw+Cjxib2R5Pgo8aDE+SEVMTE88L0gxPgo8L2JvZHk+CjwvaHRtbD4=",
+  "attachment-ids": [
+    "8ed2b9b9-a3dc-494a-ad08-f9001c44609c",
+    "aed1aee5-ffc3-4891-b3e9-eba26a77fcc2"
+  ]
+}
+
+<> 2023-08-23T161759.500.json
+
+###
+
+GET https://localhost:7050/api/mail-management/templates/35f3fa1a-52cf-4b81-9c19-a5b49d871ec5
+Content-Length: 30
+Content-Type: */*; charset=UTF-8
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+Content-Type: application/json
+
+<> 2023-08-23T161629.200.json
+
+###
+
+POST https://localhost:7050/api/mail-management/templates
+Content-Type: application/json
+Content-Length: 281
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "type": "restore-password",
+  "language": "en",
+  "subject": "Restore password",
+  "body-encoded": "PGh0bWw+Cjxib2R5Pgo8aDE+SEVMTE88L0gxPgo8L2JvZHk+CjwvaHRtbD4=",
+  "attachment-ids": [
+    "8ed2b9b9-a3dc-494a-ad08-f9001c44609c",
+    "aed1aee5-ffc3-4891-b3e9-eba26a77fcc2"
+  ]
+}
+
+<> 2023-08-21T203250.400.json
+
+###
+
+GET https://localhost:7050/api/mail-management/templates/35f3fa1a-52cf-4b81-9c19-a5b49d871ec5
+Content-Length: 30
+Content-Type: */*; charset=UTF-8
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+Content-Type: application/json
+
+<> 2023-08-21T203229.200.json
+
+###
+
+POST https://localhost:7050/api/mail-management/templates
+Content-Type: application/json
+Content-Length: 281
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "type": "restore-password",
+  "language": "en",
+  "subject": "Restore password",
+  "body-encoded": "PGh0bWw+Cjxib2R5Pgo8aDE+SEVMTE88L0gxPgo8L2JvZHk+CjwvaHRtbD4=",
+  "attachment-ids": [
+    "8ed2b9b9-a3dc-494a-ad08-f9001c44609c",
+    "aed1aee5-ffc3-4891-b3e9-eba26a77fcc2"
+  ]
+}
+
+###
+
+POST https://localhost:7050/api/mail-management/templates
+Content-Type: application/json
+Content-Length: 281
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "type": "restore-password",
+  "language": "en",
+  "subject": "Restore password",
+  "body-encoded": "PGh0bWw+Cjxib2R5Pgo8aDE+SEVMTE88L0gxPgo8L2JvZHk+CjwvaHRtbD4=",
+  "attachment-ids": [
+    "8ed2b9b9-a3dc-494a-ad08-f9001c44609c",
+    "aed1aee5-ffc3-4891-b3e9-eba26a77fcc2"
+  ]
+}
+
+<> 2023-08-21T201418.500.json
+
+###
+
+POST https://localhost:7050/api/mail-management/templates
+Content-Type: application/json
+Content-Length: 281
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "type": "restore-password",
+  "language": "en",
+  "subject": "Restore password",
+  "body-encoded": "PGh0bWw+Cjxib2R5Pgo8aDE+SEVMTE88L0gxPgo8L2JvZHk+CjwvaHRtbD4=",
+  "attachment-ids": [
+    "8ed2b9b9-a3dc-494a-ad08-f9001c44609c",
+    "aed1aee5-ffc3-4891-b3e9-eba26a77fcc2"
+  ]
+}
+
+<> 2023-08-21T201100.500.json
+
+###
+
+POST https://localhost:7050/api/mail-management/templates
+Content-Type: application/json
+Content-Length: 281
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "type": "restore-password",
+  "language": "en",
+  "subject": "Restore password",
+  "body-encoded": "PGh0bWw+Cjxib2R5Pgo8aDE+SEVMTE88L0gxPgo8L2JvZHk+CjwvaHRtbD4=",
+  "attachment-ids": [
+    "8ed2b9b9-a3dc-494a-ad08-f9001c44609c",
+    "aed1aee5-ffc3-4891-b3e9-eba26a77fcc2"
+  ]
+}
+
+<> 2023-08-21T201033.500.json
+
+###
+
+GET https://localhost:7050/api/mail-management/templates
+Content-Type: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-08-21T200914.200.json
+
+###
+
+GET https://localhost:7050/api/mail-management/templates/c0ce5a5e-64b4-4377-85bb-97cde0d503cc
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-08-21T192932.200.json
+
+###
+
+GET https://localhost:7050/api/mail-management/templates/c0ce5a5e-64b4-4377-85bb-97cde0d503cc
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-08-21T192815.200.json
+
+###
+
+GET https://localhost:7050/api/mail-management/templates/c0ce5a5e-64b4-4377-85bb-97cde0d503cc
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-08-21T190746.500.json
+
+###
+
+GET https://localhost:7050/api/mail-management/templates
+Content-Type: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-08-21T190713.200.json
+
+###
+
+GET https://localhost:7050/api/mail-management/allowed-email-types
+Content-Type: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-08-21T190547.200.json
+
+###
+
+GET https://localhost:7050/api/mail-management/attachments/aed1aee5-ffc3-4891-b3e9-eba26a77fcc2/thumbnail
+Content-Type: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> thumb_certyfikat-monolit-14.pdf
+
+###
+
+GET https://localhost:7050/api/mail-management/attachments/aed1aee5-ffc3-4891-b3e9-eba26a77fcc2/thumbnail
+Content-Type: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> thumb_certyfikat-monolit-13.pdf
+
+###
+
