@@ -1,6 +1,9 @@
+using System.Data;
 using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using FluentValidation;
+using Mailer.Api.Common.Options;
+using Microsoft.Extensions.Options;
 
 namespace Mailer.Api.Models.Attachments;
 
@@ -38,10 +41,27 @@ public record AddNewAttachmentDto
 
 internal class AddNewAttachmentDtoValidator : AbstractValidator<AddNewAttachmentDto>
 {
-    public AddNewAttachmentDtoValidator()
+    private readonly MimeTypeOptions _options;
+    public AddNewAttachmentDtoValidator(IOptions<MimeTypeOptions> options)
     {
+        _options = options.Value;
+        
         RuleFor(x => x.Name)
-            .Length(5, 20).WithName("name");
-            //.WithMessage("Field '{PropertyName}' is not valid. Min length is {MinLength} and max lenght is {MaxLength}. Entered {TotalLength} characters.");
+            .MinimumLength(5)
+            .WithName("name");
+        RuleFor(p => p.MediaType)
+            .NotEmpty()
+            .WithName("media-type");
+        RuleFor(p => p.MediaType)
+            .Must(p => _options.AllowedMimeTypes.Contains(p))
+            .WithName("media-type")
+            .WithMessage("Not allowed media type.");
+        RuleFor(p => p.Description)
+            .NotEmpty()
+            .WithName("description");
+        RuleFor(p => p.File)
+            .Must(p => p.Length > 0)
+            .WithName("file")
+            .WithMessage("File cannot be empty");
     }
 }
