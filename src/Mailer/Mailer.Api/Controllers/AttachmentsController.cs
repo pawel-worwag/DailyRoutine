@@ -60,10 +60,6 @@ public class AttachmentsController : ControllerBase
         {
             throw new CustomValidationException(ModelState);
         }
-        if (dto.File.Length <= 0)
-        {
-            throw new Exception("File size is 0.");
-        }
 
         var filePath = Path.GetTempFileName();
 
@@ -110,6 +106,11 @@ public class AttachmentsController : ControllerBase
     [HttpPut("{guid:guid}")]
     public async Task<IActionResult> UpdateMultimediaFile(Guid guid, UpdateAttachmentMetadataDto dto)
     {
+        if (!ModelState.IsValid)
+        {
+            throw new CustomValidationException(ModelState);
+        }
+        
         await _mediator.Send(new Application.Attachments.UpdateAttachmentMetadata.UpdateAttachmentMetadataRequest
         {
             Guid = guid,

@@ -24,6 +24,8 @@ public static class Extensions
         });
         
         services.AddScoped<IValidator<AddNewAttachmentDto>, AddNewAttachmentDtoValidator>();
+        services.AddScoped<IValidator<UpdateAttachmentMetadataDto>, UpdateAttachmentMetadataDtoValidator>();
+        
         
         services.AddFluentValidationAutoValidation();
 

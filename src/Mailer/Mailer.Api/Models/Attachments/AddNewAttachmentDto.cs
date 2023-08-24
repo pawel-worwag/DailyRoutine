@@ -41,6 +41,7 @@ public record AddNewAttachmentDto
 
 internal class AddNewAttachmentDtoValidator : AbstractValidator<AddNewAttachmentDto>
 {
+    // ReSharper disable once PrivateFieldCanBeConvertedToLocalVariable
     private readonly MimeTypeOptions _options;
     public AddNewAttachmentDtoValidator(IOptions<MimeTypeOptions> options)
     {
