@@ -1,10 +1,10 @@
-using Identity.Domain.Entities;
+using Identity.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Identity.Persistence.Configurations;
 
-public class ClientConfiguration:IEntityTypeConfiguration<Domain.Entities.Client>
+public class ClientConfiguration:IEntityTypeConfiguration<Domain.Client>
 {
     public void Configure(EntityTypeBuilder<Client> builder)
     {

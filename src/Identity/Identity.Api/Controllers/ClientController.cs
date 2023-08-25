@@ -28,8 +28,8 @@ public class ClientController : ControllerBase
     /// </summary>
     /// <returns></returns>
     [HttpGet]
-    public ActionResult GetAllRegisteredClients()
+    public async Task<ActionResult<Application.Clients.GetClients.Response>> GetAllRegisteredClients()
     {
-        return Ok();
+        return Ok(await _mediator.Send(new Application.Clients.GetClients.GetClientsRequest()));
     }
 }

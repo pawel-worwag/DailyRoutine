@@ -10,7 +10,7 @@ public class IdentityDbContext : DbContext,IIdentityDbContext
     public DbSet<Domain.Role> Roles { get; set; } = default!;
     
     public DbSet<Domain.Entities.PasswordRecoveryToken> RecoveryPasswordTokens { get; set; } = default!;
-    public DbSet<Domain.Entities.Client> Clients { get; set; } = default!;
+    public DbSet<Domain.Client> Clients { get; set; } = default!;
 
     public IdentityDbContext(DbContextOptions<IdentityDbContext> options) : base(options)
     {

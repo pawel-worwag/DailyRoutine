@@ -1,4 +1,4 @@
-namespace Identity.Domain.Entities;
+namespace Identity.Domain;
 
 public class RedirectionEndpoint
 {

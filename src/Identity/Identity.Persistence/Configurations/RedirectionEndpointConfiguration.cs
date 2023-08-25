@@ -1,10 +1,10 @@
-using Identity.Domain.Entities;
+using Identity.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Identity.Persistence.Configurations;
 
-public class RedirectionEndpointConfiguration : IEntityTypeConfiguration<Domain.Entities.RedirectionEndpoint>
+public class RedirectionEndpointConfiguration : IEntityTypeConfiguration<Domain.RedirectionEndpoint>
 {
     public void Configure(EntityTypeBuilder<RedirectionEndpoint> builder)
     {
