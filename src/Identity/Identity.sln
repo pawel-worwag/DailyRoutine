@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.Infrastructure", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.Api", "Identity.Api\Identity.Api.csproj", "{9069B948-728D-431A-BB86-BE76076E4881}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.Shared.Abstractions", "Identity.Shared\Identity.Shared.Abstractions\Identity.Shared.Abstractions.csproj", "{66C73BF6-499F-4CA0-B64C-D229F9F9C347}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scratches", "Scratches", "{EE310F17-207A-4673-B9EC-664D19F0FFA0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +46,9 @@ Global
 		{9069B948-728D-431A-BB86-BE76076E4881}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9069B948-728D-431A-BB86-BE76076E4881}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9069B948-728D-431A-BB86-BE76076E4881}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66C73BF6-499F-4CA0-B64C-D229F9F9C347}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66C73BF6-499F-4CA0-B64C-D229F9F9C347}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66C73BF6-499F-4CA0-B64C-D229F9F9C347}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66C73BF6-499F-4CA0-B64C-D229F9F9C347}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
