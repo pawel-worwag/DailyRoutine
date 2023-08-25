@@ -26,7 +26,7 @@ namespace Identity.Api.Controllers
         }
 
         /// <summary>
-        /// [TO-DO] Get list of allowed roles
+        /// Get list of allowed roles
         /// </summary>
         /// <returns></returns>
         [HttpGet]
