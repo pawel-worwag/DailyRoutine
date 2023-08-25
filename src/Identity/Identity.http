@@ -8,3 +8,10 @@ GET https://{{baseurl}}/api/identity-management/clients
 Content-Type: application/json
 Accept-Language: en
 
+
+###
+
+GET https://{{baseurl}}/api/identity-management/users
+Content-Type: application/json
+Accept-Language: en
+

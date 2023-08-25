@@ -1,5 +1,6 @@
 ﻿using Identity.Api.Common;
 using Identity.Persistence;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,28 +15,31 @@ namespace Identity.Api.Controllers
     [ProducesDefaultContentType]
     public class UsersController : ControllerBase
     {
-        private readonly IdentityDbContext _dbc;
+        private readonly IMediator _mediator;
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="dbc"></param>
-        public UsersController(IdentityDbContext dbc)
+        /// <param name="mediator"></param>
+        public UsersController(IMediator mediator)
         {
-            _dbc = dbc;
+            _mediator = mediator;
         }
 
         /// <summary>
-        /// [TO-DO] Get list of registered users
+        /// [PARTIAL] Get list of registered users
         /// </summary>
-        /// <param name="Take"></param>
-        /// <param name="Skip"></param>
+        /// <param name="take"></param>
+        /// <param name="skip"></param>
         /// <returns></returns>
         [HttpGet]
-        public async Task<ActionResult> GetUsersList(int Take = 50, int Skip = 0)
+        public async Task<ActionResult<Application.Users.GetUsers.Response>> GetUsersList(int take = 50, int skip = 0)
         {
-            var users = await _dbc.Users.Include(p=>p.Roles).ThenInclude(p=>p.Claims).Include("UserClaims").ToListAsync();
-            return Ok();
+            return Ok(await _mediator.Send(new Application.Users.GetUsers.GetUsersRequest
+            {
+                Take = take,
+                Skip = skip
+            }));
         }
 
         /// <summary>
