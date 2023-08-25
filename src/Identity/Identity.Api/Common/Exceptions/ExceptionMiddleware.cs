@@ -18,7 +18,7 @@ public class ExceptionMiddleware
     /// </summary>
     /// <param name="next"></param>
     /// <param name="logger"></param>
-    public ExceptionMiddleware(RequestDelegate next, ILogger logger)
+    public ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger)
     {
         _next = next;
         _logger = logger;
