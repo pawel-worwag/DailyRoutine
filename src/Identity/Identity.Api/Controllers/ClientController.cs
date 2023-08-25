@@ -24,7 +24,7 @@ public class ClientController : ControllerBase
     }
 
     /// <summary>
-    /// [TO-DO] Get registered clients
+    /// Get registered clients
     /// </summary>
     /// <returns></returns>
     [HttpGet]
