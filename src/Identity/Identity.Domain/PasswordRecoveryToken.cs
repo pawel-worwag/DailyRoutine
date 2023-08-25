@@ -1,5 +1,5 @@
 using System.Net;
-using DailyRoutine.Shared.Abstractions.Exceptions;
+using Identity.Domain.Common.Exceptions;
 
 namespace Identity.Domain.Entities;
 
@@ -20,10 +20,8 @@ public record PasswordRecoveryToken
     {
         if (validAfter >= validBefore)
         {
-            throw new DomainException(HttpStatusCode.InternalServerError, "date_error",
-                "Token 'ValidAfter' property must be before 'ValidBefore' property.");
+            throw new BadDateException("Token 'ValidAfter' property must be before 'ValidBefore' property.");
         }
-        User = subject;
         ValidAfter = validAfter;
         ValidBefore = validBefore;
     }

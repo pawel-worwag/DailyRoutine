@@ -1,6 +1,3 @@
-using System.Net;
-using DailyRoutine.Shared.Abstractions.Exceptions;
-
 namespace Identity.Domain;
 
 public record EmailConfirmationToken
