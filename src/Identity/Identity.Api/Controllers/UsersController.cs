@@ -14,6 +14,10 @@ namespace Identity.Api.Controllers
     {
         private readonly IdentityDbContext _dbc;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dbc"></param>
         public UsersController(IdentityDbContext dbc)
         {
             _dbc = dbc;

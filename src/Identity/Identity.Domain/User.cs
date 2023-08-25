@@ -10,9 +10,9 @@ public class User
 {
     public int Id { get; private set; }
     public Guid Guid { get; private set; } = Guid.NewGuid();
-    public NormalizedEmailAddress NormalizedEmail { get; set; }
+    public NormalizedEmailAddress NormalizedEmail { get; set; } = default!;
     public bool EmailConfirmed { get; set; }
-    public string PasswordHash { get; set; }
+    public string PasswordHash { get; set; } = string.Empty;
     public HashSet<Role> Roles { get; private set; } = new HashSet<Role>();
     protected ICollection<UserClaim> UserClaims { get; private set; } = new List<UserClaim>();
 

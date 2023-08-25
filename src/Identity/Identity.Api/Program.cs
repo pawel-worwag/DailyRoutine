@@ -34,6 +34,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseErrorHandling();
+
 app.UseStaticFiles();
 app.UseRouting();
 app.MapControllers();

@@ -8,6 +8,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Shared\DailyRoutine.Shared.Abstractions\DailyRoutine.Shared.Abstractions.csproj" />
+    <ProjectReference Include="..\Identity.Shared\Identity.Shared.Abstractions\Identity.Shared.Abstractions.csproj" />
   </ItemGroup>
+
 
 </Project>
