@@ -2,6 +2,7 @@ using System.Text;
 using System.Text.Json;
 using Mailer.Application.Common.Interfaces;
 using Mailer.Application.Common.Messages;
+using Mailer.Infrastructure.Common.Exceptions;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using RabbitMQ.Client;
@@ -15,8 +16,8 @@ public class MailBusConsumer : IMailBusConsumer, IDisposable
     private IConnection? _connection = null;
     private IModel? _channel = null;
     private EventingBasicConsumer? _consumer = null;
-    private ILogger _logger;
-    public IMailBusConsumer.ConsumeMessageDelegate ConsumeMessage { get; set; }
+    private readonly ILogger _logger;
+    public IMailBusConsumer.ConsumeMessageDelegate? ConsumeMessage { get; set; }
     
     public MailBusConsumer(IOptions<MailBusOptions> options, ILogger<MailBusConsumer> logger)
     {
@@ -40,7 +41,7 @@ public class MailBusConsumer : IMailBusConsumer, IDisposable
         
         if (_connection is not null && _connection.IsOpen)
         {
-            throw new Exception("Already connected");
+            throw new AlreadyConnectedException("Already connected");
         }
         _connection = factory.CreateConnection();
         _channel = _connection.CreateModel();
@@ -51,7 +52,7 @@ public class MailBusConsumer : IMailBusConsumer, IDisposable
             var messageStr = Encoding.UTF8.GetString(body);
             var message = JsonSerializer.Deserialize<EmailBusMessage>(messageStr);
 
-            if (ConsumeMessage?.Invoke(message) == true)
+            if (message is not null && ConsumeMessage?.Invoke(message) == true)
             {
                 _channel.BasicAck(ea.DeliveryTag,false);
             }

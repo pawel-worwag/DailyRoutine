@@ -1,8 +1,9 @@
 using System.Net;
-using DailyRoutine.Shared.Infrastructure.Exceptions;
 using Mailer.Application.Common.Interfaces;
+using Mailer.Infrastructure.Common.Exceptions;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using IOException = Mailer.Infrastructure.Common.Exceptions.IOException;
 
 namespace Mailer.Infrastructure.AttachmentsStore;
 
@@ -25,15 +26,14 @@ public class AttachmentsLocalFsStore : IAttachmentsStore
                 var path = _options.BasePath + Path.DirectorySeparatorChar + fileName;
                 if (!File.Exists(path))
                 {
-                    throw new Exception("File not found");
+                    throw new NotFoundException("File not found");
                 }
 
                 return await File.ReadAllBytesAsync(path, cancellationToken);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.ToString());
-                throw new DailyRoutineException(HttpStatusCode.InternalServerError, ex.Message);
+                throw new IOException(ex.Message,ex);
             }
     }
 
@@ -47,9 +47,24 @@ public class AttachmentsLocalFsStore : IAttachmentsStore
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex.ToString());
-            throw new DailyRoutineException(HttpStatusCode.InternalServerError, ex.Message);
+            throw new IOException( ex.Message,ex);
         }
+    }
+
+    public async Task DeleteFileAsync(string fileName, CancellationToken cancellationToken)
+    {
+        DetectPathTraversal(fileName);
+        try
+        {
+            var path = _options.BasePath + Path.DirectorySeparatorChar + fileName;
+            File.Delete(path);
+        }
+        catch (Exception ex)
+        {
+            throw new IOException( ex.Message,ex);
+        }
+
+        await Task.CompletedTask;
     }
 
     private bool DetectPathTraversal(string fileName)
@@ -58,7 +73,7 @@ public class AttachmentsLocalFsStore : IAttachmentsStore
         var fullPath = Path.GetFullPath(path);
         if (string.Compare(fullPath, path, StringComparison.Ordinal)!=0)
         {
-            throw new DailyRoutineException(HttpStatusCode.BadRequest,"Path traversal detected");
+            throw new PathTraversalException("Path traversal detected");
         }
         return false;
     }

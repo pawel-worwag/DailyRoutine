@@ -24,20 +24,20 @@ namespace Mailer.Persistence.Migrations
 
             modelBuilder.Entity("AttachmentTemplate", b =>
                 {
-                    b.Property<int>("AttachmentsId")
-                        .HasColumnType("integer");
-
                     b.Property<int>("TemplatesId")
                         .HasColumnType("integer");
 
-                    b.HasKey("AttachmentsId", "TemplatesId");
+                    b.Property<int>("_attachmentsId")
+                        .HasColumnType("integer");
 
-                    b.HasIndex("TemplatesId");
+                    b.HasKey("TemplatesId", "_attachmentsId");
+
+                    b.HasIndex("_attachmentsId");
 
                     b.ToTable("TemplateAttachments", (string)null);
                 });
 
-            modelBuilder.Entity("Mailer.Domain.Entities.Attachment", b =>
+            modelBuilder.Entity("Mailer.Domain.Attachment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -61,7 +61,7 @@ namespace Mailer.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Path")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -73,18 +73,18 @@ namespace Mailer.Persistence.Migrations
                     b.ToTable("Attachments", (string)null);
                 });
 
-            modelBuilder.Entity("Mailer.Domain.Entities.EmailType", b =>
+            modelBuilder.Entity("Mailer.Domain.EmailType", b =>
                 {
-                    b.Property<string>("TypeName")
+                    b.Property<string>("Name")
                         .HasMaxLength(30)
                         .HasColumnType("character varying(30)");
 
-                    b.HasKey("TypeName");
+                    b.HasKey("Name");
 
                     b.ToTable("EmailTypes", (string)null);
                 });
 
-            modelBuilder.Entity("Mailer.Domain.Entities.Language", b =>
+            modelBuilder.Entity("Mailer.Domain.Language", b =>
                 {
                     b.Property<string>("CultureName")
                         .HasMaxLength(30)
@@ -95,7 +95,7 @@ namespace Mailer.Persistence.Migrations
                     b.ToTable("Languages", (string)null);
                 });
 
-            modelBuilder.Entity("Mailer.Domain.Entities.Template", b =>
+            modelBuilder.Entity("Mailer.Domain.Template", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -136,28 +136,28 @@ namespace Mailer.Persistence.Migrations
 
             modelBuilder.Entity("AttachmentTemplate", b =>
                 {
-                    b.HasOne("Mailer.Domain.Entities.Attachment", null)
-                        .WithMany()
-                        .HasForeignKey("AttachmentsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Mailer.Domain.Entities.Template", null)
+                    b.HasOne("Mailer.Domain.Template", null)
                         .WithMany()
                         .HasForeignKey("TemplatesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Mailer.Domain.Attachment", null)
+                        .WithMany()
+                        .HasForeignKey("_attachmentsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
-            modelBuilder.Entity("Mailer.Domain.Entities.Template", b =>
+            modelBuilder.Entity("Mailer.Domain.Template", b =>
                 {
-                    b.HasOne("Mailer.Domain.Entities.Language", "Language")
+                    b.HasOne("Mailer.Domain.Language", "Language")
                         .WithMany()
                         .HasForeignKey("LanguageCultureName")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Mailer.Domain.Entities.EmailType", "Type")
+                    b.HasOne("Mailer.Domain.EmailType", "Type")
                         .WithMany()
                         .HasForeignKey("TypeName")
                         .OnDelete(DeleteBehavior.Cascade)

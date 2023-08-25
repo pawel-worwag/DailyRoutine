@@ -1,0 +1,82 @@
+
+trigger: none
+pool: u4.local
+
+variables: 
+   major: 0
+   minor: 0
+   brpatch: $[counter(variables['build.sourcebranchname'], 0)]
+   revision: $(Build.BuildId)
+
+name: $(major).$(minor).$(Build.BuildId)-$(Build.SourceBranchName)
+
+stages: 
+- stage: Building
+  jobs:
+  - job: Restore
+    steps:
+    - task: DotNetCoreCLI@2
+      displayName: dotnet restore
+      inputs:
+        command: 'restore'
+        projects: 'src/Mailer/**/*.csproj'
+        feedsToUse: 'select'
+  - job: Build 
+    dependsOn: Restore
+    steps:
+    - task: DotNetCoreCLI@2
+      displayName: dotnet build
+      inputs:
+        command: 'build'
+        projects: 'src/Mailer/Mailer.Api'
+        arguments: '-c Release'
+  - job: Testing
+    dependsOn: Build
+    steps:
+      - script: 'echo TODO'
+  - job: Publish
+    dependsOn: Testing
+    variables:
+      vassemblyersion: $(major).$(minor).$(Build.BuildId)
+      version: $(major).$(minor).$(Build.BuildId)-$(Build.SourceBranchName)
+    steps:
+    - task: DotNetCoreCLI@2
+      displayName: dotnet publish
+      inputs:
+        command: 'publish'
+        publishWebProjects: false
+        projects: 'src/Mailer/Mailer.Api'
+        arguments: '-c Release -r linux-x64 --no-self-contained --output $(Build.ArtifactStagingDirectory) /p:AssemblyVersion=$(vassemblyersion) /p:Version=$(version)'
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathToPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'Mailer'
+        PublishLocation: 'Container'
+        StoreAsTar: True
+- stage: Deployment
+  dependsOn: Building
+  jobs:
+  - deployment: u4_dev
+    displayName: Local U4 deployment
+    environment:
+      name: u4
+      resourceName: bestyja 
+    strategy: 
+      runOnce:
+        deploy:
+          steps:
+          - download: current
+            displayName: Download artifacts
+          - script: ls $(Agent.BuildDirectory)/Mailer
+  - deployment: ovh_dev
+    displayName: Remote OVH deployment
+    environment:
+      name: ovh
+      resourceName: vps772979
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - download: current
+            displayName: Downloading artifacts
+          - script: ls $(Agent.BuildDirectory)/Mailer

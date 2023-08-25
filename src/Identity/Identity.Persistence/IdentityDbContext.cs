@@ -1,16 +1,16 @@
 using System.Reflection;
 using Identity.Application.Common.Interfaces;
-using Identity.Persistence.Configurations;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Identity.Persistence;
 
-public class IdentityDbContext : IdentityDbContext<Domain.Entities.User, Domain.Entities.Role, int>,IIdentityDbContext
+public class IdentityDbContext : DbContext,IIdentityDbContext
 {
-    public DbSet<Domain.Entities.RegistrationToken> RegistrationTokens { get; set; }
-    public DbSet<Domain.Entities.RecoveryPasswordToken> RecoveryPasswordTokens { get; set; }
+    public DbSet<Domain.User> Users { get; set; }
+    
+    public DbSet<Domain.Entities.PasswordRecoveryToken> RecoveryPasswordTokens { get; set; }
+    public DbSet<Domain.Entities.Client> Clients { get; set; }
+
     public IdentityDbContext(DbContextOptions<IdentityDbContext> options) : base(options)
     {
     }

@@ -6,4 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\Mailer.Shared\Mailer.Shared.Abstractions\Mailer.Shared.Abstractions.csproj" />
+  </ItemGroup>
+
 </Project>

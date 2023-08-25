@@ -3,3 +3,7 @@
 obj/
 bin/
 appsettings.Development.json
+.DS_store
+**/.idea/
+*.private.env.json
+*.swp
