@@ -1,4 +1,5 @@
-﻿using Identity.Application.Common.Enums;
+﻿using Identity.Api.Common;
+using Identity.Application.Common.Enums;
 using Identity.Application.Common.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 #pragma warning disable CS1591
@@ -7,6 +8,7 @@ namespace Identity.Api.Controllers
 {
     [Route("api/identity-management/")]
     [ApiController]
+    [ProducesDefaultContentType]
     public class HelloController : ControllerBase
     {
 

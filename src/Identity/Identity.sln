@@ -16,6 +16,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.Shared.Abstractions", "Identity.Shared\Identity.Shared.Abstractions\Identity.Shared.Abstractions.csproj", "{66C73BF6-499F-4CA0-B64C-D229F9F9C347}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scratches", "Scratches", "{EE310F17-207A-4673-B9EC-664D19F0FFA0}"
+	ProjectSection(SolutionItems) = preProject
+		Identity.http = Identity.http
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

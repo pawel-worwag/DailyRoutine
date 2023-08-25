@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Identity.Api.Common;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Identity.Api.Controllers
@@ -8,6 +9,7 @@ namespace Identity.Api.Controllers
     /// </summary>
     [Route("api/identity-management/")]
     [ApiController]
+    [ProducesDefaultContentType]
     public class AuthController : ControllerBase
     {
         /// <summary>

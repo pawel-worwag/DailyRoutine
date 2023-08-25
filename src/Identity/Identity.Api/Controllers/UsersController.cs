@@ -1,4 +1,5 @@
-﻿using Identity.Persistence;
+﻿using Identity.Api.Common;
+using Identity.Persistence;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ namespace Identity.Api.Controllers
     /// </summary>
     [Route("api/identity-management/users")]
     [ApiController]
+    [ProducesDefaultContentType]
     public class UsersController : ControllerBase
     {
         private readonly IdentityDbContext _dbc;

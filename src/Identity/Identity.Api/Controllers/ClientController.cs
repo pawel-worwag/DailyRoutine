@@ -1,3 +1,4 @@
+using Identity.Api.Common;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,7 +9,7 @@ namespace Identity.Api.Controllers;
 /// </summary>
 [ApiController]
 [Route("api/identity-management/clients/")]
-[Produces("application/json")]
+[ProducesDefaultContentType]
 public class ClientController : ControllerBase
 {
     private readonly IMediator _mediator;

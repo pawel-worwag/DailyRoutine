@@ -1,0 +1,3 @@
+GET https://{{baseurl}}/api/identity-management/roles
+Content-Type: application/json
+Accept-Language: en
