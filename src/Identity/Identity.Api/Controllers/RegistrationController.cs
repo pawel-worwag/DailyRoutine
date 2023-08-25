@@ -28,7 +28,7 @@ namespace Identity.Api.Controllers
         /// [TO-DO] Start new user registration procedure
         /// </summary>
         /// <returns></returns>
-        [HttpPut]
+        [HttpPost]
         public ActionResult CreateNewRegistrationToken()
         {
             return Ok();

@@ -27,7 +27,7 @@ namespace Identity.Api.Controllers
         /// [TO-DO] Update my profile
         /// </summary>
         /// <returns></returns>
-        [HttpPost]
+        [HttpPut]
         public ActionResult UpdateMyProfile()
         {
             return Ok();
@@ -37,7 +37,7 @@ namespace Identity.Api.Controllers
         /// [TO-DO] Update my password
         /// </summary>
         /// <returns></returns>
-        [HttpPost("password")]
+        [HttpPut("password")]
         public ActionResult UpdateMyPassword()
         {
             return Ok();

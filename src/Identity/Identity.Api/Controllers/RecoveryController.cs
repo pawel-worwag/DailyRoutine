@@ -25,10 +25,10 @@ namespace Identity.Api.Controllers
         }
 
         /// <summary>
-        /// [TO-DO] Create new rescovery token / start password recovery procedure
+        /// [TO-DO] Create new recovery token / start password recovery procedure
         /// </summary>
         /// <returns></returns>
-        [HttpPut]
+        [HttpPost]
         public ActionResult StartNewRecoveryProcess()
         {
             return Ok();

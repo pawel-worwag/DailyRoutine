@@ -53,7 +53,7 @@ namespace Identity.Api.Controllers
         /// [TO-DO] Add new user
         /// </summary>
         /// <returns></returns>
-        [HttpPut]
+        [HttpPost]
         public ActionResult AddNewUser()
         {
             return Ok();
@@ -64,7 +64,7 @@ namespace Identity.Api.Controllers
         /// </summary>
         /// <param name="guid"></param>
         /// <returns></returns>
-        [HttpPost("{guid}")]
+        [HttpPut("{guid}")]
         public ActionResult UpdateUser(Guid guid)
         {
             return Ok();
