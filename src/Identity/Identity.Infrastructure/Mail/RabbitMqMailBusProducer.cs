@@ -1,11 +1,10 @@
 using System.Net;
 using System.Text;
 using System.Text.Json;
-using DailyRoutine.Shared.Infrastructure.Exceptions;
 using Identity.Application.Common.Enums;
 using Identity.Application.Common.Interfaces;
 using Identity.Application.Common.Messages;
-using Microsoft.Extensions.Configuration;
+using Identity.Infrastructure.Common.Exceptions;
 using Microsoft.Extensions.Logging;
 using RabbitMQ.Client;
 using Microsoft.Extensions.Options;
@@ -61,7 +60,7 @@ public class RabbitMqMailBusProducer : IMailBusProducer
         catch (Exception ex)
         {
             _logger.LogError(ex.ToString());
-            throw new InfrastructureException(HttpStatusCode.InternalServerError, ex.Message);
+            throw new UnknownRabbitException(ex.Message, ex);
         }
         await Task.CompletedTask;
     }

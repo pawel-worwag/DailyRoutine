@@ -1,5 +1,5 @@
 using System.Reflection;
-using DailyRoutine.Shared.Infrastructure.Exceptions;
+using Identity.Api.Common.Exceptions;
 using Identity.Application;
 using Identity.Infrastructure;
 using Identity.Persistence;
@@ -33,8 +33,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger(); 
     app.UseSwaggerUI();
 }
-
-app.UseErrorHandling();
 
 app.UseStaticFiles();
 app.UseRouting();

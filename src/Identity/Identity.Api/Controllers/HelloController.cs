@@ -1,6 +1,5 @@
 ﻿using Identity.Application.Common.Enums;
 using Identity.Application.Common.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 #pragma warning disable CS1591
 
@@ -24,7 +23,6 @@ namespace Identity.Api.Controllers
         }
         
         [HttpGet("/test")]
-        [ProducesResponseType(typeof(DailyRoutine.Shared.Infrastructure.Exceptions.Dto.ErrorResponse), 500)]
         [ProducesResponseType(200)]
         public async Task<ActionResult> ReadFileTest()
         {
