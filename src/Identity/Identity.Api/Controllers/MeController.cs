@@ -12,7 +12,7 @@ namespace Identity.Api.Controllers
     public class MeController : ControllerBase
     {
         /// <summary>
-        /// Get my profile
+        /// [TO-DO] Get my profile
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -22,7 +22,7 @@ namespace Identity.Api.Controllers
         }
 
         /// <summary>
-        /// Update my profile
+        /// [TO-DO] Update my profile
         /// </summary>
         /// <returns></returns>
         [HttpPost]
@@ -32,7 +32,7 @@ namespace Identity.Api.Controllers
         }
 
         /// <summary>
-        /// Update my password
+        /// [TO-DO] Update my password
         /// </summary>
         /// <returns></returns>
         [HttpPost("password")]

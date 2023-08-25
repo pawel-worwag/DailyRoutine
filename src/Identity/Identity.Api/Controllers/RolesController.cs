@@ -11,7 +11,7 @@ namespace Identity.Api.Controllers
     public class RolesController : ControllerBase
     {
         /// <summary>
-        /// Get list of allowed roles
+        /// [TO-DO] Get list of allowed roles
         /// </summary>
         /// <returns></returns>
         [HttpGet]

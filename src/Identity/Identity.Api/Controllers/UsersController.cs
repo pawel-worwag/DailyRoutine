@@ -24,7 +24,7 @@ namespace Identity.Api.Controllers
         }
 
         /// <summary>
-        /// Get list of registered users
+        /// [TO-DO] Get list of registered users
         /// </summary>
         /// <param name="Take"></param>
         /// <param name="Skip"></param>
@@ -37,7 +37,7 @@ namespace Identity.Api.Controllers
         }
 
         /// <summary>
-        /// Get user details
+        /// [TO-DO] Get user details
         /// </summary>
         /// <param name="guid"></param>
         /// <returns></returns>
@@ -48,7 +48,7 @@ namespace Identity.Api.Controllers
         }
 
         /// <summary>
-        /// Add new user
+        /// [TO-DO] Add new user
         /// </summary>
         /// <returns></returns>
         [HttpPut]
@@ -58,7 +58,7 @@ namespace Identity.Api.Controllers
         }
 
         /// <summary>
-        /// Update user data
+        /// [TO-DO] Update user data
         /// </summary>
         /// <param name="guid"></param>
         /// <returns></returns>
@@ -69,7 +69,7 @@ namespace Identity.Api.Controllers
         }
 
         /// <summary>
-        /// Send Welcome-Email to user
+        /// [TO-DO] Send Welcome-Email to user
         /// </summary>
         /// <param name="guid"></param>
         /// <returns></returns>

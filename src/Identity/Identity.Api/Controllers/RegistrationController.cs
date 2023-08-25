@@ -11,7 +11,7 @@ namespace Identity.Api.Controllers
     public class RegistrationController : ControllerBase
     {
         /// <summary>
-        /// Get list of user registrations in progress
+        /// [TO-DO] Get list of user registrations in progress
         /// </summary>
         /// <param name="Take"></param>
         /// <param name="Skip"></param>
@@ -23,7 +23,7 @@ namespace Identity.Api.Controllers
         }
 
         /// <summary>
-        /// Start new user registration procedure
+        /// [TO-DO] Start new user registration procedure
         /// </summary>
         /// <returns></returns>
         [HttpPut]
@@ -33,7 +33,7 @@ namespace Identity.Api.Controllers
         }
 
         /// <summary>
-        /// Finish new user registration procedure
+        /// [TO-DO] Finish new user registration procedure
         /// </summary>
         /// <param name="guid"></param>
         /// <returns></returns>

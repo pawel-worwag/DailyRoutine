@@ -11,7 +11,7 @@ namespace Identity.Api.Controllers
     public class RecoveryController : ControllerBase
     {
         /// <summary>
-        /// Get list of password recovery requests (only metadata)
+        /// [TO-DO] Get list of password recovery requests (only metadata)
         /// </summary>
         /// <param name="Take"></param>
         /// <param name="Skip"></param>
@@ -23,7 +23,7 @@ namespace Identity.Api.Controllers
         }
 
         /// <summary>
-        /// Create new rescovery token / start password recovery procedure
+        /// [TO-DO] Create new rescovery token / start password recovery procedure
         /// </summary>
         /// <returns></returns>
         [HttpPut]
@@ -33,7 +33,7 @@ namespace Identity.Api.Controllers
         }
 
         /// <summary>
-        /// Finish password recovery procedure
+        /// [TO-DO] Finish password recovery procedure
         /// </summary>
         /// <param name="guid"></param>
         /// <returns></returns>

@@ -11,7 +11,7 @@ namespace Identity.Api.Controllers
     public class AuthController : ControllerBase
     {
         /// <summary>
-        /// Server discovery endpoint
+        /// [TO-DO] Server discovery endpoint
         /// </summary>
         /// <returns></returns>
         [HttpGet("openid-configuration")]
@@ -21,7 +21,7 @@ namespace Identity.Api.Controllers
         }
 
         /// <summary>
-        /// Get JSON Web Keys set
+        /// [TO-DO] Get JSON Web Keys set
         /// </summary>
         /// <returns></returns>
         [HttpGet("jwks")]
@@ -31,7 +31,7 @@ namespace Identity.Api.Controllers
         }
 
         /// <summary>
-        /// Create a new tokens with claims
+        /// [TO-DO] Create a new tokens with claims
         /// </summary>
         /// <returns></returns>
         [HttpPost("tokens")]
