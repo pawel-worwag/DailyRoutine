@@ -42,7 +42,7 @@ internal class GetUserDetailsHandler : IRequestHandler<GetUserDetailsRequest, Re
             {
                 NormalizedName = p.NormalizedName.Value
             }).ToList(),
-            PersonalClaims = user.PrivateClaims.Select(p=> new Claim
+            PersonalClaims = user.PersonalClaims.Select(p=> new Claim
             {
                 Type = p.Type,
                 Value = p.Value

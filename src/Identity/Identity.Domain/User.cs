@@ -20,11 +20,60 @@ public class User
     /// Claims added to user.
     /// </summary>
     [NotMapped]
-    public IReadOnlyCollection<Claim> PrivateClaims
+    public IReadOnlyCollection<Claim> PersonalClaims
     {
         get { return UserClaims.Select(p => new Claim(p.ClaimType, p.ClaimValue)).ToList(); }
     }
 
+    /// <summary>
+    /// Add personal claim
+    /// </summary>
+    /// <param name="claim"></param>
+    public void AddPersonalClaim(Claim claim)
+    {
+        if (!PersonalClaims.Contains(claim))
+        {
+            UserClaims.Add(new UserClaim
+            {
+                ClaimType = claim.Type,
+                ClaimValue = claim.Value
+            });
+        }
+    }
+
+    /// <summary>
+    /// Add personal claims
+    /// </summary>
+    /// <param name="claims"></param>
+    public void AddPersonalClaims(ICollection<Claim> claims)
+    {
+        foreach (var claim in claims)
+        {
+            AddPersonalClaim(claim);
+        }
+    }
+    
+    /// <summary>
+    /// Remove personal claim
+    /// </summary>
+    /// <param name="claim"></param>
+    public void RemovePersonalClaim(Claim claim)
+    {
+        var s = UserClaims.FirstOrDefault(p => p.ClaimType == claim.Type && p.ClaimValue == claim.Value);
+        if (s is not null)
+        {
+            UserClaims.Remove(s);
+        }
+    }
+
+    /// <summary>
+    /// Remove all personal claims
+    /// </summary>
+    public void RemovePersonalClaims()
+    {
+        UserClaims.Clear();
+    }
+    
     /// <summary>
     /// Union of claims added to user and claims added to user's roles.
     /// </summary>
