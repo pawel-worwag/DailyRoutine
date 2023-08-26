@@ -2,6 +2,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Identity.Api.Common;
 
+/// <summary>
+/// 
+/// </summary>
 public class ProducesDefaultContentTypeAttribute : ProducesAttribute
 {
     /// <summary>
