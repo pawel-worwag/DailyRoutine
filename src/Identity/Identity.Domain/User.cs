@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Security.Claims;
 using Identity.Domain.Entities;
+using Identity.Domain.Enums;
 using Identity.Domain.ValueObjects;
 using Claim = Identity.Domain.ValueObjects.Claim;
 
@@ -44,6 +44,24 @@ public class User
     {
         EmailConfirmationToken = new EmailConfirmationToken(this, validBefore);
         return EmailConfirmationToken;
+    }
+
+    public EmailStatus EmailStatus
+    {
+        get
+        {
+            if (EmailConfirmed == true)
+            {
+                return EmailStatus.Confirmed;
+            }
+
+            if (EmailConfirmationToken is null)
+            {
+                return EmailStatus.Uninitialized;
+            }
+
+            return EmailStatus.Idle;
+        }
     }
 
     protected HashSet<PasswordRecoveryToken> _passwordRecoveryTokens { get; private set; } =

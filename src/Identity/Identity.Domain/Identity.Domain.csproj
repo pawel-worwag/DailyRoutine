@@ -10,9 +10,4 @@
     <ProjectReference Include="..\Identity.Shared\Identity.Shared.Abstractions\Identity.Shared.Abstractions.csproj" />
   </ItemGroup>
 
-
-  <ItemGroup>
-    <Folder Include="Entities\" />
-  </ItemGroup>
-
 </Project>
