@@ -15,3 +15,9 @@ GET https://{{baseurl}}/api/identity-management/users
 Content-Type: application/json
 Accept-Language: en
 
+###
+
+GET https://{{baseurl}}/api/identity-management/users/00000000-0000-0000-0000-000000000000
+Content-Type: application/json
+Accept-Language: en
+

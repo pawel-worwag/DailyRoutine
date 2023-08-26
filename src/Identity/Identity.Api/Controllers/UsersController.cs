@@ -43,14 +43,17 @@ namespace Identity.Api.Controllers
         }
 
         /// <summary>
-        /// [TO-DO] Get user details
+        /// Get user details
         /// </summary>
         /// <param name="guid"></param>
         /// <returns></returns>
         [HttpGet("{guid}")]
-        public ActionResult GetUserDetails(Guid guid)
+        public async Task<ActionResult<Application.Users.GetUserDetails.Response>> GetUserDetails(Guid guid)
         {
-            return Ok();
+            return Ok(await _mediator.Send(new Application.Users.GetUserDetails.GetUserDetailsRequest
+            {
+                Guid = guid
+            }));
         }
 
         /// <summary>
