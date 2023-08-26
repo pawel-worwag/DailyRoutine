@@ -24,6 +24,8 @@ internal class GetUsersHandler : IRequestHandler<GetUsersRequest, Response>
         var count = await _dbc.Users.CountAsync(cancellationToken);
         var users = await _dbc.Users.AsNoTracking()
             .Include(p => p.Roles)
+            .Include("EmailConfirmationToken")
+            .Include("_passwordRecoveryTokens")
             .Take(request.Take)
             .Skip(request.Skip).ToListAsync(cancellationToken);
         return new Response
@@ -33,7 +35,9 @@ internal class GetUsersHandler : IRequestHandler<GetUsersRequest, Response>
             {
                 Guid = p.Guid,
                 NormalizedEmailAddress = p.NormalizedEmail.Value,
-                EmailConfirmed = p.EmailConfirmed
+                EmailStatus = (EmailStatus) p.EmailStatus,
+                Roles = p.Roles.Select(q=>new Role{NormalizedName = q.NormalizedName.Value}).ToList(),
+                RecoveryTokensCount = p.PasswordRecoveryTokens.Count
             }).ToList()
         };
     }

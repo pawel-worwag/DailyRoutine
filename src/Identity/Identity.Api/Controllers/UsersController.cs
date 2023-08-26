@@ -27,7 +27,7 @@ namespace Identity.Api.Controllers
         }
 
         /// <summary>
-        /// [PARTIAL] Get list of registered users
+        /// Get list of registered users
         /// </summary>
         /// <param name="take"></param>
         /// <param name="skip"></param>

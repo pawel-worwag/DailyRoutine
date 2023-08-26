@@ -5,8 +5,8 @@ namespace Identity.Domain.Entities;
 
 public record PasswordRecoveryToken
 {
-    public string Token { get; set; }
-    private int UserId { get; set; }
+    public string Token { get; private set; }
+    public int UserId { get;  set; }
     public User User { get; set; } = default!;
     public DateTime ValidAfter { get; set; } = DateTime.UtcNow;
     public DateTime ValidBefore { get; set; }  = DateTime.UtcNow;

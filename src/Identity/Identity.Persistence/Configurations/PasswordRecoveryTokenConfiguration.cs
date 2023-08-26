@@ -10,6 +10,7 @@ public class PasswordRecoveryTokenConfiguration :  IEntityTypeConfiguration<Doma
     {
         builder.ToTable("PasswordRecoveryTokens");
         builder.HasKey(p=>p.Token);
+        builder.HasIndex(p => p.UserId);
         builder.Property(p => p.ValidAfter).IsRequired();
         builder.Property(p => p.ValidBefore).IsRequired();
     }

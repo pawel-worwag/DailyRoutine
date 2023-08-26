@@ -73,6 +73,7 @@ public class User
         _passwordRecoveryTokens.Add(token);
         return token;
     }
-
+    
+    [NotMapped]
     public IReadOnlyCollection<PasswordRecoveryToken> PasswordRecoveryTokens => _passwordRecoveryTokens;
 }

@@ -22,7 +22,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             .HasForeignKey("Id");
         builder.HasOne(typeof(EmailConfirmationToken),"EmailConfirmationToken")
             .WithOne(nameof(EmailConfirmationToken.User));
-        builder.HasMany(typeof(PasswordRecoveryToken), "PasswordRecoveryTokens")
+        builder.HasMany(typeof(PasswordRecoveryToken), "_passwordRecoveryTokens")
             .WithOne(nameof(PasswordRecoveryToken.User)).HasForeignKey("UserId");
     }
 }
