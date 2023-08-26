@@ -29,15 +29,11 @@ public class User
     /// Add personal claim
     /// </summary>
     /// <param name="claim"></param>
-    public void AddPersonalClaim(Claim claim)
+    public void AddPersonalClaim(UserClaim claim)
     {
-        if (!PersonalClaims.Contains(claim))
+        if (!UserClaims.Contains(claim))
         {
-            UserClaims.Add(new UserClaim
-            {
-                ClaimType = claim.Type,
-                ClaimValue = claim.Value
-            });
+            UserClaims.Add(claim);
         }
     }
 
@@ -45,7 +41,7 @@ public class User
     /// Add personal claims
     /// </summary>
     /// <param name="claims"></param>
-    public void AddPersonalClaims(ICollection<Claim> claims)
+    public void AddPersonalClaims(ICollection<UserClaim> claims)
     {
         foreach (var claim in claims)
         {
@@ -57,13 +53,9 @@ public class User
     /// Remove personal claim
     /// </summary>
     /// <param name="claim"></param>
-    public void RemovePersonalClaim(Claim claim)
+    public void RemovePersonalClaim(UserClaim claim)
     {
-        var s = UserClaims.FirstOrDefault(p => p.ClaimType == claim.Type && p.ClaimValue == claim.Value);
-        if (s is not null)
-        {
-            UserClaims.Remove(s);
-        }
+        UserClaims.Remove(claim);
     }
 
     /// <summary>

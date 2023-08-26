@@ -1,4 +1,5 @@
 ﻿using Identity.Api.Common;
+using Identity.Domain.ValueObjects;
 using Identity.Persistence;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -57,13 +58,25 @@ namespace Identity.Api.Controllers
         }
 
         /// <summary>
-        /// [TO-DO] Add new user
+        /// Add new user
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult AddNewUser()
+        public async Task<ActionResult> AddNewUser(Models.Users.AddNewUserDto dto)
         {
-            return Ok();
+            var guid = await _mediator.Send(new Application.Users.AddUser.AddUserRequest
+            {
+                NormalizedEmail = dto.NormalizedEmail,
+                Roles = dto.Roles.Select(p=>new NormalizedName(p)).ToList(),
+                PersonalClaims = dto.PersonalClaims.Select(p => new Application.Users.AddUser.Claim
+                {
+                    Type = p.Type,
+                    Value = p.Value
+                }).ToList()
+            });
+            
+            var url = this.Url.Action("GetUserDetails", new { guid = guid });
+            return Created(new Uri(url!, UriKind.Relative), null);
         }
 
         /// <summary>
