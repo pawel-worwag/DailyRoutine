@@ -8,3 +8,4 @@ appsettings.Development.json
 **/.idea/
 *.private.env.json
 *.swp
+http-requests-log.http
