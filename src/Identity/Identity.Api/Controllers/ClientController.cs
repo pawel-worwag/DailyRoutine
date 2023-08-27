@@ -48,7 +48,7 @@ public class ClientController : ControllerBase
     /// </summary>
     /// <param name="guid"></param>
     /// <returns></returns>
-    [HttpPost("{guid:guid}")]
+    [HttpPut("{guid:guid}")]
     public ActionResult UpdateClient(Guid guid)
     {
         return Ok();
