@@ -73,13 +73,17 @@ public class ClientController : ControllerBase
     }    
     
     /// <summary>
-    /// [TO-DO] Remove api client
+    /// Remove api client
     /// </summary>
     /// <param name="guid"></param>
     /// <returns></returns>
     [HttpDelete("{guid:guid}")]
-    public ActionResult RemoveClient(Guid guid)
+    public async Task<ActionResult> RemoveClient(Guid guid)
     {
+        await _mediator.Send(new Application.Clients.DeleteClient.DeleteClientRequest
+        {
+            Guid = guid
+        });
         return Ok();
     }
     

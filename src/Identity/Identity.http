@@ -24,6 +24,13 @@ Accept-Language: en
 
 ###
 
+DELETE https://{{baseurl}}/api/identity-management/clients/4c7231d5-b8ee-490b-9bb6-c1680b41d943
+Content-Type: application/json
+Accept-Language: en
+
+
+###
+
 GET https://{{baseurl}}/api/identity-management/users
 Content-Type: application/json
 Accept-Language: en
