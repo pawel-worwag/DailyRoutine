@@ -102,13 +102,17 @@ namespace Identity.Api.Controllers
         }
 
         /// <summary>
-        /// [TO-DO] Reject all recovery tokens
+        /// Reject all recovery tokens
         /// </summary>
         /// <param name="guid"></param>
         /// <returns></returns>
         [HttpDelete("{guid}/recovery-tokens")]
-        public ActionResult RejectAllRecoveryTokens(Guid guid)
+        public async Task<ActionResult> RejectAllRecoveryTokens(Guid guid)
         {
+            await _mediator.Send(new Application.Users.RejectRecoveryTokens.RejectRecoveryTokensRequest
+            {
+                Guid = guid
+            });
             return Ok();
         }
         
@@ -119,7 +123,7 @@ namespace Identity.Api.Controllers
         /// <param name="guid"></param>
         /// <returns></returns>
         [HttpPost("{guid}/send-welcome-email")]
-        public ActionResult SendWelcomeEmeil(Guid guid)
+        public ActionResult SendWelcomeEmail(Guid guid)
         {
             return Ok();
         }

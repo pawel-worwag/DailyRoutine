@@ -117,4 +117,9 @@ public class User
     
     [NotMapped]
     public IReadOnlyCollection<PasswordRecoveryToken> PasswordRecoveryTokens => _passwordRecoveryTokens;
+
+    public void RemoveRecoveryTokens()
+    {
+        _passwordRecoveryTokens.Clear();
+    }
 }

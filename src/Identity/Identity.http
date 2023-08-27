@@ -107,3 +107,9 @@ Accept-Language: en
     }
   ]
 }
+
+###
+
+DELETE https://{{baseurl}}/api/identity-management/users/7a73b4e2-23a2-4416-af43-c28d48ef6482/recovery-tokens
+Content-Type: application/json
+Accept-Language: en
