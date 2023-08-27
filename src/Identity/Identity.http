@@ -43,3 +43,26 @@ Accept-Language: en
     }
   ]
 }
+
+###
+
+PUT https://{{baseurl}}/api/identity-management/users/7a73b4e2-23a2-4416-af43-c28d48ef6482
+Content-Type: application/json
+Accept-Language: en
+
+{
+  "normalized-email": "test1@example.com",
+  "roles": [
+    "Reader"
+  ],
+  "personal-claims": [
+    {
+      "type": "type1",
+      "value": "value1"
+    },
+    {
+      "type": "type2",
+      "value": "value2"
+    }
+  ]
+}

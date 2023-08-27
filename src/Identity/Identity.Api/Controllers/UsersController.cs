@@ -80,13 +80,24 @@ namespace Identity.Api.Controllers
         }
 
         /// <summary>
-        /// [TO-DO] Update user data
+        /// Update user data
         /// </summary>
         /// <param name="guid"></param>
         /// <returns></returns>
         [HttpPut("{guid}")]
-        public ActionResult UpdateUser(Guid guid)
+        public async Task<ActionResult> UpdateUser(Guid guid, Models.Users.UpdateUserDto dto)
         {
+            await _mediator.Send(new Application.Users.UpdateUser.UpdateUserRequest
+            {
+                Guid = guid,
+                NormalizedEmail = dto.NormalizedEmail,
+                Roles = dto.Roles.Select(p=>new NormalizedName(p)).ToList(),
+                PersonalClaims = dto.PersonalClaims.Select(p => new Application.Users.UpdateUser.Claim
+                {
+                    Type = p.Type,
+                    Value = p.Value
+                }).ToList()
+            });
             return Ok();
         }
 
