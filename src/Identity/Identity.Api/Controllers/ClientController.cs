@@ -65,13 +65,20 @@ public class ClientController : ControllerBase
     }  
     
     /// <summary>
-    /// [TO-DO] Update api client
+    /// Update api client
     /// </summary>
     /// <param name="guid"></param>
+    /// <param name="dto"></param>
     /// <returns></returns>
     [HttpPut("{guid:guid}")]
-    public ActionResult UpdateClient(Guid guid)
+    public async Task<ActionResult> UpdateClient(Guid guid, Models.Clients.UpdateClientDto dto)
     {
+        await _mediator.Send(new Application.Clients.UpdateClient.UpdateClientRequest
+        {
+            Guid = guid,
+            Name = dto.Name,
+            Endpoints = dto.Endpoints
+        });
         return Ok();
     }    
     

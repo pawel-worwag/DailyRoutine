@@ -28,6 +28,21 @@ GET https://{{baseurl}}/api/identity-management/clients/63bdb64b-3d8b-4efa-aab8-
 Content-Type: application/json
 Accept-Language: en
 
+
+###
+
+PUT https://{{baseurl}}/api/identity-management/clients/63bdb64b-3d8b-4efa-aab8-ee036aa9865a
+Content-Type: application/json
+Accept-Language: en
+
+{
+  "name": "TestClient-2",
+  "endpoints": [
+    "web-app://akka-dmkce-vcmkvmkv-vdnekcenkc"
+  ]
+}
+
+
 ###
 
 DELETE https://{{baseurl}}/api/identity-management/clients/4c7231d5-b8ee-490b-9bb6-c1680b41d943
