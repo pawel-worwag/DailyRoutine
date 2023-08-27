@@ -34,14 +34,32 @@ public class ClientController : ControllerBase
     }
 
     /// <summary>
-    /// [TO-DO] Add new api client
+    /// Add new api client
     /// </summary>
     /// <returns></returns>
     [HttpPost]
-    public ActionResult AddClient()
+    public async Task<ActionResult> AddClient(Models.Clients.AddClientDto dto)
+    {
+        var guid = await _mediator.Send(new Application.Clients.AddClient.AddClientRequest
+        {
+            Name = dto.Name,
+            Endpoints = dto.Endpoints
+        });
+        
+        var url = this.Url.Action("GetClientDetails", new { guid = guid });
+        return Created(new Uri(url!, UriKind.Relative), null);
+    }
+    
+    /// <summary>
+    /// [TO-DO] Get client details
+    /// </summary>
+    /// <param name="guid"></param>
+    /// <returns></returns>
+    [HttpGet("{guid:guid}")]
+    public ActionResult GetClientDetails(Guid guid)
     {
         return Ok();
-    }
+    }  
     
     /// <summary>
     /// [TO-DO] Update api client

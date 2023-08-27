@@ -11,6 +11,19 @@ Accept-Language: en
 
 ###
 
+POST https://{{baseurl}}/api/identity-management/clients
+Content-Type: application/json
+Accept-Language: en
+
+{
+  "name": "TestClient",
+  "endpoints": [
+    "web-app://akka-dmkce-vcmkvmkv-vdnekcenkc"
+  ]
+}
+
+###
+
 GET https://{{baseurl}}/api/identity-management/users
 Content-Type: application/json
 Accept-Language: en
