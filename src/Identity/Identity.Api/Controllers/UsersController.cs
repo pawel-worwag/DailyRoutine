@@ -91,6 +91,18 @@ namespace Identity.Api.Controllers
         }
 
         /// <summary>
+        /// [TO-DO] Reject all recovery tokens
+        /// </summary>
+        /// <param name="guid"></param>
+        /// <returns></returns>
+        [HttpDelete("{guid}/recovery-tokens")]
+        public ActionResult RejectAllRecoveryTokens(Guid guid)
+        {
+            return Ok();
+        }
+        
+        
+        /// <summary>
         /// [TO-DO] Send Welcome-Email to user
         /// </summary>
         /// <param name="guid"></param>
