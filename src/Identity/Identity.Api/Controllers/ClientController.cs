@@ -51,14 +51,17 @@ public class ClientController : ControllerBase
     }
     
     /// <summary>
-    /// [TO-DO] Get client details
+    /// Get client details
     /// </summary>
     /// <param name="guid"></param>
     /// <returns></returns>
     [HttpGet("{guid:guid}")]
-    public ActionResult GetClientDetails(Guid guid)
+    public async Task<ActionResult<Application.Clients.GetClientDetails.Response>> GetClientDetails(Guid guid)
     {
-        return Ok();
+        return Ok(await _mediator.Send(new Application.Clients.GetClientDetails.GetClientDetailsRequest
+        {
+            Guid = guid
+        }));
     }  
     
     /// <summary>
