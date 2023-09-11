@@ -28,7 +28,7 @@ namespace Identity.Api.Controllers
         [ProducesResponseType(200)]
         public async Task<ActionResult> ReadFileTest()
         {
-            await _mail.SendMailAsync(EmailType.HELLO,new List<string>{"jan.testowy@mail.com"},new Dictionary<string, string>()
+            await _mail.SendMailAsync(EmailType.HELLO,"pl",new List<string>{"jan.testowy@mail.com"},new Dictionary<string, string>()
             {
                 {"aa","bb"},
                 {"bb","cc"}

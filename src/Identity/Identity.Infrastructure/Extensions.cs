@@ -1,5 +1,6 @@
 using Identity.Application.Common.Interfaces;
 using Identity.Infrastructure.Mail;
+using Identity.Infrastructure.Mail.Messages;
 using MassTransit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,39 +11,27 @@ public static class Extensions
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
-        //services.Configure<RabbitMqMailOptions>(options=>configuration.GetSection("MailRabbitBus").Bind(options));
-        //services.AddScoped<IMailBusProducer, RabbitMqMailBusProducer>();
-
-        RabbitMqMailOptions rabbitOptions = new(); 
-        configuration.GetSection("MailRabbitBus").Bind(rabbitOptions);
-        
         services.AddOptions<RabbitMqTransportOptions>()
             .Configure(options =>
             {
-                options.Host = rabbitOptions.Host;
-                options.Port = (ushort)rabbitOptions.Port;
-                options.VHost = "/";
-                options.User = rabbitOptions.UserName;
-                options.Pass = rabbitOptions.Password;
-                options.UseSsl = rabbitOptions.SslEnabled;
+                options.Host = configuration.GetValue<string>("Rabbit:Host");
+                options.Port = configuration.GetValue<ushort>("Rabbit:Port");
+                options.VHost = configuration.GetValue<string>("Rabbit:VHost");
+                options.User = configuration.GetValue<string>("Rabbit:User");
+                options.Pass = configuration.GetValue<string>("Rabbit:Pass");
+                options.UseSsl = configuration.GetValue<bool>("Rabbit:UseSsl");
             });
-        
-        services.AddMassTransit(busConfigurator =>
+        services.AddMassTransit(x =>
         {
-            busConfigurator.SetKebabCaseEndpointNameFormatter();
-            busConfigurator.UsingRabbitMq((context, cfg) =>
+            x.UsingRabbitMq((context, cfg) =>
             {
-                cfg.Publish<Identity.Infrastructure.Mail.Messages.SendMailMessage>(x =>
+                cfg.Message<SendMailCommand>(c =>
                 {
-                    x.Durable = true;
-                    x.AutoDelete = true;
-                    x.ExchangeType = "topic";
+                    c.SetEntityName("SendMail");
                 });
             });
         });
-        
-        
-        services.AddScoped<IMailBusProducer, MassTransitMailBus>();
+        services.AddScoped<IMailBusProducer, MassTransitMailBusProducer>();
         return services;
     }
 }

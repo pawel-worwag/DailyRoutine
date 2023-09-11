@@ -1,4 +1,6 @@
 ﻿using Identity.Api.Common;
+using Identity.Application.Common.Enums;
+using Identity.Application.Common.Interfaces;
 using Identity.Domain.ValueObjects;
 using Identity.Persistence;
 using MediatR;
@@ -17,14 +19,16 @@ namespace Identity.Api.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IMediator _mediator;
+        private readonly IMailBusProducer _mailBus; //only for test of concept
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="mediator"></param>
-        public UsersController(IMediator mediator)
+        public UsersController(IMediator mediator, IMailBusProducer mailBus)
         {
             _mediator = mediator;
+            _mailBus = mailBus;
         }
 
         /// <summary>
@@ -123,8 +127,10 @@ namespace Identity.Api.Controllers
         /// <param name="guid"></param>
         /// <returns></returns>
         [HttpPost("{guid}/send-welcome-email")]
-        public ActionResult SendWelcomeEmail(Guid guid)
+        public async Task<ActionResult> SendWelcomeEmail(Guid guid)
         {
+            //only test
+            await _mailBus.SendMailAsync(EmailType.HELLO,"pl",new List<string>(){guid.ToString()},new Dictionary<string, string>());
             return Ok();
         }
     }
