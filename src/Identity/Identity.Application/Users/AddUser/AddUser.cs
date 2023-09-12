@@ -1,3 +1,4 @@
+using System.Globalization;
 using Identity.Application.Common.Exceptions;
 using Identity.Application.Common.Interfaces;
 using Identity.Domain.ValueObjects;
@@ -11,6 +12,8 @@ public record AddUserRequest : IRequest<Guid>
     public required string NormalizedEmail { get; init; }
     public required ICollection<NormalizedName> Roles { get; init; }
     public required ICollection<Claim> PersonalClaims { get; init; }
+    public required string TimeZone { get; init; }
+    public required string Culture { get; init; }
 };
 
 public record Claim
@@ -49,10 +52,23 @@ internal class AddUserHandler : IRequestHandler<AddUserRequest, Guid>
             ClaimValue = p.Value
         }).ToList();
 
+        var tz = TimeZoneInfo.Utc;
+        try
+        {
+            tz = TimeZoneInfo.FindSystemTimeZoneById(request.TimeZone);
+        }
+        catch (System.TimeZoneNotFoundException ex)
+        {
+            throw new NotFoundException($"Timezone '{request.TimeZone}' not found.");
+        }
+
         var user = new Domain.User
         {
-            NormalizedEmail = email
+            NormalizedEmail = email,
+            TimeZone = tz,
+            Culture = CultureInfo.GetCultureInfo(request.Culture)
         };
+
         user.AddPersonalClaims(claims);
         foreach (var role in roles)
         {

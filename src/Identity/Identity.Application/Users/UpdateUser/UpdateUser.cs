@@ -1,3 +1,4 @@
+using System.Globalization;
 using Identity.Application.Common.Exceptions;
 using Identity.Application.Common.Interfaces;
 using Identity.Domain.ValueObjects;
@@ -12,6 +13,8 @@ public record UpdateUserRequest : IRequest
     public required string NormalizedEmail { get; init; }
     public required ICollection<NormalizedName> Roles { get; init; }
     public required ICollection<Claim> PersonalClaims { get; init; }
+    public required string TimeZone { get; init; }
+    public required string Culture { get; init; }
 };
 
 public record Claim
@@ -70,6 +73,17 @@ internal class UpdateUserHandler : IRequestHandler<UpdateUserRequest>
         {
             user.Roles.Add(role);
         }
+
+        try
+        {
+            user.TimeZone = TimeZoneInfo.FindSystemTimeZoneById(request.TimeZone);
+        }
+        catch (System.TimeZoneNotFoundException ex)
+        {
+            throw new NotFoundException($"Timezone '{request.TimeZone}' not found.");
+        }
+
+        user.Culture = CultureInfo.GetCultureInfo(request.Culture);
 
         _dbc.Users.Update(user);
         await _dbc.SaveChangesAsync(cancellationToken);

@@ -76,7 +76,9 @@ namespace Identity.Api.Controllers
                 {
                     Type = p.Type,
                     Value = p.Value
-                }).ToList()
+                }).ToList(),
+                TimeZone = dto.TimeZone,
+                Culture = dto.Culture
             });
             
             var url = this.Url.Action("GetUserDetails", new { guid = guid });
@@ -100,7 +102,9 @@ namespace Identity.Api.Controllers
                 {
                     Type = p.Type,
                     Value = p.Value
-                }).ToList()
+                }).ToList(),
+                TimeZone = dto.TimeZone,
+                Culture = dto.Culture
             });
             return Ok();
         }

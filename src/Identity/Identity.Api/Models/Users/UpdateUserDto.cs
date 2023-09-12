@@ -24,4 +24,16 @@ public record UpdateUserDto
     /// </summary>
     [JsonPropertyName("personal-claims")]
     public required ICollection<Claim> PersonalClaims { get; init; } 
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    [JsonPropertyName("time-zone")]
+    public required string TimeZone { get; init; }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    [JsonPropertyName("culture")]
+    public required string Culture { get; init; }
 }
