@@ -87,6 +87,7 @@ public class User
         return EmailConfirmationToken;
     }
 
+    [NotMapped]
     public EmailStatus EmailStatus
     {
         get
