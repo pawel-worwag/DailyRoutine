@@ -51,7 +51,9 @@ internal class GetUserDetailsHandler : IRequestHandler<GetUserDetailsRequest, Re
             {
                 ValidAfter = p.ValidAfter,
                 ValidBefore = p.ValidBefore
-            }).ToList()
+            }).ToList(),
+            TimeZone = user.TimeZone.Id,
+            Culture = user.Culture.Name
         };
     }
 }

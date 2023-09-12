@@ -16,5 +16,10 @@ public record Response
     public required ICollection<RecoveryToken> RecoveryTokens { get; init; }
     [JsonPropertyName("personal-claims")]
     public required ICollection<Claim> PersonalClaims { get; init; }
+    [JsonPropertyName("time-zone")]
+    public required string TimeZone { get; init; }
+    [JsonPropertyName("culture")]
+    public required string Culture { get; init; }
+    
     
 };
