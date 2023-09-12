@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Globalization;
 using Identity.Domain.Entities;
 using Identity.Domain.Enums;
 using Identity.Domain.ValueObjects;
@@ -123,4 +124,8 @@ public class User
     {
         _passwordRecoveryTokens.Clear();
     }
+    
+    public TimeZoneInfo TimeZone { get; set; }
+
+    public CultureInfo Culture { get; set; }
 }

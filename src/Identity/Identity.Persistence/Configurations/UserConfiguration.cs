@@ -1,3 +1,4 @@
+using System.Globalization;
 using Identity.Domain;
 using Identity.Domain.Entities;
 using Identity.Domain.ValueObjects;
@@ -24,5 +25,9 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             .WithOne(nameof(EmailConfirmationToken.User));
         builder.HasMany(typeof(PasswordRecoveryToken), "_passwordRecoveryTokens")
             .WithOne(nameof(PasswordRecoveryToken.User)).HasForeignKey("UserId");
+        builder.Property(p => p.Culture).HasConversion<string>(culture => culture.Name, s => CultureInfo.GetCultureInfo(s));
+        builder.Property(p => p.TimeZone)
+            .HasConversion<string>(zone => zone.Id, s => TimeZoneInfo.FindSystemTimeZoneById(s));
     }
+    
 }
