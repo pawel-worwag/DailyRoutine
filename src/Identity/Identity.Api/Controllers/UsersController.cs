@@ -19,16 +19,14 @@ namespace Identity.Api.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IMediator _mediator;
-        private readonly IMailBusProducer _mailBus; //only for test of concept
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="mediator"></param>
-        public UsersController(IMediator mediator, IMailBusProducer mailBus)
+        public UsersController(IMediator mediator)
         {
             _mediator = mediator;
-            _mailBus = mailBus;
         }
 
         /// <summary>
@@ -133,8 +131,12 @@ namespace Identity.Api.Controllers
         [HttpPost("{guid}/send-welcome-email")]
         public async Task<ActionResult> SendWelcomeEmail(Guid guid)
         {
+            await _mediator.Send(new Application.Users.SendWelcomeEmail.SendWelcomeEmailRequest()
+            {
+                Guid = guid
+            });
             //only test
-            await _mailBus.SendMailAsync(EmailType.HELLO,"pl",new List<string>(){guid.ToString()},new Dictionary<string, string>());
+            //await _mailBus.SendMailAsync(EmailType.HELLO,"pl",new List<string>(){guid.ToString()},new Dictionary<string, string>());
             return Ok();
         }
     }
