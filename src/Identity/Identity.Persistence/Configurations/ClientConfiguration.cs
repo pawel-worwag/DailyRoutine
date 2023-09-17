@@ -13,6 +13,6 @@ public class ClientConfiguration:IEntityTypeConfiguration<Domain.Client>
         builder.HasIndex(p => p.Guid).IsUnique();
         builder.Property(p => p.Guid).IsRequired();
         builder.Property(p => p.Name).IsRequired();
-        builder.HasMany(p => p.RedirectionEndpoints).WithOne(p => p.Client).HasForeignKey(p => p.ClientId);
+        builder.HasMany(p => p.RedirectionEndpoints).WithOne(p => p.Client).HasForeignKey("ClientId");
     }
 }

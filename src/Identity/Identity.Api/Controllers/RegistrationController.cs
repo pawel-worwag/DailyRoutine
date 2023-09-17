@@ -1,4 +1,5 @@
 ﻿using Identity.Api.Common;
+using Identity.Api.Models.Registration;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -27,9 +28,10 @@ namespace Identity.Api.Controllers
         /// <summary>
         /// [TO-DO] Start new user registration procedure
         /// </summary>
+        /// <param name="dto"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult CreateNewRegistrationToken()
+        public ActionResult CreateNewRegistrationToken(UserRegistrationDto dto)
         {
             return Ok();
         }
