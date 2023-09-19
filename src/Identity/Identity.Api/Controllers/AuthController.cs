@@ -1,4 +1,5 @@
 ﻿using Identity.Api.Common;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,6 +13,17 @@ namespace Identity.Api.Controllers
     [ProducesDefaultContentType]
     public class AuthController : ControllerBase
     {
+        private readonly IMediator _mediator;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mediator"></param>
+        public AuthController(IMediator mediator)
+        {
+            _mediator = mediator;
+        }
+
         /// <summary>
         /// [TO-DO] Server discovery endpoint
         /// </summary>
@@ -27,9 +39,23 @@ namespace Identity.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("jwks")]
-        public ActionResult GetJwkSet()
+        public async Task<ActionResult<Models.Auth.Jwks>> GetJwkSet()
         {
-            return Ok();
+            var jwks = await _mediator.Send(new Application.Auth.GetJwks.GetJwksRequest());
+            return Ok(new Models.Auth.Jwks
+            {
+                Keys = jwks.Keys.Select(p=>new Models.Auth.Key
+                {
+                    Alg = p.Alg,
+                    E = p.E,
+                    Kid = p.Kid,
+                    Kty = p.Kty,
+                    N = p.N,
+                    Use = p.Use,
+                    X5c = p.X5c,
+                    X5t = p.X5t
+                }).ToList()
+            });
         }
 
         /// <summary>
