@@ -25,7 +25,7 @@ namespace Identity.Api.Controllers
         }
 
         /// <summary>
-        /// [TO-DO] Server discovery endpoint
+        /// Server discovery endpoint
         /// </summary>
         /// <returns></returns>
         [HttpGet("openid-configuration")]
@@ -36,7 +36,7 @@ namespace Identity.Api.Controllers
         }
 
         /// <summary>
-        /// [TO-DO] Get JSON Web Keys set
+        /// Get JSON Web Keys set
         /// </summary>
         /// <returns></returns>
         [HttpGet("jwks")]
