@@ -29,9 +29,10 @@ namespace Identity.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("openid-configuration")]
-        public ActionResult GetOpenIdConfiguration()
+        public async Task<ActionResult<Models.Auth.OpenIdConfiguration>> GetOpenIdConfiguration()
         {
-            return Ok();
+            var config = await _mediator.Send(new Application.Auth.GetDiscovery.GetDiscoveryRequest());
+            return Ok(config);
         }
 
         /// <summary>
