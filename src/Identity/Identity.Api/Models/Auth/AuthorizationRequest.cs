@@ -40,4 +40,10 @@ public record AuthorizationRequest
     [JsonPropertyName("state")]
     public string? State { get; init; } = null;
     
+    /// <summary>
+    /// 
+    /// </summary>
+    [JsonPropertyName("nonce")]
+    public string? Nonce { get; init; } = null;
+    
 }
