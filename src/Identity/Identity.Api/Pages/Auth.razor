@@ -1,17 +1,28 @@
 @page "/auth/login"
 
-<h3>Auth</h3>
+<div class="page">
 
-<table>
-    <tr><td></td><td>@Navigation.Uri</td></tr>
-    <tr><td></td><td><br/></td></tr>
-    <tr><td>response_type: </td><td>@_request?.ResponseType</td></tr>
-    <tr><td>client_id: </td><td>@_request?.ClientId</td></tr>
-    <tr><td>redirect_uri: </td><td>@_request?.RedirectUri</td></tr>
-    <tr><td>scope: </td><td>@_request?.Scope</td></tr>
-    <tr><td>state: </td><td>@_request?.State</td></tr>
-    <tr><td>nonce: </td><td>@_request?.Nonce</td></tr>
-    <tr><td>Error: </td><td>@_error</td></tr>
-</table>
+    <div class="panel">
 
-<button @onclick="OnLoginClick">LogIn</button>
+        @if (@_error is not null)
+        {
+            <div class="error">
+                <b>ERROR</b><br/>@_error
+            </div>
+        }
+        else
+        {
+            <form>
+                <InputText @bind-Value="UserName" placeholder="User name"></InputText>
+                
+                <InputText type="password" @bind-Value="Password"  placeholder="Password"></InputText>
+                
+                <button class="loginButton" @onclick="OnLoginClick">LogIn</button>
+            </form>
+
+            <div class="bottomBar">
+                Not a member? <NavLink href="/auth/register">Create account</NavLink>
+            </div>
+        }
+    </div>
+</div>

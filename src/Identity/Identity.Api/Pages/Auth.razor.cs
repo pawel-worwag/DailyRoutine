@@ -55,6 +55,9 @@ public partial class Auth : ComponentBase
     [SupplyParameterFromQuery(Name = "nonce")]
     public string? Nonce { get; set; }
 
+    private string UserName { get; set; } = string.Empty;
+    private string Password { get; set; } = string.Empty;
+    
     private Models.Auth.AuthorizationRequest? _request;
 
     private string? _error = null;
@@ -74,6 +77,21 @@ public partial class Auth : ComponentBase
             RedirectUri = RedirectUri,
             Nonce = Nonce
         };
+        try
+        {
+            await Mediator.Send(new Application.Auth.AuthorizationValidate.AuthorizationValidateRequest()
+            {
+                ResponseType = ResponseType,
+                ClientId = (ClientId is null) ? null : new Guid(ClientId),
+                RedirectUri = RedirectUri,
+                Scope = Scope,
+                State = State
+            });
+        }
+        catch (Exception ex)
+        {
+            _error = ex.Message;
+        }
         await base.OnInitializedAsync();
     }
 

@@ -45,5 +45,4 @@ public record AuthorizationRequest
     /// </summary>
     [JsonPropertyName("nonce")]
     public string? Nonce { get; init; } = null;
-    
 }

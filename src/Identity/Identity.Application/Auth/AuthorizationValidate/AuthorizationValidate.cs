@@ -7,7 +7,7 @@ namespace Identity.Application.Auth.AuthorizationValidate;
 public record AuthorizationValidateRequest : IRequest
 {
     public string? ResponseType { get; init; } = null;
-    public string? ClientId { get; init; } = null;
+    public Guid? ClientId { get; init; } = null;
     public string? RedirectUri { get; init; } = null;
     public string? Scope { get; init; } = null;
     public string? State { get; init; } = null;
@@ -16,6 +16,7 @@ public record AuthorizationValidateRequest : IRequest
 internal class AuthorizationValidateHandler : IRequestHandler<AuthorizationValidateRequest>
 {
     private IIdentityDbContext _dbc;
+    private readonly ICollection<string> _allowedResponses = new List<string>() { "token", "code" };
 
     public AuthorizationValidateHandler(IIdentityDbContext dbc)
     {
@@ -24,18 +25,37 @@ internal class AuthorizationValidateHandler : IRequestHandler<AuthorizationValid
 
     public async Task Handle(AuthorizationValidateRequest request, CancellationToken cancellationToken)
     {
-        var client = await _dbc.Clients.Where(p => p.Guid.ToString() == request.ClientId)
-            .Include(p=>p.RedirectionEndpoints)
-            .FirstOrDefaultAsync(cancellationToken);
-        if (client is null)
+        if (request.ResponseType is null)
         {
-            throw new Exception("Bad client");
+            throw new Exception("Empty response_type.");  
+        }
+        
+        if (!_allowedResponses.Contains(request.ResponseType))
+        {
+            throw new Exception("Unsupported response_type.");
         }
 
-        var endpoint = client.RedirectionEndpoints.FirstOrDefault(p => p.Uri == request.RedirectUri);
-        if (endpoint is null)
+        if (request.ClientId is null)
         {
-            throw new Exception("Bad redirect endpoint");
+            throw new Exception("Empty client_id.");
+        }
+
+        switch (request.ResponseType)
+        {
+            case "code":
+            {
+                var client = await _dbc.Clients.Include(p => p.RedirectionEndpoints).FirstOrDefaultAsync(p => p.Guid == request.ClientId,cancellationToken);
+                if (client is null)
+                {
+                    throw new Exception("Unknown client_id");
+                }
+                
+                break;
+            }
+            case "token":
+            {
+                break;
+            }
         }
     }
 }
