@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Identity.Application.Auth.AuthorizationValidate;
 
-public record AuthorizationValidateRequest : IRequest
+public record AuthorizationValidateRequest : IRequest<ValidationResult>
 {
     public string? ResponseType { get; init; } = null;
     public Guid? ClientId { get; init; } = null;
@@ -13,7 +13,7 @@ public record AuthorizationValidateRequest : IRequest
     public string? State { get; init; } = null;
 }
 
-internal class AuthorizationValidateHandler : IRequestHandler<AuthorizationValidateRequest>
+internal class AuthorizationValidateHandler : IRequestHandler<AuthorizationValidateRequest,ValidationResult>
 {
     private IIdentityDbContext _dbc;
     private readonly ICollection<string> _allowedResponses = new List<string>() { "token", "code" };
@@ -23,39 +23,34 @@ internal class AuthorizationValidateHandler : IRequestHandler<AuthorizationValid
         _dbc = dbc;
     }
 
-    public async Task Handle(AuthorizationValidateRequest request, CancellationToken cancellationToken)
+    public async Task<ValidationResult> Handle(AuthorizationValidateRequest request, CancellationToken cancellationToken)
     {
-        if (request.ResponseType is null)
-        {
-            throw new Exception("Empty response_type.");  
-        }
+        var errors = new List<string>();
         
-        if (!_allowedResponses.Contains(request.ResponseType))
+        if (request.ResponseType is null) { errors.Add("Empty response_type."); }
+        else
         {
-            throw new Exception("Unsupported response_type.");
+            if (!_allowedResponses.Contains(request.ResponseType)) { errors.Add("Unsupported response_type."); } 
         }
 
-        if (request.ClientId is null)
+        if (request.ClientId is null) { errors.Add("Empty client_id."); }
+        else
         {
-            throw new Exception("Empty client_id.");
+            var client = await _dbc.Clients.Include(p => p.RedirectionEndpoints).FirstOrDefaultAsync(p => p.Guid == request.ClientId,cancellationToken);
+        
+            if (client is null) { errors.Add("Unknown client_id"); }
+            else
+            {
+                var endpoint = client.RedirectionEndpoints.FirstOrDefault(p => p.Uri == request.RedirectUri);
+        
+                if(endpoint is null) { errors.Add("Unknown redirect_uri"); }
+            }
         }
 
-        switch (request.ResponseType)
+        return new ValidationResult()
         {
-            case "code":
-            {
-                var client = await _dbc.Clients.Include(p => p.RedirectionEndpoints).FirstOrDefaultAsync(p => p.Guid == request.ClientId,cancellationToken);
-                if (client is null)
-                {
-                    throw new Exception("Unknown client_id");
-                }
-                
-                break;
-            }
-            case "token":
-            {
-                break;
-            }
-        }
+            IsValid = errors.Count == 0,
+            Errors = errors
+        };
     }
 }

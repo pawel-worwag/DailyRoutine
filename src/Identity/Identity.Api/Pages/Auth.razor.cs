@@ -13,96 +13,36 @@ public partial class Auth : ComponentBase
 
     [Inject] private IMediator Mediator { get; set; } = default!;
 
-    /// <summary>
-    /// 
-    /// </summary>
-    [Parameter]
-    [SupplyParameterFromQuery(Name = "response_type")]
-    public string? ResponseType { get; init; }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    [Parameter]
-    [SupplyParameterFromQuery(Name = "client_id")]
-    public string? ClientId { get; set; }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    [Parameter]
-    [SupplyParameterFromQuery(Name = "scope")]
-    public string? Scope { get; set; }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    [Parameter]
-    [SupplyParameterFromQuery(Name = "state")]
-    public string? State { get; set; }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    [Parameter]
-    [SupplyParameterFromQuery(Name = "redirect_uri")]
-    public string? RedirectUri { get; set; }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    [Parameter]
-    [SupplyParameterFromQuery(Name = "nonce")]
-    public string? Nonce { get; set; }
-
     private string UserName { get; set; } = string.Empty;
     private string Password { get; set; } = string.Empty;
-    
-    private Models.Auth.AuthorizationRequest? _request;
 
-    private string? _error = null;
+    private ICollection<string> _requestValidationError = new List<string>();
+    private ICollection<string> _requestHandlingError = new List<string>();
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <returns></returns>
+
+    /// <summary/>
     protected override async Task OnInitializedAsync()
     {
-        _request = new AuthorizationRequest()
+        var validation = await Mediator.Send(new Application.Auth.AuthorizationValidate.AuthorizationValidateRequest()
         {
-            ResponseType = ResponseType ?? "",
-            ClientId = ClientId ?? "",
-            Scope = Scope,
-            State = State,
+            ResponseType = ResponseType,
+            ClientId = (ClientId is null) ? null : new Guid(ClientId),
             RedirectUri = RedirectUri,
-            Nonce = Nonce
-        };
-        try
-        {
-            await Mediator.Send(new Application.Auth.AuthorizationValidate.AuthorizationValidateRequest()
-            {
-                ResponseType = ResponseType,
-                ClientId = (ClientId is null) ? null : new Guid(ClientId),
-                RedirectUri = RedirectUri,
-                Scope = Scope,
-                State = State
-            });
-        }
-        catch (Exception ex)
-        {
-            _error = ex.Message;
-        }
+            Scope = Scope,
+            State = State
+        });
+
+        _requestValidationError = validation.Errors;
+
         await base.OnInitializedAsync();
     }
 
     private async void OnLoginClick()
     {
-        try
-        {
             var redirectUrl = await Mediator.Send(new Application.Auth.GetAuthorization.GetAuthorizationRequest()
             {
                 ResponseType = ResponseType,
-                ClientId = (ClientId is null)?null:new Guid(ClientId),
+                ClientId = (ClientId is null) ? null : new Guid(ClientId),
                 RedirectUri = RedirectUri,
                 Scope = Scope,
                 State = State
@@ -111,10 +51,5 @@ public partial class Auth : ComponentBase
 
             Console.WriteLine($"pip: /auth/redirect?url={param}");
             Navigation.NavigateTo($"/auth/redirect?url={param}", forceLoad: true, replace: true);
-        }
-        catch (Exception ex)
-        {
-            _error = ex.Message;
-        }
     }
 }

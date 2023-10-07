@@ -26,6 +26,7 @@ form
 div.error
 {
     color: #a52834;
+    padding:.5em;
 }
 
 button.loginButton 

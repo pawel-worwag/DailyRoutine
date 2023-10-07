@@ -4,10 +4,13 @@
 
     <div class="panel">
 
-        @if (@_error is not null)
+        @if (_requestValidationError.Count>0)
         {
             <div class="error">
-                <b>ERROR</b><br/>@_error
+                @foreach (var error in _requestValidationError)
+                {
+                    <div>@error</div>
+                }
             </div>
         }
         else
