@@ -4,7 +4,7 @@
 
     <div class="panel">
 
-        @if (_requestValidationError.Count>0)
+        @if (_requestValidationError.Count > 0)
         {
             <div class="error">
                 @foreach (var error in _requestValidationError)
@@ -15,12 +15,23 @@
         }
         else
         {
-            <form>
-                <InputText @bind-Value="UserName" placeholder="User name"></InputText>
-                
-                <InputText type="password" @bind-Value="Password"  placeholder="Password"></InputText>
-                
-                <button class="loginButton" @onclick="OnLoginClick">LogIn</button>
+            <form @onsubmit="Login">
+                <InputText @bind-Value="UserName" placeholder="Email"></InputText>
+
+                <InputText type="password" @bind-Value="Password" placeholder="Password"></InputText>
+
+
+                @if (_requestHandlingError.Count > 0)
+                {
+                    <div class="error">
+                        @foreach (var error in _requestHandlingError)
+                        {
+                            <div>@error</div>
+                        }
+                    </div>
+                }
+
+                <button class="loginButton" type="submit">LogIn</button>
             </form>
 
             <div class="bottomBar">

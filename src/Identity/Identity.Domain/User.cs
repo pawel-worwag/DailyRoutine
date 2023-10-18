@@ -17,6 +17,7 @@ public class User
     public HashSet<Role> Roles { get; private set; } = new HashSet<Role>();
     protected ICollection<UserClaim> UserClaims { get; private set; } = new List<UserClaim>();
 
+
     /// <summary>
     /// Claims added to user.
     /// </summary>

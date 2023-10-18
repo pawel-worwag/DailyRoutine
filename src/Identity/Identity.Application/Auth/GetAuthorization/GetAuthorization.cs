@@ -1,10 +1,13 @@
 using Identity.Application.Common.Interfaces;
+using Identity.Domain;
+using Identity.Domain.ValueObjects;
 using MediatR;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Identity.Application.Auth.GetAuthorization;
 
-public record GetAuthorizationRequest : IRequest<string>
+public record GetAuthorizationRequest : IRequest<AuthorizationResult>
 {
     // token ot code
     public string? ResponseType { get; init; }
@@ -12,59 +15,75 @@ public record GetAuthorizationRequest : IRequest<string>
     public string? RedirectUri { get; init; } = null;
     public string? Scope { get; init; } = null;
     public string? State { get; init; } = null;
-
+    public string UserName { get; init; } = string.Empty;
+    public string Password { get; init; } = string.Empty;
 }
 
-internal class GetAuthorizationHandler : IRequestHandler<GetAuthorizationRequest, string>
+internal class GetAuthorizationHandler : IRequestHandler<GetAuthorizationRequest, AuthorizationResult>
 {
-    private readonly ICollection<string> _allowedResponses = new List<string>() { "token", "code" };
-    private readonly IIdentityDbContext _dbc;
+    private readonly IIdentityDbContext _dbc;    
+    private readonly IPasswordHasher<Domain.User> _passwordHasher;
 
-    public GetAuthorizationHandler(IIdentityDbContext dbc)
+    public GetAuthorizationHandler(IIdentityDbContext dbc, IPasswordHasher<User> passwordHasher)
     {
         _dbc = dbc;
+        _passwordHasher = passwordHasher;
     }
 
-    public async Task<string> Handle(GetAuthorizationRequest request, CancellationToken cancellationToken)
+    public async Task<AuthorizationResult> Handle(GetAuthorizationRequest request, CancellationToken cancellationToken)
     {
-        await ValidateRequestAsync(request,cancellationToken);
+        var errors = new List<string>();
+        string RedirectUri = "";
 
-        throw new NotImplementedException();
-    }
-
-    private async Task ValidateRequestAsync(GetAuthorizationRequest request, CancellationToken cancellationToken)
-    {
-        if (request.ResponseType is null)
+        if (string.IsNullOrWhiteSpace(request.UserName))
         {
-            throw new Exception("Empty response_type.");  
+            errors.Add("Login is empty");
         }
-        
-        if (!_allowedResponses.Contains(request.ResponseType))
+        else if (string.IsNullOrWhiteSpace(request.Password))
         {
-            throw new Exception("Unsupported response_type.");
+            errors.Add("Password is empty");
         }
-
-        if (request.ClientId is null)
+        else if (request.UserName.Count(x => x == '@') != 1)
         {
-            throw new Exception("Empty client_id.");
+            errors.Add("Unknown user name or bad password");
         }
-
-        switch (request.ResponseType)
+        else
         {
-            case "code":
+            var user = await _dbc.Users
+                .Include(p => p.Roles).ThenInclude(p => p.Claims)
+                .Include("UserClaims")
+                .Include("EmailConfirmationToken")
+                .FirstOrDefaultAsync(p => p.NormalizedEmail == new NormalizedEmailAddress(request.UserName),
+                    cancellationToken);
+            if (user is null)
             {
-                var client = await _dbc.Clients.Include(p => p.RedirectionEndpoints).FirstOrDefaultAsync(p => p.Guid == request.ClientId,cancellationToken);
-                if (client is null)
+                errors.Add("Unknown user name or bad password");
+            }
+            else
+            {
+                if (_passwordHasher.VerifyHashedPassword(user, user.PasswordHash, request.Password) == PasswordVerificationResult.Failed)
                 {
-                    throw new Exception("Unknown client_id");
+                    errors.Add("Unknown user name or bad password");
                 }
-                
-                break;
-            }
-            case "token":
-            {
-                break;
+                else
+                {
+                    //prepare toknes
+                    var accessToken = PrepareAccessToken(user, request.Scope.Split(" ").ToList());
+                }
             }
         }
+
+        return new AuthorizationResult()
+        {
+            IsValid = errors.Count == 0,
+            Errors = errors,
+            RedirectUri = "snusuw"
+        };
+    }
+
+    private string PrepareAccessToken(User user, ICollection<string> scopes)
+    {
+        
+        return "";
     }
 }

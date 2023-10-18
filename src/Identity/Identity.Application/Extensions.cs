@@ -1,5 +1,7 @@
 using System.Reflection;
 using Identity.Application.Common.Options;
+using Identity.Domain;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -12,6 +14,7 @@ public static class Extensions
         services.Configure<JwksOptions>(cfg.GetSection("Auth:Jwks"));
         //services.AddOptions<JwksOptions>("Auth:Jwks");
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+        services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
         return services;
     }
 }

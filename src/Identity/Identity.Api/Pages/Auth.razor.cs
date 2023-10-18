@@ -37,19 +37,36 @@ public partial class Auth : ComponentBase
         await base.OnInitializedAsync();
     }
 
-    private async void OnLoginClick()
+    private bool IsLoginAllowed => !(string.IsNullOrWhiteSpace(UserName) || string.IsNullOrWhiteSpace(Password));
+    
+    private async void Login()
     {
-            var redirectUrl = await Mediator.Send(new Application.Auth.GetAuthorization.GetAuthorizationRequest()
+        if (IsLoginAllowed)
+        {
+            _requestHandlingError = new List<string>();
+            StateHasChanged();
+            var result = await Mediator.Send(new Application.Auth.GetAuthorization.GetAuthorizationRequest()
             {
                 ResponseType = ResponseType,
                 ClientId = (ClientId is null) ? null : new Guid(ClientId),
                 RedirectUri = RedirectUri,
                 Scope = Scope,
-                State = State
+                State = State,
+                UserName = UserName,
+                Password = Password
             });
-            var param = Uri.EscapeDataString(redirectUrl);
+            if (result.IsValid)
+            {
+                var param = Uri.EscapeDataString(result.RedirectUri);
 
-            Console.WriteLine($"pip: /auth/redirect?url={param}");
-            Navigation.NavigateTo($"/auth/redirect?url={param}", forceLoad: true, replace: true);
+                Console.WriteLine($"pip: /auth/redirect?url={param}");
+                Navigation.NavigateTo($"/auth/redirect?url={param}", forceLoad: true, replace: true);
+            }
+            else
+            {
+                _requestHandlingError = result.Errors;
+            }
+            StateHasChanged();
+        }
     }
 }
