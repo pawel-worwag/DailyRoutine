@@ -8,7 +8,7 @@ namespace Identity.Api.Controllers;
 /// 
 /// </summary>
 [ApiController]
-[Route("api/identity-management/clients/")]
+[Route("api/identity-management-old/clients/")]
 [ProducesDefaultContentType]
 public class ClientController : ControllerBase
 {

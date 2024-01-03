@@ -7,7 +7,7 @@ namespace Identity.Api.Controllers
     /// <summary>
     /// 
     /// </summary>
-    [Route("api/identity-management/recovery-password-tokens")]
+    [Route("api/identity-management-old/recovery-password-tokens")]
     [ApiController]
     [ProducesDefaultContentType]
     public class RecoveryController : ControllerBase

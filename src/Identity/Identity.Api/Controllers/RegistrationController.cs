@@ -8,7 +8,7 @@ namespace Identity.Api.Controllers
     /// <summary>
     /// 
     /// </summary>
-    [Route("api/identity-management/registration-tokens")]
+    [Route("api/identity-management-old/registration-tokens")]
     [ApiController]
     [ProducesDefaultContentType]
     public class RegistrationController : ControllerBase

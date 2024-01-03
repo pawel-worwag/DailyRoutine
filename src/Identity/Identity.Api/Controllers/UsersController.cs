@@ -13,7 +13,7 @@ namespace Identity.Api.Controllers
     /// <summary>
     /// 
     /// </summary>
-    [Route("api/identity-management/users")]
+    [Route("api/identity-management-old/users")]
     [ApiController]
     [ProducesDefaultContentType]
     public class UsersController : ControllerBase

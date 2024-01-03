@@ -8,7 +8,7 @@ namespace Identity.Api.Controllers
     /// <summary>
     /// 
     /// </summary>
-    [Route("api/identity-management/me")]
+    [Route("api/identity-management-old/me")]
     [ApiController]
     [ProducesDefaultContentType]
     public class MeController : ControllerBase

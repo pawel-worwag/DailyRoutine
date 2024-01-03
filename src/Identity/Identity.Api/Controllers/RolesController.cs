@@ -9,7 +9,7 @@ namespace Identity.Api.Controllers
     /// <summary>
     /// 
     /// </summary>
-    [Route("api/identity-management/roles/")]
+    [Route("api/identity-management-old/roles/")]
     [ApiController]
     [ProducesDefaultContentType]
     public class RolesController : ControllerBase

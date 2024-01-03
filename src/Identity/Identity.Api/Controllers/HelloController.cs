@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Identity.Api.Controllers
 {
-    [Route("api/identity-management/")]
+    [Route("api/identity-management-old/")]
     [ApiController]
     [ProducesDefaultContentType]
     public class HelloController : ControllerBase

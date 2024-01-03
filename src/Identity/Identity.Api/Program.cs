@@ -1,5 +1,6 @@
 using System.Reflection;
 using Identity.Api.Common.Exceptions;
+using Identity.Api.Endpoints;
 using Identity.Application;
 using Identity.Infrastructure;
 using Identity.Persistence;
@@ -13,7 +14,6 @@ builder.Services.AddInfrastructure(builder.Configuration);
 
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor(o => o.DetailedErrors = true);
-builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen( options => {
@@ -46,22 +46,8 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseCors();
 
-app.MapControllers();
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
-app.MapGet("/auth/redirect", async context =>
-{
-    var url = context.Request.Query["url"];
 
-
-    if (string.IsNullOrWhiteSpace(url))
-    {
-        context.Response.StatusCode = 400;
-        return;
-    }
-    Console.WriteLine($"url = {url}");
-    context.Response.StatusCode = 302;
-    context.Response.Redirect(url);
-});
-
+app.MapIdentityEndpoints();
 app.Run();
